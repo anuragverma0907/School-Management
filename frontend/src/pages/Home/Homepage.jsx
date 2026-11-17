@@ -498,7 +498,8 @@ export default function App() {
       setLoginSuccess(false);
       setLoginModalOpen(false);
       setLoginCreds({ username: '', password: '' });
-    }, 1500);
+      window.location.href = '/dashboard';
+    }, 1000);
   };
 
   return (
@@ -530,6 +531,13 @@ export default function App() {
             >
               Login
             </button>
+            <a
+              href="/dashboard"
+              className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold px-3.5 py-1 rounded-full text-xs transition-all shadow-sm flex items-center gap-1"
+            >
+              <span>Dashboard</span>
+              <ArrowRight className="w-3 h-3" />
+            </a>
           </div>
         </div>
 

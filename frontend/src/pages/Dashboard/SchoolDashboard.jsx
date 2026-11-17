@@ -193,7 +193,7 @@ function Sidebar({ expanded, menuSearch, setMenuSearch, active, setActive, role 
       }`}
       style={{ background: `linear-gradient(180deg, ${COLORS.navy} 0%, ${COLORS.navyDark} 100%)` }}
     >
-      <div className="flex h-[70px] shrink-0 items-center gap-3 border-b border-white/10 px-4">
+      <a href="/" title="Back to Homepage" className="flex h-[70px] shrink-0 items-center gap-3 border-b border-white/10 px-4 hover:bg-white/5 transition-colors cursor-pointer">
         <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-blue-600 text-lg font-bold shadow-lg shadow-blue-950/30">D</div>
         {expanded && (
           <div className="min-w-0">
@@ -201,7 +201,7 @@ function Sidebar({ expanded, menuSearch, setMenuSearch, active, setActive, role 
             <p className="truncate text-[10px] text-blue-200">Bareilly, Uttar Pradesh</p>
           </div>
         )}
-      </div>
+      </a>
 
       {expanded && (
         <div className="px-3 pt-3">
@@ -387,6 +387,14 @@ export default function SchoolDashboard() {
           </label>
 
           <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
+            <a
+              href="/"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
+              title="Return to Homepage"
+            >
+              <Home size={14} />
+              <span>Home</span>
+            </a>
             <button type="button" aria-label="Messages" className="relative grid size-9 place-items-center rounded-full hover:bg-slate-100"><Mail size={19} /><span className="absolute right-0 top-0 grid size-4 place-items-center rounded-full bg-red-500 text-[9px] font-bold text-white">0</span></button>
             <button type="button" aria-label="Notifications" className="relative grid size-9 place-items-center rounded-full hover:bg-slate-100"><Bell size={19} /><span className="absolute right-0 top-0 grid size-4 place-items-center rounded-full bg-red-500 text-[9px] font-bold text-white">0</span></button>
             <button type="button" aria-label="Calendar" className="hidden size-9 place-items-center rounded-full hover:bg-slate-100 sm:grid"><Calendar size={19} /></button>
