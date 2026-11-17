@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   Play,
   Check,
   MapPin,
@@ -32,7 +33,13 @@ import {
   ExternalLink,
   Menu,
   UserCheck,
-  Lock
+  Lock,
+  Bed,
+  Utensils,
+  Wifi,
+  Tv,
+  HeartPulse,
+  AlertTriangle
 } from 'lucide-react';
 
 // ============================================================================
@@ -171,6 +178,186 @@ const STAFF_MEMBERS = [
   }
 ];
 
+const LEADERSHIP_MEMBERS = [
+  {
+    id: 1,
+    name: 'Shri Rajeshwar Nath Sharma',
+    role: 'Chairman',
+    department: 'School Management Committee',
+    qualification: 'M.A., Retd. Educationist & Philanthropist',
+    image:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
+    badge: 'Founder & Chairman',
+    message:
+      'True education transcends textbooks. Our enduring commitment is to nurture empathetic leaders of tomorrow who combine deep-rooted moral values with modern intellectual curiosity.'
+  },
+  {
+    id: 2,
+    name: 'Dr. Ananya Singhania',
+    role: 'Managing Director & Trustee',
+    department: 'Governing Council',
+    qualification: 'Ph.D. in Educational Leadership (UK), M.Ed.',
+    image:
+      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+    badge: 'Managing Director',
+    message:
+      'By integrating cutting-edge educational technology, smart ERP systems, and collaborative pedagogy, we prepare our scholars to thrive in an interconnected global landscape.'
+  },
+  {
+    id: 3,
+    name: 'Mrs. Sunita Verma',
+    role: 'Principal & Head of Institution',
+    department: 'Academic Administration',
+    qualification: 'M.Sc. (Physics), M.Ed., National Merit Awardee',
+    image:
+      'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=600&q=80',
+    badge: 'Principal',
+    message:
+      'Every student carries infinite potential. Our dedicated educators provide compassionate mentorship, intellectual rigor, and an environment where dreams take flight.'
+  }
+];
+
+const ADMINISTRATIVE_HEADS = [
+  {
+    id: 1,
+    name: 'Mr. Alok Mukherjee',
+    role: 'Vice Principal',
+    wing: 'Senior Secondary Wing (Grades XI - XII)',
+    qualification: 'M.Sc., B.Ed. • 22+ Years Exp.',
+    image:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'
+  },
+  {
+    id: 2,
+    name: 'Mrs. Rekha Pathak',
+    role: 'Academic Coordinator',
+    wing: 'Secondary Wing (Grades IX - X)',
+    qualification: 'M.A., M.Ed. • 18+ Years Exp.',
+    image:
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80'
+  },
+  {
+    id: 3,
+    name: 'Mrs. Meenakshi Joshi',
+    role: 'Headmistress',
+    wing: 'Primary & Pre-Primary Wing',
+    qualification: 'M.A. Child Psychology, B.Ed. • 15+ Years Exp.',
+    image:
+      'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=400&q=80'
+  },
+  {
+    id: 4,
+    name: 'Maj. (Retd.) V. K. Chauhan',
+    role: 'Administrative Officer & Superintendent',
+    wing: 'Campus Operations & Security',
+    qualification: 'Ex-Army Officer, M.B.A. • 20+ Years Exp.',
+    image:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80'
+  }
+];
+
+const FACULTY_MEMBERS = [
+  {
+    id: 1,
+    name: 'Dr. Arvind Saxena',
+    role: 'HOD Physics',
+    department: 'Science & Technology',
+    qualification: 'Ph.D., M.Sc. Physics, CSIR-NET',
+    experience: '18+ Years Exp.',
+    image:
+      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+    email: 'arvind.saxena@demoschool.in'
+  },
+  {
+    id: 2,
+    name: 'Mr. Rakesh Chandra Joshi',
+    role: 'HOD Mathematics',
+    department: 'Mathematics',
+    qualification: 'M.Sc. Mathematics (Gold Medalist), B.Ed.',
+    experience: '16+ Years Exp.',
+    image:
+      'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80',
+    email: 'rakesh.joshi@demoschool.in'
+  },
+  {
+    id: 3,
+    name: 'Mrs. Priyanka Trivedi',
+    role: 'Senior Chemistry Faculty',
+    department: 'Science & Technology',
+    qualification: 'M.Sc. Organic Chemistry, B.Ed.',
+    experience: '12+ Years Exp.',
+    image:
+      'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80',
+    email: 'priyanka.trivedi@demoschool.in'
+  },
+  {
+    id: 4,
+    name: 'Mr. Vikramaditya Rao',
+    role: 'HOD Computer Science & AI',
+    department: 'Science & Technology',
+    qualification: 'M.Tech (CSE), Certified Python/AI Educator',
+    experience: '11+ Years Exp.',
+    image:
+      'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80',
+    email: 'vikram.rao@demoschool.in'
+  },
+  {
+    id: 5,
+    name: 'Mrs. Catherine D\'Souza',
+    role: 'HOD English Literature',
+    department: 'Languages & Humanities',
+    qualification: 'M.A. English Lit, Cambridge CELTA',
+    experience: '14+ Years Exp.',
+    image:
+      'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=400&q=80',
+    email: 'catherine.dsouza@demoschool.in'
+  },
+  {
+    id: 6,
+    name: 'Acharya Ramakant Mishra',
+    role: 'HOD Hindi & Sanskrit',
+    department: 'Languages & Humanities',
+    qualification: 'Ph.D., M.A. Sanskrit & Hindi, B.Ed.',
+    experience: '20+ Years Exp.',
+    image:
+      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
+    email: 'ramakant.mishra@demoschool.in'
+  },
+  {
+    id: 7,
+    name: 'Mr. Devendra Pratap Singh',
+    role: 'HOD Commerce & Accountancy',
+    department: 'Commerce & Economics',
+    qualification: 'M.Com, FCA (Fellow Chartered Accountant)',
+    experience: '15+ Years Exp.',
+    image:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+    email: 'dp.singh@demoschool.in'
+  },
+  {
+    id: 8,
+    name: 'Dr. Neha Mehrotra',
+    role: 'HOD Economics & Social Sciences',
+    department: 'Commerce & Economics',
+    qualification: 'Ph.D. Economics, M.A., B.Ed.',
+    experience: '13+ Years Exp.',
+    image:
+      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+    email: 'neha.mehrotra@demoschool.in'
+  },
+  {
+    id: 9,
+    name: 'Coach Surendra Pal Singh',
+    role: 'Director of Physical Education',
+    department: 'Sports & Athletics',
+    qualification: 'M.P.Ed., NIS Certified National Coach',
+    experience: '16+ Years Exp.',
+    image:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+    email: 'surendra.sports@demoschool.in'
+  }
+];
+
 const EVENTS_NEWS = [
   {
     id: 1,
@@ -207,6 +394,366 @@ const EVENTS_NEWS = [
       'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
     summary:
       'We proudly congratulate our Grade 10 scholars for achieving stellar distinctions across STEM, Humanities, and Languages in the annual assessments.'
+  }
+];
+
+const FUTURE_READY_PROGRAMMES = [
+  {
+    id: 'sports-programme',
+    label: 'Sports Programme',
+    category: 'Athletics & Physical Fitness',
+    tagline: 'Building Stamina, Sportsmanship, and Competitive Excellence',
+    bannerImage:
+      'https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=1000&q=80',
+    overview:
+      'Our comprehensive Sports Programme is designed to nurture physical fitness, mental agility, emotional resilience, and lifelong camaraderie. With world-class outdoor grounds and indoor sports arenas, students train under NIS-certified national coaches to compete at district, state, and CBSE cluster levels.',
+    highlights: [
+      'Olympic-standard 400m athletic track and synthetic turf sports fields',
+      'Dedicated cricket pitch, basketball courts, and tennis courts with floodlights',
+      'Indoor sports complex with wooden badminton courts, table tennis, and chess hall',
+      'Martial arts training (Taekwondo, Karate & Judo) for self-defense and discipline',
+      'Daily morning fitness sessions and specialized evening coaching camps',
+      'Annual Sports Meet with inter-house track & field championship trophies'
+    ],
+    outcomes: [
+      'Cardiovascular endurance, physical agility, and motor coordination',
+      'Strategic thinking, leadership under pressure, and gracious sportsmanship',
+      'Pathways to national school competitions and athletic scholarships'
+    ],
+    inCharge: 'Directorate of Physical Education & Sports Coaches',
+    frequency: 'Daily Sessions & Weekend Tournaments',
+    hasSubmenu: false
+  },
+  {
+    id: 'national-cadet-corps',
+    label: 'National Cadet Corps',
+    category: 'Discipline & National Service',
+    tagline: 'Unity and Discipline — Serving the Nation with Pride',
+    bannerImage:
+      'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1000&q=80',
+    overview:
+      'The National Cadet Corps (NCC) unit at Demo School grooms young boys and girls into disciplined, patriotic citizens with qualities of courage, character, comradeship, and selfless service. Cadets participate in ceremonial drill parades, weapon training, social outreach drives, and state-level adventure camps.',
+    highlights: [
+      'Junior Division (JD) and Junior Wing (JW) Army and Air Wings',
+      'Weekly ceremonial drill practice, rifle handling basics, and map-reading sessions',
+      'Participation in Independence Day and Republic Day ceremonial district parades',
+      'Annual Training Camps (ATC) and Combined Annual Training Camps (CATC)',
+      'Community service drives: cleanliness rallies, blood donation awareness, and tree planting',
+      'Opportunity to qualify for Thal Sainik Camp and Republic Day Camp (RDC), New Delhi'
+    ],
+    outcomes: [
+      'Uncompromising discipline, punctuality, and pride in national heritage',
+      'Confidence and competitive advantage in Defense services (NDA, CDS) interviews',
+      'First aid, crisis management, and survival skills during emergencies'
+    ],
+    inCharge: 'Associate NCC Officer (ANO) & Indian Army Instructors',
+    frequency: 'Twice Weekly Parades & Annual Camps',
+    hasSubmenu: false
+  },
+  {
+    id: 'outbounds',
+    label: 'Outbounds',
+    category: 'Adventure & Experiential Learning',
+    tagline: 'Real-World Wilderness Expeditions and Survival Challenges',
+    bannerImage:
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80',
+    overview:
+      'Outbounds take education beyond conventional classrooms into untamed nature. Through wilderness trekking, obstacle courses, river crossings, and environmental study expeditions, students conquer personal fears, discover self-reliance, and forge unbreakable teamwork.',
+    highlights: [
+      'Annual wilderness adventure camps in the Himalayan foothills and scenic nature reserves',
+      'Rock climbing, rappelling, ziplining, Burma bridge crossings, and river rafting',
+      'Outdoor tent pitching, fire-craft, compass navigation, and star-gazing sessions',
+      'Ecological field surveys, river conservation studies, and local village interactions',
+      'Strict adherence to international safety protocols with certified mountaineering instructors',
+      'Round-the-clock medical escorts, satellite tracking, and organic outdoor mess'
+    ],
+    outcomes: [
+      'Heightened self-confidence, grit, and emotional adaptability outside comfort zones',
+      'Deep reverence for environmental biodiversity and sustainable living',
+      'Decisive problem-solving and collective teamwork under challenging conditions'
+    ],
+    inCharge: 'Outbound Expedition Committee & Certified Adventure Leaders',
+    frequency: 'Term-End Expeditions & Weekend Hikes',
+    hasSubmenu: false
+  },
+  {
+    id: '21st-century-skills',
+    label: '21st Century Skills',
+    category: 'Innovation, Technology & STEM',
+    tagline: 'Empowering Young Minds with 4Cs: Critical Thinking, Creativity, Collaboration, and Communication',
+    bannerImage:
+      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1000&q=80',
+    overview:
+      'Our 21st Century Skills framework prepares learners for an AI-driven, rapidly evolving global economy. Students engage in maker-spaces, robotics workshops, algorithmic problem-solving, financial acumen seminars, and design thinking sprints that bridge textbook concepts with real-world innovation.',
+    highlights: [
+      'Atal Tinkering & STEM Labs with 3D printers, IoT kits, and robotics controllers',
+      'Structured coding curriculum: Scratch for juniors, Python and web technologies for seniors',
+      'Design Thinking sprints tackling urban sustainability, water recycling, and smart mobility',
+      'Financial literacy modules: budgeting, saving, compound interest, and digital economy',
+      'Interactive media labs for video editing, digital animation, podcasting, and graphics',
+      'Annual InnoVision Science & Technology Expo showcasing student inventions'
+    ],
+    outcomes: [
+      'Algorithmic reasoning, technological agility, and creative problem-solving mindset',
+      'Ability to articulate complex ideas through digital storytelling and presentations',
+      'Preparedness for future-ready careers in AI, biotechnology, and entrepreneurship'
+    ],
+    inCharge: 'Department of Computer Science & Innovation Coordinators',
+    frequency: 'Weekly Lab Sprints & Monthly Hackathons',
+    hasSubmenu: true,
+    subItems: [
+      'STEM & Robotics Lab',
+      'Coding & Artificial Intelligence',
+      'Design Thinking Sprints',
+      'Financial Literacy & Enterprise'
+    ]
+  },
+  {
+    id: 'house-system',
+    label: 'House System',
+    category: 'Tradition, Values & Camaraderie',
+    tagline: 'Fostering Healthy Rivalry, Institutional Pride, and Brotherhood',
+    bannerImage:
+      'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80',
+    overview:
+      'The House System is the heartbeat of campus life. Every student and faculty mentor belongs to one of four historic houses: Ashoka (Blue), Tagore (Green), Shivaji (Red), and Raman (Yellow). Through round-the-year inter-house cultural, academic, and athletic battles, students learn loyalty, grit, and collective triumph.',
+    highlights: [
+      'Four Houses: Ashoka (Integrity), Tagore (Creativity), Shivaji (Courage), Raman (Inquisitiveness)',
+      'Inter-House Debates, Model United Nations, Spelling Bees, and Science Quizzes',
+      'Cultural showdowns: Western & Classical Music, Choral Singing, Street Plays, and Folk Dance',
+      'Inter-House Athletic Championships: Football, Cricket, Basketball, and Track Events',
+      'Democratic leadership: Student House Captains, Vice-Captains, and Junior Prefects',
+      'Cock House Championship Trophy awarded at the Annual Prize Day to the overall winner'
+    ],
+    outcomes: [
+      'Belonging, camaraderie across age groups, and institutional pride',
+      'Constructive competitive spirit and graceful acceptance of both victory and defeat',
+      'Early organizational management experience for student prefects and council members'
+    ],
+    inCharge: 'House Masters, House Mistresses & Student Council',
+    frequency: 'Bi-Weekly Competitions & Annual Inter-House Trophies',
+    hasSubmenu: true,
+    subItems: [
+      'Ashoka House (Blue - Integrity)',
+      'Tagore House (Green - Creativity)',
+      'Shivaji House (Red - Courage)',
+      'Raman House (Yellow - Inquisitiveness)'
+    ]
+  },
+  {
+    id: 'leadership-programme',
+    label: 'Leadership Programme',
+    category: 'Civic Responsibility & Governance',
+    tagline: 'Inspiring Visionary Leaders for a Complex and Dynamic World',
+    bannerImage:
+      'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1000&q=80',
+    overview:
+      'True leadership is service in action. Our structured Leadership Programme nurtures ethical, empathetic leaders through democratic student council elections, Youth Parliament assemblies, Model United Nations conferences, and impactful community outreach initiatives.',
+    highlights: [
+      'Formal Student Council elections with manifestos, public debates, and electronic voting',
+      'Investiture Ceremony swearing-in Head Boy, Head Girl, Sports Captains, and Prefects',
+      'Annual Model United Nations (Demo MUN) debating geopolitical crises and resolutions',
+      'Youth Parliament simulations teaching legislative procedures and civic governance',
+      'Community outreach: Village literacy drives, orphanage visits, and elderly care initiatives',
+      'Guest lectures by civil servants, armed forces officers, and corporate innovators'
+    ],
+    outcomes: [
+      'Articulate public speaking, diplomatic negotiation, and persuasive debate skills',
+      'High emotional intelligence, moral courage, and accountability for team performance',
+      'Civic awareness and an active commitment to social welfare and nation building'
+    ],
+    inCharge: 'Student Council Advisory Board & Senior Mentors',
+    frequency: 'Monthly Council Sessions & Term Conferences',
+    hasSubmenu: false
+  },
+  {
+    id: 'health-and-well-being',
+    label: 'Health And Well Being',
+    category: 'Holistic Wellness & Mindfulness',
+    tagline: 'Nurturing Mind, Body, and Emotional Resilience',
+    bannerImage:
+      'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1000&q=80',
+    overview:
+      'A healthy mind thrives in a vibrant body. Our Health & Well-being framework integrates mindfulness, daily yoga, clinical healthcare, adolescent psychological counseling, and balanced nutritional awareness into everyday campus routines.',
+    highlights: [
+      'Morning mindfulness, Pranayama, and guided meditation to enhance classroom focus',
+      '24/7 Fully equipped School Clinic staffed by resident nurses and visiting pediatricians',
+      'Comprehensive bi-annual medical checkups: dental, ophthalmic, and BMI growth tracking',
+      'Confidential psychological counseling support for stress management and exam anxiety',
+      'Nutritional workshops for parents and students promoting wholesome food habits',
+      'Safe, hygienic, and eco-friendly campus with pure RO drinking water and sanitization'
+    ],
+    outcomes: [
+      'Emotional self-regulation, resilience against peer pressure, and positive self-image',
+      'Sustained physical energy, immune health, and lifelong wellness habits',
+      'Open dialogue regarding mental wellness in a compassionate, judgment-free environment'
+    ],
+    inCharge: 'School Healthcare Department & Counseling Psychologists',
+    frequency: 'Daily Yoga/Mindfulness & Continuous Healthcare',
+    hasSubmenu: true,
+    subItems: [
+      'Mindfulness & Daily Yoga',
+      'Adolescent Counseling Cell',
+      '24/7 Medical Care & Screenings',
+      'Nutritional Wellness Workshops'
+    ]
+  },
+  {
+    id: 'student-led-programme',
+    label: 'Student Led Programme',
+    category: 'Autonomy, Clubs & Initiative',
+    tagline: 'Student Passion Driving Real-World Campus Initiatives',
+    bannerImage:
+      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80',
+    overview:
+      'We believe students learn best when they are in the driver’s seat. Our Student Led Programmes empower learners to conceptualize, manage, and execute school clubs, editorial publications, cultural fests, and eco-sustainability campaigns with faculty serving solely as mentors.',
+    highlights: [
+      'Student Editorial Board publishing the annual school magazine and quarterly newsletters',
+      'Prakriti Eco-Club organizing plastic-free drives, solar energy audits, and composting',
+      'IT & Robotics Guild hosting peer-to-peer coding tutorials and tech exhibitions',
+      'Theatre & Performing Arts Society writing, directing, and staging street plays (Nukkad Natak)',
+      'Literary & Quizzing Society organizing inter-school knowledge championships',
+      'Student charity committee raising funds and relief supplies for disaster-struck regions'
+    ],
+    outcomes: [
+      'Autonomous project management, budget handling, and cross-functional coordination',
+      'Hands-on experience in graphic design, publishing, journalism, and event production',
+      'Pride of ownership and active participation in school community development'
+    ],
+    inCharge: 'Student Club Presidents & Faculty Advisors',
+    frequency: 'Weekly Club Hours & Term Showcases',
+    hasSubmenu: false
+  },
+  {
+    id: 'career-guidance',
+    label: 'Career Guidance And Counselling Program',
+    category: 'University Pathways & Mentorship',
+    tagline: 'Illuminating Future Pathways from High School to Top Global Universities',
+    bannerImage:
+      'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1000&q=80',
+    overview:
+      'Navigating career decisions requires expert insight, psychometric precision, and timely university mentorship. Our dedicated Career Guidance Cell supports students from Grade IX onwards with tailored career roadmaps, college admissions prep, and competitive exam strategies.',
+    highlights: [
+      'Comprehensive psychometric aptitude, personality, and career interest assessments',
+      'One-on-one personalized counseling sessions for subject and stream selection',
+      'Annual Global University Fair hosting admissions officers from India, UK, USA, Canada, and Australia',
+      'Specialized entrance exam orientation: JEE, NEET, CUET, CLAT, SAT, NDA, and NIFT',
+      'Workshops on crafting winning Statements of Purpose (SOP), resumes, and interview skills',
+      'Alumni mentor network offering real-world career guidance and internship insights'
+    ],
+    outcomes: [
+      'Crystal clarity on personal strengths, optimal subject streams, and career options',
+      'High success rates in national competitive exams and prestigious international admissions',
+      'Confidence and competitive advantage during university interviews and scholarship rounds'
+    ],
+    inCharge: 'Certified Career Counselors & Higher Education Advisory Cell',
+    frequency: 'Year-Round Counseling & Monthly University Sessions',
+    hasSubmenu: false
+  },
+  {
+    id: 'reading-programme',
+    label: 'Reading Programme',
+    category: 'Literacy, Imagination & Literature',
+    tagline: 'Opening Doors to Wonder, Empathy, and Lifelong Wisdom',
+    bannerImage:
+      'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1000&q=80',
+    overview:
+      'A child who reads is an adult who thinks. Our flagship Reading Programme immerses students from kindergarten to grade 12 in rich literature, varied genres, and interactive storytelling to cultivate deep comprehension, expressive vocabulary, and critical empathy.',
+    highlights: [
+      'Drop Everything And Read (D.E.A.R.) — dedicated daily silent reading period across all grades',
+      'Air-conditioned, digitally cataloged library with over 20,000 fiction and reference books',
+      'Access to global e-book libraries, audiobooks, and peer-reviewed educational journals',
+      'Author-of-the-Month reading challenges and vibrant book review presentations',
+      'Literary festivals featuring eminent children’s authors, poets, and storytellers',
+      'Junior Reader Badges and Star Reader Awards celebrating voracious reading milestones'
+    ],
+    outcomes: [
+      'Expansive vocabulary, nuanced language fluency, and superior writing prowess',
+      'Deep capacity for empathy and understanding diverse cultural perspectives',
+      'Enhanced attention span and critical analytical reading ability essential for higher studies'
+    ],
+    inCharge: 'Chief Librarian & English Literature Department',
+    frequency: 'Daily Reading Periods & Monthly Literary Circles',
+    hasSubmenu: false
+  }
+];
+
+const ABOUT_US_SECTIONS = [
+  {
+    id: 'mission-vision',
+    label: 'Mission, Vision & Core Values',
+    category: 'Institutional Philosophy',
+    tagline: 'Inspiring Minds, Elevating Character, and Guiding Purposeful Lives',
+    bannerImage:
+      'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80',
+    hasSubmenu: false
+  },
+  {
+    id: 'motto-aspiration',
+    label: 'Our Motto & Aspiration Span',
+    category: 'Ethos & Guiding Light',
+    tagline: "'Vidya Dadati Vinayam' — Knowledge Bestows Humility and Strength",
+    bannerImage:
+      'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80',
+    hasSubmenu: false
+  },
+  {
+    id: 'history',
+    label: 'History',
+    category: 'Heritage & Milestones',
+    tagline: 'A Proud Journey of Academic Eminence, Character Building, and Service',
+    bannerImage:
+      'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80',
+    hasSubmenu: true,
+    subItems: ['Genesis & Founding Charter', 'Campus Expansion Milestones', 'Decades of Academic Distinction']
+  },
+  {
+    id: 'our-school',
+    label: 'Our School',
+    category: 'Campus Infrastructure',
+    tagline: 'A Lush 15-Acre Smart Campus Fostering 360-Degree Growth',
+    bannerImage:
+      'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1000&q=80',
+    hasSubmenu: true,
+    subItems: ['Smart Digital Classrooms', 'Advanced Science & AI Labs', 'Central Knowledge Library', 'Eco-Friendly Green Campus']
+  },
+  {
+    id: 'leadership-team',
+    label: 'Leadership Team',
+    category: 'Governance & Vision',
+    tagline: 'Seasoned Educationists and Visionaries Guiding Our Institution',
+    bannerImage:
+      'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1000&q=80',
+    hasSubmenu: true,
+    subItems: ["Chairman's Desk", 'Managing Director', "Principal's Desk", 'Academic Coordinators']
+  },
+  {
+    id: 'faculty-list',
+    label: 'Faculty List',
+    category: 'Academic Mentors',
+    tagline: 'Distinguished Subject Specialists Shaping Tomorrow’s Achievers',
+    bannerImage:
+      'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80',
+    hasSubmenu: true,
+    subItems: ['Science & Technology', 'Mathematics', 'Languages & Humanities', 'Commerce & Economics', 'Sports & Athletics']
+  },
+  {
+    id: 'school-guidelines',
+    label: 'School Guidelines',
+    category: 'Code of Conduct & Policies',
+    tagline: 'Fostering Discipline, Punctuality, Safety, and Mutual Respect',
+    bannerImage:
+      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1000&q=80',
+    hasSubmenu: false
+  },
+  {
+    id: 'sports-academy',
+    label: 'Sports Academy',
+    category: 'Athletic Excellence',
+    tagline: 'Championing Physical Stamina, Sporting Skill, and Team Glory',
+    bannerImage:
+      'https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=1000&q=80',
+    hasSubmenu: false
   }
 ];
 
@@ -269,8 +816,8 @@ const NAV_ITEMS = [
   { id: 'ACADEMICS', label: 'ACADEMICS' },
   { id: 'GALLERY', label: 'GALLERY' },
   { id: 'NEWS & EVENTS', label: 'NEWS & EVENTS' },
-  { id: 'CONTACT US', label: 'CONTACT US' },
-  { id: 'ONLINE ADMISSION', label: 'ONLINE ADMISSION' }
+  { id: 'ABOUT HOSTEL', label: 'ABOUT HOSTEL' },
+  { id: 'CONTACT US', label: 'CONTACT US' }
 ];
 
 // ============================================================================
@@ -311,6 +858,15 @@ export default function App() {
 
   // Gallery Filter State
   const [galleryFilter, setGalleryFilter] = useState('All');
+
+  // Faculty Department Filter State
+  const [facultyDepartment, setFacultyDepartment] = useState('All');
+
+  // Future Ready Skills / Programme State
+  const [selectedProgrammeId, setSelectedProgrammeId] = useState('sports-programme');
+
+  // About Us Section Interactive State
+  const [selectedAboutTab, setSelectedAboutTab] = useState('mission-vision');
 
   // Online Admission State
   const [statusModalOpen, setStatusModalOpen] = useState(false);
@@ -585,7 +1141,7 @@ export default function App() {
                 className="hidden sm:inline-flex items-center gap-2 bg-[#F97316] hover:bg-[#EA580C] text-white font-bold text-xs tracking-wider px-4 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer"
               >
                 <FileText className="w-3.5 h-3.5" />
-                <span>ONLINE ADMISSION</span>
+                <span>Enquiry Form</span>
               </button>
 
               <button
@@ -1074,63 +1630,645 @@ export default function App() {
         )}
 
         {/* ==================================================================
-            VIEW B: ABOUT US PAGE (Matches Home8.jpeg)
+            VIEW B: ABOUT US PAGE (Interactive Master-Detail Matching Image)
         ================================================================== */}
         {activePage === 'ABOUT US' && (
-          <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-6 bg-gradient-to-b from-[#EEF4FF]/60 to-transparent">
-            {/* Page Title Banner Card */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#1E3A8A] text-white flex items-center justify-center shadow-sm flex-shrink-0">
-                <FileText className="w-6 h-6" />
-              </div>
-              <div>
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">About Us</h1>
-                <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                  Empowering minds, building futures at Demo School, Jhansi
-                </p>
+          <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-8">
+            {/* Page Title Card */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-[#1E3A8A] text-white flex items-center justify-center shadow-sm flex-shrink-0">
+                  <FileText className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-[#F97316] uppercase tracking-wider">
+                    Institutional Profile · Demo School, Jhansi
+                  </span>
+                  <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight mt-0.5">
+                    About Us
+                  </h1>
+                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                    Click any section from the menu below to explore our values, history, leadership, faculty, and campus life.
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Content Card */}
-            <div className="bg-white/90 rounded-2xl p-6 sm:p-10 shadow-sm border border-slate-100 space-y-8">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div className="lg:col-span-7 space-y-4">
-                  <span className="inline-block bg-blue-50 text-[#2563EB] text-xs font-bold px-3 py-1 rounded-full">
-                    OUR INSTITUTION
-                  </span>
-                  <h2 className="text-2xl font-extrabold text-slate-900">
-                    Nurturing Excellence Through Modern Education &amp; Smart Technology
-                  </h2>
-                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                    Demo School is committed to providing a holistic, student-centric learning
-                    environment where academic rigor meets creativity, ethics, and digital
-                    readiness. Powered by our integrated School ERP ecosystem, we ensure complete
-                    transparency between teachers, students, and parents.
-                  </p>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
-                    <div className="p-4 rounded-xl bg-[#F4F7FC] border border-slate-200/60">
-                      <p className="text-2xl font-extrabold text-[#2563EB]">1,500+</p>
-                      <p className="text-xs font-semibold text-slate-600 mt-0.5">Active Students</p>
-                    </div>
-                    <div className="p-4 rounded-xl bg-[#F4F7FC] border border-slate-200/60">
-                      <p className="text-2xl font-extrabold text-[#1B365D]">85+</p>
-                      <p className="text-xs font-semibold text-slate-600 mt-0.5">Expert Faculty</p>
-                    </div>
-                    <div className="p-4 rounded-xl bg-[#F4F7FC] border border-slate-200/60 col-span-2 sm:col-span-1">
-                      <p className="text-2xl font-extrabold text-[#F97316]">100%</p>
-                      <p className="text-xs font-semibold text-slate-600 mt-0.5">Smart Classrooms</p>
-                    </div>
+            {/* Interactive Master-Detail Section: Menu List (matching uploaded image) + Dynamic Content */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left Column: Menu List Styled Exactly Like the Image */}
+              <div className="lg:col-span-4 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden sticky top-24">
+                {/* Menu Header matching green banner in image */}
+                <div className="bg-[#0e4b2d] text-white px-5 py-3.5 flex items-center justify-between shadow-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-sm tracking-wide text-emerald-100">
+                      About Us
+                    </span>
                   </div>
+                  <ChevronDown className="w-4 h-4 text-emerald-300" />
                 </div>
 
-                {/* Emblem Graphic Card */}
-                <div className="lg:col-span-5 flex justify-center">
-                  <div className="w-64 h-64 rounded-3xl bg-gradient-to-br from-[#2563EB] via-[#1D4ED8] to-[#DC2626] p-8 flex flex-col items-center justify-center text-white shadow-xl">
-                    <GraduationCap className="w-24 h-24 text-white drop-shadow-md" />
-                    <span className="mt-4 font-extrabold text-xl tracking-wide">Demo School</span>
-                    <span className="text-xs text-blue-100 mt-1">Jhansi, Uttar Pradesh</span>
-                  </div>
+                {/* Vertical List Items */}
+                <div className="divide-y divide-slate-100 bg-white">
+                  {ABOUT_US_SECTIONS.map((sec) => {
+                    const isSelected = selectedAboutTab === sec.id;
+                    return (
+                      <div key={sec.id} className="transition-colors">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedAboutTab(sec.id)}
+                          className={`w-full text-left px-5 py-3.5 text-xs sm:text-sm font-semibold flex items-center justify-between transition-all cursor-pointer ${
+                            isSelected
+                              ? 'bg-emerald-50 text-[#0e4b2d] font-bold border-l-4 border-[#0e4b2d] pl-4'
+                              : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
+                          }`}
+                        >
+                          <span>{sec.label}</span>
+                          {sec.hasSubmenu ? (
+                            <ChevronDown
+                              className={`w-4 h-4 text-slate-400 transition-transform ${
+                                isSelected ? 'rotate-180 text-[#0e4b2d]' : ''
+                              }`}
+                            />
+                          ) : (
+                            <ChevronRight
+                              className={`w-4 h-4 text-slate-300 ${
+                                isSelected ? 'text-[#0e4b2d]' : ''
+                              }`}
+                            />
+                          )}
+                        </button>
+
+                        {/* Expandable sub-items when active */}
+                        {sec.hasSubmenu && isSelected && sec.subItems && (
+                          <div className="bg-slate-50/90 px-6 py-2.5 space-y-1.5 border-t border-slate-100">
+                            {sec.subItems.map((sub, idx) => (
+                              <div
+                                key={idx}
+                                className="text-xs text-slate-600 flex items-center gap-2 py-0.5"
+                              >
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#0e4b2d]" />
+                                <span>{sub}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
+              </div>
+
+              {/* Right Column: Dynamic Content for Selected About Tab */}
+              <div className="lg:col-span-8 bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                {/* 1. Mission, Vision & Core Values */}
+                {selectedAboutTab === 'mission-vision' && (
+                  <div className="p-6 sm:p-8 space-y-6">
+                    <div className="relative h-56 sm:h-64 rounded-2xl overflow-hidden bg-slate-100 shadow-sm">
+                      <img
+                        src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80"
+                        alt="Mission and Vision"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex flex-col justify-end p-6 text-white">
+                        <span className="self-start text-[10px] font-extrabold uppercase tracking-wider bg-[#0e4b2d] text-emerald-200 px-3 py-1 rounded-full mb-2">
+                          Guiding Philosophy
+                        </span>
+                        <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+                          Mission, Vision &amp; Core Values
+                        </h2>
+                        <p className="text-xs sm:text-sm text-slate-200 mt-1">
+                          Inspiring Minds, Elevating Character, and Guiding Purposeful Lives
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Mission & Vision Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div className="p-6 rounded-2xl bg-blue-50/60 border border-blue-100 space-y-3">
+                        <div className="w-10 h-10 rounded-xl bg-[#1E3A8A] text-white flex items-center justify-center font-bold">
+                          <Sparkles className="w-5 h-5" />
+                        </div>
+                        <h3 className="text-lg font-extrabold text-[#1E3A8A]">Our Mission</h3>
+                        <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                          To provide a nurturing, intellectually stimulating, and values-driven educational environment that inspires every child to achieve academic excellence, discover creative potential, and lead with compassion in an evolving world.
+                        </p>
+                      </div>
+
+                      <div className="p-6 rounded-2xl bg-emerald-50/60 border border-emerald-100 space-y-3">
+                        <div className="w-10 h-10 rounded-xl bg-[#0e4b2d] text-white flex items-center justify-center font-bold">
+                          <Award className="w-5 h-5" />
+                        </div>
+                        <h3 className="text-lg font-extrabold text-[#0e4b2d]">Our Vision</h3>
+                        <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                          To be recognized as a premier center of holistic learning, integrating timeless Indian values with cutting-edge STEM pedagogy and digital ecosystems, producing ethical global leaders capable of shaping a brighter tomorrow.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* 5 Core Values */}
+                    <div className="space-y-3 pt-2">
+                      <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                        <span>The Five Pillars of Our Core Values</span>
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        {[
+                          { title: 'Academic Mastery', desc: 'Fostering relentless intellectual curiosity, analytical rigor, and lifelong inquiry.' },
+                          { title: 'Uncompromising Integrity', desc: 'Upholding honesty, ethical responsibility, and moral courage in all actions.' },
+                          { title: 'Empathy & Inclusivity', desc: 'Embracing diversity, mutual respect, and compassionate peer synergy.' },
+                          { title: 'Innovative Pedagogy', desc: 'Encouraging lateral thinking, hands-on experimentation, and digital fluency.' },
+                          { title: 'Selfless Service', desc: 'Instilling civic consciousness and patriotic commitment to nation-building.' }
+                        ].map((val, idx) => (
+                          <div key={idx} className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
+                            <h4 className="font-bold text-slate-900 text-xs sm:text-sm text-[#1E3A8A]">
+                              {val.title}
+                            </h4>
+                            <p className="text-xs text-slate-600 leading-relaxed">{val.desc}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* 2. Our Motto & Aspiration Span */}
+                {selectedAboutTab === 'motto-aspiration' && (
+                  <div className="p-6 sm:p-8 space-y-6">
+                    <div className="relative h-56 sm:h-64 rounded-2xl overflow-hidden bg-slate-100 shadow-sm">
+                      <img
+                        src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80"
+                        alt="Our Motto"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex flex-col justify-end p-6 text-white">
+                        <span className="self-start text-[10px] font-extrabold uppercase tracking-wider bg-[#0e4b2d] text-emerald-200 px-3 py-1 rounded-full mb-2">
+                          Institutional Motto
+                        </span>
+                        <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+                          Our Motto &amp; Aspiration Span
+                        </h2>
+                        <p className="text-xs sm:text-sm text-slate-200 mt-1">
+                          &lsquo;Vidya Dadati Vinayam&rsquo; — Knowledge Bestows Humility and Strength
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Motto Explanation Card */}
+                    <div className="p-6 rounded-2xl bg-amber-50/60 border border-amber-200/80 space-y-3">
+                      <span className="text-xs font-bold text-amber-800 uppercase tracking-wider">
+                        Ancient Wisdom · Modern Relevance
+                      </span>
+                      <h3 className="text-xl font-extrabold text-amber-950">
+                        &ldquo;विद्या ददाति विनयं, विनयाद् याति पात्रताम्&rdquo;
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        Our motto is deeply rooted in the philosophy that true education does not breed vanity; it instills deep humility, character, and mental clarity. Humility breeds worthiness, and worthiness leads to righteous contribution to society.
+                      </p>
+                    </div>
+
+                    {/* Five Cardinal Horizons */}
+                    <div className="space-y-3 pt-2">
+                      <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                        <Sparkles className="w-5 h-5 text-[#2563EB]" />
+                        <span>The 5 Cardinal Horizons of Student Aspiration</span>
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
+                          <span className="font-extrabold text-[#1E3A8A]">1. Intellectual Horizon</span>
+                          <p className="text-slate-600">Conceptual mastery, scientific inquiry, problem-solving, and analytical acumen.</p>
+                        </div>
+                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
+                          <span className="font-extrabold text-[#1E3A8A]">2. Creative Horizon</span>
+                          <p className="text-slate-600">Aesthetic appreciation, lateral thinking, artistic expression, and inventive prototyping.</p>
+                        </div>
+                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
+                          <span className="font-extrabold text-[#1E3A8A]">3. Physical Horizon</span>
+                          <p className="text-slate-600">Enduring athletic stamina, fitness, and sporting grit.</p>
+                        </div>
+                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
+                          <span className="font-extrabold text-[#1E3A8A]">4. Emotional Horizon</span>
+                          <p className="text-slate-600">Self-regulation, empathy, emotional intelligence, and resilience under pressure.</p>
+                        </div>
+                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1 sm:col-span-2">
+                          <span className="font-extrabold text-[#1E3A8A]">5. Global Citizen Horizon</span>
+                          <p className="text-slate-600">Environmental stewardship, digital ethics, cross-cultural tolerance, and national pride.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* 3. History */}
+                {selectedAboutTab === 'history' && (
+                  <div className="p-6 sm:p-8 space-y-6">
+                    <div className="relative h-56 sm:h-64 rounded-2xl overflow-hidden bg-slate-100 shadow-sm">
+                      <img
+                        src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80"
+                        alt="School History"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex flex-col justify-end p-6 text-white">
+                        <span className="self-start text-[10px] font-extrabold uppercase tracking-wider bg-[#0e4b2d] text-emerald-200 px-3 py-1 rounded-full mb-2">
+                          Heritage &amp; Legacy
+                        </span>
+                        <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+                          Institutional History &amp; Milestones
+                        </h2>
+                        <p className="text-xs sm:text-sm text-slate-200 mt-1">
+                          A Proud Journey of Academic Eminence, Character Building, and Community Service
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                        <Building2 className="w-5 h-5 text-[#1E3A8A]" />
+                        <span>The Genesis &amp; Evolution</span>
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        Founded with the vision to deliver world-class schooling to the region, Demo School has grown from a visionary charter into an esteemed center of academic and cultural distinction. Over the years, our campus has expanded across 15 acres, fostering thousands of alumni who now serve as doctors, engineers, civil servants, entrepreneurs, and armed forces officers across the globe.
+                      </p>
+                    </div>
+
+                    {/* Timeline Milestones */}
+                    <div className="space-y-3 pt-2">
+                      <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                        <Clock className="w-5 h-5 text-[#F97316]" />
+                        <span>Four Decades of Growth Milestones</span>
+                      </h3>
+                      <div className="space-y-3">
+                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 flex items-start gap-4">
+                          <span className="px-3 py-1 bg-[#1E3A8A] text-white font-extrabold text-xs rounded-lg flex-shrink-0">Phase 1</span>
+                          <div>
+                            <h4 className="font-bold text-slate-900 text-sm">Founding Vision &amp; Inception</h4>
+                            <p className="text-xs text-slate-600 mt-0.5">Establishment of the primary academic block with a mission of affordable excellence.</p>
+                          </div>
+                        </div>
+
+                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 flex items-start gap-4">
+                          <span className="px-3 py-1 bg-[#2563EB] text-white font-extrabold text-xs rounded-lg flex-shrink-0">Phase 2</span>
+                          <div>
+                            <h4 className="font-bold text-slate-900 text-sm">Campus &amp; Residential Expansion</h4>
+                            <p className="text-xs text-slate-600 mt-0.5">Construction of senior secondary science wings, athletic sports complex, and air-conditioned hostels.</p>
+                          </div>
+                        </div>
+
+                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 flex items-start gap-4">
+                          <span className="px-3 py-1 bg-emerald-600 text-white font-extrabold text-xs rounded-lg flex-shrink-0">Phase 3</span>
+                          <div>
+                            <h4 className="font-bold text-slate-900 text-sm">Academic Honors &amp; Board Laurels</h4>
+                            <p className="text-xs text-slate-600 mt-0.5">Ranked among the premier institutions in the state with consecutive 100% board pass rates.</p>
+                          </div>
+                        </div>
+
+                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 flex items-start gap-4">
+                          <span className="px-3 py-1 bg-[#0e4b2d] text-white font-extrabold text-xs rounded-lg flex-shrink-0">Phase 4</span>
+                          <div>
+                            <h4 className="font-bold text-slate-900 text-sm">Digital Renaissance &amp; STEM Innovation</h4>
+                            <p className="text-xs text-slate-600 mt-0.5">Implementation of smart digital classrooms, integrated School ERP system, and Atal Tinkering STEM labs.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* 4. Our School */}
+                {selectedAboutTab === 'our-school' && (
+                  <div className="p-6 sm:p-8 space-y-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                      <div className="lg:col-span-7 space-y-4">
+                        <span className="inline-block bg-blue-50 text-[#2563EB] text-xs font-bold px-3 py-1 rounded-full">
+                          CAMPUS INFRASTRUCTURE
+                        </span>
+                        <h2 className="text-2xl font-extrabold text-slate-900">
+                          Nurturing Excellence Through Modern Education &amp; Smart Technology
+                        </h2>
+                        <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                          Demo School provides a holistic, student-centric learning environment where academic rigor meets creativity, ethics, and digital readiness. Powered by our integrated School ERP ecosystem, we ensure complete transparency between teachers, students, and parents.
+                        </p>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                          <div className="p-3.5 rounded-xl bg-[#F4F7FC] border border-slate-200/60">
+                            <p className="text-xl sm:text-2xl font-extrabold text-[#2563EB]">1,500+</p>
+                            <p className="text-xs font-semibold text-slate-600 mt-0.5">Active Students</p>
+                          </div>
+                          <div className="p-3.5 rounded-xl bg-[#F4F7FC] border border-slate-200/60">
+                            <p className="text-xl sm:text-2xl font-extrabold text-[#1B365D]">85+</p>
+                            <p className="text-xs font-semibold text-slate-600 mt-0.5">Expert Faculty</p>
+                          </div>
+                          <div className="p-3.5 rounded-xl bg-[#F4F7FC] border border-slate-200/60 col-span-2 sm:col-span-1">
+                            <p className="text-xl sm:text-2xl font-extrabold text-[#F97316]">100%</p>
+                            <p className="text-xs font-semibold text-slate-600 mt-0.5">Smart Classrooms</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="lg:col-span-5 flex justify-center">
+                        <div className="w-56 h-56 rounded-3xl bg-gradient-to-br from-[#2563EB] via-[#1D4ED8] to-[#DC2626] p-6 flex flex-col items-center justify-center text-white shadow-xl">
+                          <GraduationCap className="w-20 h-20 text-white drop-shadow-md" />
+                          <span className="mt-3 font-extrabold text-lg tracking-wide">Demo School</span>
+                          <span className="text-xs text-blue-100 mt-0.5">Jhansi, Uttar Pradesh</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-100 text-xs sm:text-sm">
+                      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60">
+                        <h4 className="font-bold text-slate-900 mb-1 flex items-center gap-1.5 text-[#1E3A8A]">
+                          <Building2 className="w-4 h-4" /> 15-Acre Eco-Campus
+                        </h4>
+                        <p className="text-slate-600">Lush green pollution-free campus with solar energy panels, rainwater harvesting, and spacious lawns.</p>
+                      </div>
+                      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60">
+                        <h4 className="font-bold text-slate-900 mb-1 flex items-center gap-1.5 text-[#1E3A8A]">
+                          <Wifi className="w-4 h-4" /> Hi-Tech Digital Infrastructure
+                        </h4>
+                        <p className="text-slate-600">Gigabit fiber internet, CCTV surveillance, RFID biometric gates, and advanced robotics maker spaces.</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* 5. Leadership Team */}
+                {selectedAboutTab === 'leadership-team' && (
+                  <div className="p-6 sm:p-8 space-y-8">
+                    {/* Board of Governance */}
+                    <div className="space-y-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                        <div>
+                          <span className="text-xs font-bold text-[#F97316] uppercase tracking-wider">
+                            Executive Leadership
+                          </span>
+                          <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 flex items-center gap-2 mt-0.5">
+                            <Award className="w-6 h-6 text-[#1E3A8A]" />
+                            <span>Board of Governance &amp; Executive Leadership</span>
+                          </h2>
+                        </div>
+                        <span className="text-xs font-bold text-[#1E3A8A] bg-blue-50 px-3 py-1.5 rounded-full border border-blue-200 self-start sm:self-auto">
+                          Management Council
+                        </span>
+                      </div>
+
+                      <div className="grid grid-cols-1 gap-6">
+                        {LEADERSHIP_MEMBERS.map((leader) => (
+                          <div
+                            key={leader.id}
+                            className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all flex flex-col md:flex-row gap-6 items-start justify-between"
+                          >
+                            <img
+                              src={leader.image}
+                              alt={leader.name}
+                              className="w-24 h-24 rounded-2xl object-cover shadow-md border-2 border-slate-100 flex-shrink-0"
+                            />
+                            <div className="flex-1 space-y-2">
+                              <div className="flex flex-wrap items-center gap-2">
+                                <span className="inline-block bg-blue-50 text-[#1E3A8A] text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                  {leader.badge}
+                                </span>
+                                <span className="text-xs text-slate-400">•</span>
+                                <span className="text-xs text-slate-500 font-medium">{leader.department}</span>
+                              </div>
+                              <h3 className="font-extrabold text-slate-900 text-lg">
+                                {leader.name}
+                              </h3>
+                              <p className="text-xs font-bold text-[#2563EB]">{leader.role}</p>
+                              <p className="text-xs font-medium text-slate-600 italic bg-slate-50 p-3 rounded-xl border border-slate-100 leading-relaxed">
+                                &ldquo;{leader.message}&rdquo;
+                              </p>
+                              <p className="text-[11px] text-slate-400 pt-1">
+                                <span className="font-bold text-slate-600">Credentials:</span> {leader.qualification}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Academic Coordinators */}
+                    <div className="space-y-4 pt-4 border-t border-slate-100">
+                      <div>
+                        <span className="text-xs font-bold text-[#F97316] uppercase tracking-wider">
+                          Institutional Administration
+                        </span>
+                        <h3 className="text-lg font-extrabold text-slate-900 flex items-center gap-2 mt-0.5">
+                          <Briefcase className="w-5 h-5 text-[#1E3A8A]" />
+                          <span>Academic Wing Coordinators &amp; Administration</span>
+                        </h3>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {ADMINISTRATIVE_HEADS.map((head) => (
+                          <div
+                            key={head.id}
+                            className="bg-slate-50/70 rounded-2xl p-4 border border-slate-200/80 flex items-center gap-4"
+                          >
+                            <img
+                              src={head.image}
+                              alt={head.name}
+                              className="w-16 h-16 rounded-full object-cover shadow border-2 border-white flex-shrink-0"
+                            />
+                            <div>
+                              <h4 className="font-extrabold text-slate-900 text-sm">{head.name}</h4>
+                              <p className="text-xs font-bold text-[#2563EB]">{head.role}</p>
+                              <p className="text-[11px] text-slate-600">{head.wing}</p>
+                              <p className="text-[10px] text-slate-400 mt-1">{head.qualification}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* 6. Faculty List */}
+                {selectedAboutTab === 'faculty-list' && (
+                  <div className="p-6 sm:p-8 space-y-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                      <div>
+                        <span className="text-xs font-bold text-[#F97316] uppercase tracking-wider">
+                          Academic Mentors
+                        </span>
+                        <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 flex items-center gap-2 mt-0.5">
+                          <GraduationCap className="w-6 h-6 text-[#1E3A8A]" />
+                          <span>Distinguished Faculty Members</span>
+                        </h2>
+                        <p className="text-xs text-slate-500 mt-0.5">
+                          Passionate educators and subject specialists empowering students across disciplines
+                        </p>
+                      </div>
+
+                      {/* Department Filter Pills */}
+                      <div className="flex flex-wrap gap-1.5 bg-slate-100 p-1.5 rounded-xl border border-slate-200">
+                        {[
+                          'All',
+                          'Science & Technology',
+                          'Mathematics',
+                          'Languages & Humanities',
+                          'Commerce & Economics',
+                          'Sports & Athletics'
+                        ].map((dept) => (
+                          <button
+                            key={dept}
+                            type="button"
+                            onClick={() => setFacultyDepartment(dept)}
+                            className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                              facultyDepartment === dept
+                                ? 'bg-[#1E3A8A] text-white shadow-xs'
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                            }`}
+                          >
+                            {dept === 'All' ? 'All' : dept}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Faculty Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {FACULTY_MEMBERS.filter(
+                        (fac) =>
+                          facultyDepartment === 'All' || fac.department === facultyDepartment
+                      ).map((faculty) => (
+                        <div
+                          key={faculty.id}
+                          className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition-all flex flex-col justify-between"
+                        >
+                          <div className="flex items-start gap-4">
+                            <img
+                              src={faculty.image}
+                              alt={faculty.name}
+                              className="w-16 h-16 rounded-xl object-cover shadow-sm border border-slate-100 flex-shrink-0"
+                            />
+                            <div className="min-w-0 flex-1">
+                              <span className="inline-block bg-blue-50 text-[#2563EB] text-[10px] font-bold px-2 py-0.5 rounded-md truncate max-w-full">
+                                {faculty.department}
+                              </span>
+                              <h3 className="font-extrabold text-slate-900 text-sm mt-1 truncate">
+                                {faculty.name}
+                              </h3>
+                              <p className="text-xs font-semibold text-[#1E3A8A]">{faculty.role}</p>
+                              <p className="text-[11px] text-slate-500 mt-0.5">{faculty.qualification}</p>
+                            </div>
+                          </div>
+
+                          <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                            <span className="text-[11px] font-medium text-slate-600 flex items-center gap-1">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                              {faculty.experience}
+                            </span>
+                            <a
+                              href={`mailto:${faculty.email}`}
+                              className="text-[11px] font-bold text-[#2563EB] hover:underline flex items-center gap-1"
+                            >
+                              <Mail className="w-3 h-3" />
+                              <span>Email</span>
+                            </a>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* 7. School Guidelines */}
+                {selectedAboutTab === 'school-guidelines' && (
+                  <div className="p-6 sm:p-8 space-y-6">
+                    <div className="relative h-56 sm:h-64 rounded-2xl overflow-hidden bg-slate-100 shadow-sm">
+                      <img
+                        src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1000&q=80"
+                        alt="School Guidelines"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex flex-col justify-end p-6 text-white">
+                        <span className="self-start text-[10px] font-extrabold uppercase tracking-wider bg-[#0e4b2d] text-emerald-200 px-3 py-1 rounded-full mb-2">
+                          Discipline &amp; Safety
+                        </span>
+                        <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+                          School Guidelines &amp; Policies
+                        </h2>
+                        <p className="text-xs sm:text-sm text-slate-200 mt-1">
+                          Fostering Discipline, Punctuality, Safety, and Mutual Respect
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                        <ShieldCheck className="w-5 h-5 text-[#1E3A8A]" />
+                        <span>Core Institutional Policies</span>
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1.5">
+                          <h4 className="font-bold text-[#1E3A8A]">Attendance &amp; Punctuality</h4>
+                          <p className="text-slate-600 leading-relaxed">Minimum 75% attendance mandatory for CBSE board exam eligibility. Morning gates close strictly at 8:00 AM.</p>
+                        </div>
+                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1.5">
+                          <h4 className="font-bold text-[#1E3A8A]">Uniform &amp; Dress Code</h4>
+                          <p className="text-slate-600 leading-relaxed">Students must wear clean, ironed school uniform with prescribed tie, belt, ID card, and polished black shoes.</p>
+                        </div>
+                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1.5">
+                          <h4 className="font-bold text-[#1E3A8A]">Electronics &amp; Mobiles Policy</h4>
+                          <p className="text-slate-600 leading-relaxed">Student mobile phones and unauthorized electronics are strictly prohibited on campus to ensure focused study.</p>
+                        </div>
+                        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1.5">
+                          <h4 className="font-bold text-[#1E3A8A]">Anti-Bullying &amp; Harmony</h4>
+                          <p className="text-slate-600 leading-relaxed">Strict zero-tolerance policy against bullying, ragging, or discriminatory behavior with an active student grievance cell.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* 8. Sports Academy */}
+                {selectedAboutTab === 'sports-academy' && (
+                  <div className="p-6 sm:p-8 space-y-6">
+                    <div className="relative h-56 sm:h-64 rounded-2xl overflow-hidden bg-slate-100 shadow-sm">
+                      <img
+                        src="https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=1000&q=80"
+                        alt="Sports Academy"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex flex-col justify-end p-6 text-white">
+                        <span className="self-start text-[10px] font-extrabold uppercase tracking-wider bg-[#0e4b2d] text-emerald-200 px-3 py-1 rounded-full mb-2">
+                          Athletic Training
+                        </span>
+                        <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+                          Demo School Sports Academy
+                        </h2>
+                        <p className="text-xs sm:text-sm text-slate-200 mt-1">
+                          Championing Physical Stamina, Sporting Skill, and Team Glory
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                        <Award className="w-5 h-5 text-[#2563EB]" />
+                        <span>Professional Coaching &amp; Arenas</span>
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        Demo School Sports Academy is dedicated to nurturing athletic champions. We provide professional coaching under NIS certified trainers across multiple sporting disciplines, coupled with sports science, physical conditioning, and tournament exposure.
+                      </p>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-2 text-xs">
+                        {[
+                          { sport: 'Cricket Academy', info: 'Turf wickets, automated bowling machines, and net practice arenas.' },
+                          { sport: 'Football & Athletics', info: 'Full-size standard football field and 400m 8-lane athletic track.' },
+                          { sport: 'Basketball & Tennis', info: 'Floodlit outdoor synthetic courts conforming to international standards.' },
+                          { sport: 'Badminton & Table Tennis', info: 'Indoor sports complex with wooden courts and professional lighting.' },
+                          { sport: 'Martial Arts Center', info: 'Certified training in Taekwondo and Karate for self-defense.' },
+                          { sport: 'Physical Conditioning', info: 'Gymnasium, yoga arena, and dedicated sports physiotherapist.' }
+                        ].map((sp, idx) => (
+                          <div key={idx} className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
+                            <h4 className="font-bold text-slate-900 text-sm text-[#1E3A8A]">{sp.sport}</h4>
+                            <p className="text-slate-600">{sp.info}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -1262,43 +2400,220 @@ export default function App() {
         )}
 
         {/* ==================================================================
-            VIEW E: NEWS & EVENTS PAGE (Matches Home11.jpeg)
+            VIEW E: NEWS & EVENTS PAGE (With Future Ready Skills List & Content)
         ================================================================== */}
         {activePage === 'NEWS & EVENTS' && (
-          <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-6">
+          <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-8">
             {/* Page Title Card */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#1E3A8A] text-white flex items-center justify-center shadow-sm flex-shrink-0">
-                <FileText className="w-6 h-6" />
-              </div>
-              <div>
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">
-                  News &amp; Events
-                </h1>
-                <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                  Announcements, academic milestones, and upcoming school calendar
-                </p>
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-[#1E3A8A] text-white flex items-center justify-center shadow-sm flex-shrink-0">
+                  <FileText className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-[#F97316] uppercase tracking-wider">
+                    Future Ready Skills &amp; Campus Life
+                  </span>
+                  <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight mt-0.5">
+                    News, Events &amp; Programmes
+                  </h1>
+                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                    Click any skill or programme from the menu to explore curriculum highlights, activities, and student outcomes.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {EVENTS_NEWS.map((ev) => (
-                <div
-                  key={ev.id}
-                  onClick={() => setSelectedEvent(ev)}
-                  className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md border border-slate-100 cursor-pointer transition-all"
-                >
-                  <img src={ev.image} alt={ev.title} className="w-full h-48 object-cover" />
-                  <div className="p-6">
-                    <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
-                      <span className="font-bold text-[#2563EB]">{ev.category}</span>
-                      <span>{ev.date}</span>
-                    </div>
-                    <h3 className="text-base font-extrabold text-slate-900">{ev.title}</h3>
-                    <p className="text-xs text-slate-600 mt-2 leading-relaxed">{ev.summary}</p>
+            {/* Interactive Master-Detail Section: Menu List (matching uploaded image) + Dynamic Content */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left Column: Menu List Styled Exactly Like the Image */}
+              <div className="lg:col-span-4 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden sticky top-24">
+                {/* Menu Header matching green banner in image */}
+                <div className="bg-[#0e4b2d] text-white px-5 py-3.5 flex items-center justify-between shadow-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-sm tracking-wide text-emerald-100">
+                      Future Ready Skills
+                    </span>
                   </div>
+                  <ChevronDown className="w-4 h-4 text-emerald-300" />
                 </div>
-              ))}
+
+                {/* Vertical List Items */}
+                <div className="divide-y divide-slate-100 bg-white">
+                  {FUTURE_READY_PROGRAMMES.map((prog) => {
+                    const isSelected = selectedProgrammeId === prog.id;
+                    return (
+                      <div key={prog.id} className="transition-colors">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedProgrammeId(prog.id)}
+                          className={`w-full text-left px-5 py-3.5 text-xs sm:text-sm font-semibold flex items-center justify-between transition-all cursor-pointer ${
+                            isSelected
+                              ? 'bg-emerald-50 text-[#0e4b2d] font-bold border-l-4 border-[#0e4b2d] pl-4'
+                              : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
+                          }`}
+                        >
+                          <span>{prog.label}</span>
+                          {prog.hasSubmenu ? (
+                            <ChevronDown
+                              className={`w-4 h-4 text-slate-400 transition-transform ${
+                                isSelected ? 'rotate-180 text-[#0e4b2d]' : ''
+                              }`}
+                            />
+                          ) : (
+                            <ChevronRight
+                              className={`w-4 h-4 text-slate-300 ${
+                                isSelected ? 'text-[#0e4b2d]' : ''
+                              }`}
+                            />
+                          )}
+                        </button>
+
+                        {/* Expandable sub-items if active */}
+                        {prog.hasSubmenu && isSelected && prog.subItems && (
+                          <div className="bg-slate-50/90 px-6 py-2.5 space-y-1.5 border-t border-slate-100">
+                            {prog.subItems.map((sub, idx) => (
+                              <div
+                                key={idx}
+                                className="text-xs text-slate-600 flex items-center gap-2 py-0.5"
+                              >
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#0e4b2d]" />
+                                <span>{sub}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Right Column: Dynamic Content Card */}
+              <div className="lg:col-span-8 bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                {(() => {
+                  const prog =
+                    FUTURE_READY_PROGRAMMES.find((p) => p.id === selectedProgrammeId) ||
+                    FUTURE_READY_PROGRAMMES[0];
+                  return (
+                    <div className="p-6 sm:p-8 space-y-6">
+                      {/* Cover Photo Banner */}
+                      <div className="relative h-60 sm:h-72 rounded-2xl overflow-hidden bg-slate-100 shadow-sm">
+                        <img
+                          src={prog.bannerImage}
+                          alt={prog.label}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex flex-col justify-end p-6 text-white">
+                          <span className="self-start text-[10px] font-extrabold uppercase tracking-wider bg-[#0e4b2d] text-emerald-200 px-3 py-1 rounded-full mb-2 shadow">
+                            {prog.category}
+                          </span>
+                          <h2 className="text-2xl sm:text-3xl font-extrabold leading-tight text-white">
+                            {prog.label}
+                          </h2>
+                          <p className="text-xs sm:text-sm text-slate-200 mt-1 line-clamp-2">
+                            {prog.tagline}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Overview */}
+                      <div className="space-y-2">
+                        <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                          <BookOpen className="w-5 h-5 text-[#2563EB]" />
+                          <span>Programme Overview</span>
+                        </h3>
+                        <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                          {prog.overview}
+                        </p>
+                      </div>
+
+                      {/* Key Highlights */}
+                      <div className="space-y-3">
+                        <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                          <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                          <span>Curriculum &amp; Activity Highlights</span>
+                        </h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {prog.highlights.map((item, idx) => (
+                            <div
+                              key={idx}
+                              className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/60 flex items-start gap-2.5 text-xs sm:text-sm"
+                            >
+                              <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
+                                ✓
+                              </span>
+                              <span className="text-slate-700">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Learning Outcomes */}
+                      <div className="p-5 rounded-2xl bg-gradient-to-br from-blue-50/70 to-indigo-50/50 border border-blue-100 space-y-3">
+                        <h3 className="text-sm font-extrabold text-[#1E3A8A] flex items-center gap-2">
+                          <Award className="w-4 h-4 text-[#F97316]" />
+                          <span>Key Student Outcomes &amp; Skills Acquired</span>
+                        </h3>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700">
+                          {prog.outcomes.map((outcome, idx) => (
+                            <li key={idx} className="flex items-start gap-2">
+                              <span className="text-[#2563EB] font-bold">•</span>
+                              <span>{outcome}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Program Metadata */}
+                      <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100 text-xs text-slate-500">
+                        <div>
+                          <span className="font-bold text-slate-700">In-Charge / Faculty:</span>{' '}
+                          <span>{prog.inCharge}</span>
+                        </div>
+                        <div>
+                          <span className="font-bold text-slate-700">Schedule:</span>{' '}
+                          <span>{prog.frequency}</span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+            </div>
+
+            {/* Upcoming School Events & Celebrations */}
+            <div className="space-y-4 pt-6 border-t border-slate-200/80">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-lg sm:text-xl font-extrabold text-slate-900">
+                    Recent Events &amp; School News
+                  </h2>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    Academic milestones, national celebrations, and student recognitions
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {EVENTS_NEWS.map((ev) => (
+                  <div
+                    key={ev.id}
+                    onClick={() => setSelectedEvent(ev)}
+                    className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md border border-slate-100 cursor-pointer transition-all"
+                  >
+                    <img src={ev.image} alt={ev.title} className="w-full h-48 object-cover" />
+                    <div className="p-6">
+                      <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
+                        <span className="font-bold text-[#2563EB]">{ev.category}</span>
+                        <span>{ev.date}</span>
+                      </div>
+                      <h3 className="text-base font-extrabold text-slate-900">{ev.title}</h3>
+                      <p className="text-xs text-slate-600 mt-2 leading-relaxed">{ev.summary}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -1925,6 +3240,733 @@ export default function App() {
             </form>
           </div>
         )}
+
+        {/* ==================================================================
+            VIEW H: ABOUT HOSTEL PAGE (Complete Hostel Guide & Regulations)
+        ================================================================== */}
+        {(activePage === 'ABOUT HOSTEL' || activePage === 'About Hostel') && (
+          <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-8">
+            {/* Top Page Header Card */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="flex items-start sm:items-center gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-[#1E3A8A] text-white flex items-center justify-center shadow-md flex-shrink-0">
+                  <Building2 className="w-7 h-7" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-[#F97316] uppercase tracking-wider">
+                    Residential Community Life · DPS Bareilly
+                  </span>
+                  <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1E3A8A] tracking-tight mt-0.5">
+                    About Hostel
+                  </h1>
+                  <p className="text-xs sm:text-sm font-semibold text-slate-600 mt-1">
+                    (Separate Hostel for Boys and Girls) — A Comfortable Home Away from Home
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200">
+                  <Bed className="w-3.5 h-3.5" /> AC Rooms
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  <HeartPulse className="w-3.5 h-3.5" /> 24/7 Clinic
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200">
+                  <Utensils className="w-3.5 h-3.5" /> Pure Veg Mess
+                </span>
+              </div>
+            </div>
+
+            {/* Overview / Introduction Section */}
+            <div className="bg-gradient-to-br from-white via-white to-blue-50/40 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-4">
+              <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-[#F97316]" />
+                <span>Home Away From Home</span>
+              </h2>
+              <div className="text-slate-700 text-sm sm:text-base leading-relaxed space-y-3">
+                <p>
+                  The boarding houses provide a comfortable home away from home. Here the student can unwind or study or chat about the latest trends. The emphasis is here on collective enjoyment. It has all the facilities that help the children live and grow as in their home.
+                </p>
+                <p>
+                  It also recognizes the uniqueness of each individual and enables its members to synergize in a manner that enriches residential community life. The Hostel is designed to provide every facility for study, leisure and enjoyment, which can add so much to the school days and later life.
+                </p>
+              </div>
+            </div>
+
+            {/* Hostel Photo Gallery Showcase */}
+            <div className="space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <h2 className="text-lg sm:text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-[#2563EB]" />
+                    <span>Hostel Campus &amp; Life Gallery</span>
+                  </h2>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    Click any photo to view in high definition
+                  </p>
+                </div>
+                <span className="self-start sm:self-auto text-xs font-bold text-[#1E3A8A] bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200">
+                  Campus Facilities
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* 1. Dormitory Room */}
+                <div
+                  onClick={() =>
+                    setLightboxItem({
+                      image: '/images/hostel/hostel-room.jpg',
+                      title: 'Air-Conditioned Dormitory Room',
+                      caption: 'Four-student sharing AC room with modern bunk beds, study stations, and individual wardrobes.'
+                    })
+                  }
+                  className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition-all cursor-pointer flex flex-col"
+                >
+                  <div className="relative h-60 overflow-hidden bg-slate-100">
+                    <img
+                      src="/images/hostel/hostel-room.jpg"
+                      alt="Air-Conditioned Dormitory Room"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-3 left-3 bg-[#1E3A8A]/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-full backdrop-blur-xs flex items-center gap-1.5 shadow">
+                      <Bed className="w-3.5 h-3.5" />
+                      <span>Hostel Dormitory</span>
+                    </div>
+                  </div>
+                  <div className="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h3 className="font-extrabold text-slate-900 text-sm sm:text-base group-hover:text-[#2563EB] transition-colors">
+                        Comfortable AC Accommodation
+                      </h3>
+                      <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                        Air-conditioned rooms in separate wings for boys &amp; girls with 4-sharing layout, study tables, and personal wardrobes.
+                      </p>
+                    </div>
+                    <span className="text-[11px] font-bold text-[#2563EB] mt-3 inline-flex items-center gap-1 group-hover:underline">
+                      Click to expand photo &rarr;
+                    </span>
+                  </div>
+                </div>
+
+                {/* 2. Dining Hall & Mess */}
+                <div
+                  onClick={() =>
+                    setLightboxItem({
+                      image: '/images/hostel/hostel-dining.jpg',
+                      title: 'Spacious & Hygienic Dining Hall',
+                      caption: 'Well-ventilated mess serving wholesome, nutritious vegetarian meals prepared under hygienic supervision.'
+                    })
+                  }
+                  className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition-all cursor-pointer flex flex-col"
+                >
+                  <div className="relative h-60 overflow-hidden bg-slate-100">
+                    <img
+                      src="/images/hostel/hostel-dining.jpg"
+                      alt="Hostel Dining Hall and Mess"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-3 left-3 bg-[#1E3A8A]/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-full backdrop-blur-xs flex items-center gap-1.5 shadow">
+                      <Utensils className="w-3.5 h-3.5" />
+                      <span>Dining &amp; Mess</span>
+                    </div>
+                  </div>
+                  <div className="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h3 className="font-extrabold text-slate-900 text-sm sm:text-base group-hover:text-[#2563EB] transition-colors">
+                        Spacious Vegetarian Dining Hall
+                      </h3>
+                      <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                        Hygienic food prepared by trained chefs with a diverse vegetarian menu planned by the student-warden committee.
+                      </p>
+                    </div>
+                    <span className="text-[11px] font-bold text-[#2563EB] mt-3 inline-flex items-center gap-1 group-hover:underline">
+                      Click to expand photo &rarr;
+                    </span>
+                  </div>
+                </div>
+
+                {/* 3. Study & Leisure */}
+                <div
+                  onClick={() =>
+                    setLightboxItem({
+                      image: '/images/hostel/hostel-study.jpg',
+                      title: 'Supervised Study & Residential Life',
+                      caption: 'Disciplined self-study hours and residential activities supervised by resident floor teachers and wardens.'
+                    })
+                  }
+                  className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition-all cursor-pointer flex flex-col"
+                >
+                  <div className="relative h-60 overflow-hidden bg-slate-100">
+                    <img
+                      src="/images/hostel/hostel-study.jpg"
+                      alt="Hostel Study and Living Area"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-3 left-3 bg-[#1E3A8A]/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-full backdrop-blur-xs flex items-center gap-1.5 shadow">
+                      <BookOpen className="w-3.5 h-3.5" />
+                      <span>Study &amp; Leisure</span>
+                    </div>
+                  </div>
+                  <div className="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h3 className="font-extrabold text-slate-900 text-sm sm:text-base group-hover:text-[#2563EB] transition-colors">
+                        Study Hours &amp; Recreation
+                      </h3>
+                      <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                        Supervised study hours (9:00 PM – 11:00 PM), group discussions, and peer synergy fostering holistic personality development.
+                      </p>
+                    </div>
+                    <span className="text-[11px] font-bold text-[#2563EB] mt-3 inline-flex items-center gap-1 group-hover:underline">
+                      Click to expand photo &rarr;
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Key Hostel Facilities Grid */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg sm:text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                  <Building2 className="w-5 h-5 text-[#2563EB]" />
+                  <span>World-Class Living Facilities</span>
+                </h2>
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                  Boys &amp; Girls Wings
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {/* 1. AC Rooms & TV */}
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center">
+                    <Bed className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-extrabold text-slate-900 text-base">
+                    Air-Conditioned Rooms &amp; TV
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    There are air-conditioned rooms in separate wings for boys &amp; girls. Each room is shared by four students depending on the size of the room and class. A High Definition TV is provided for both boys and girls separately.
+                  </p>
+                </div>
+
+                {/* 2. Computer Labs */}
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center">
+                    <Wifi className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-extrabold text-slate-900 text-base">
+                    Hi-Tech Computer Labs
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Computer labs are equipped with high-speed internet connection with the latest configuration, printers, and scanners for academic study and research support.
+                  </p>
+                </div>
+
+                {/* 3. Resident Staff & Care */}
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center">
+                    <Users className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-extrabold text-slate-900 text-base">
+                    Resident Staff &amp; Welfare
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Each wing of the Hostel has resident staff that looks after the students&apos; welfare and ensures that everything runs smoothly, providing constant guidance and mentorship.
+                  </p>
+                </div>
+
+                {/* 4. Security & Campus Shops */}
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
+                    <ShieldCheck className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-extrabold text-slate-900 text-base">
+                    World-Class Security &amp; Amenities
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Security is world-class, with fire sprinklers and fire alarms at regular intervals. Students have convenient on-campus access to a book shop, tailor shop, and canteen.
+                  </p>
+                </div>
+
+                {/* 5. Hygienic Dining & Mess */}
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center">
+                    <Utensils className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-extrabold text-slate-900 text-base">
+                    Hygienic Vegetarian Mess
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    A dedicated, trained team of cooks, supporting staff, and Assistant Wardens ensure hygienic food with variety at proper times. Vegetarian menu is decided by the Hostel Committee comprising Superintendent, Wardens, and student representatives.
+                  </p>
+                </div>
+
+                {/* 6. 24/7 Medical Clinic */}
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center">
+                    <HeartPulse className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-extrabold text-slate-900 text-base">
+                    24/7 School Clinic &amp; Medical Care
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Functions 24/7 providing first-aid and immediate medical attention while maintaining detailed health records. For emergencies, the school promptly transports the child to the hospital under School Doctor/Nurse supervision and notifies parents.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Admission Procedure & Documentation */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-6">
+              <div className="border-b border-slate-100 pb-4">
+                <span className="text-xs font-bold text-[#F97316] uppercase tracking-wider">
+                  Enrolment Guidelines
+                </span>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1 flex items-center gap-2">
+                  <GraduationCap className="w-6 h-6 text-[#1E3A8A]" />
+                  <span>Hostel Admission Procedure</span>
+                </h2>
+                <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+                  Parents seeking hostel accommodation in the school must submit a written application to the Principal. If the principal grants admission, the parents must deposit the hostel fee with the hotel accounts clerk. After obtaining the hostel fee, parents must report to the hostel superintendent to complete hostel admission formalities. They are to submit the requisite details indicated in the succeeding paragraph. After all the formalities have been completed, the hostel warden is informed accordingly, and the child is allotted a room etc. The Hostel Superintendent /Warden maintains a personal file of each child.
+                </p>
+              </div>
+
+              {/* 4 Steps Timeline */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-slate-50 rounded-xl p-4 border border-slate-200/80">
+                  <div className="w-7 h-7 rounded-full bg-[#1E3A8A] text-white font-extrabold text-xs flex items-center justify-center mb-2.5">
+                    1
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-sm mb-1">Written Application</h4>
+                  <p className="text-xs text-slate-600">
+                    Parents submit a written application for hostel accommodation directly to the Principal.
+                  </p>
+                </div>
+
+                <div className="bg-slate-50 rounded-xl p-4 border border-slate-200/80">
+                  <div className="w-7 h-7 rounded-full bg-[#1E3A8A] text-white font-extrabold text-xs flex items-center justify-center mb-2.5">
+                    2
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-sm mb-1">Fee Deposit</h4>
+                  <p className="text-xs text-slate-600">
+                    Upon approval by the Principal, deposit the prescribed hostel fee with the accounts clerk.
+                  </p>
+                </div>
+
+                <div className="bg-slate-50 rounded-xl p-4 border border-slate-200/80">
+                  <div className="w-7 h-7 rounded-full bg-[#1E3A8A] text-white font-extrabold text-xs flex items-center justify-center mb-2.5">
+                    3
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-sm mb-1">Superintendent Formalities</h4>
+                  <p className="text-xs text-slate-600">
+                    Report to the Hostel Superintendent with the fee receipt and submit all mandatory document forms.
+                  </p>
+                </div>
+
+                <div className="bg-slate-50 rounded-xl p-4 border border-slate-200/80">
+                  <div className="w-7 h-7 rounded-full bg-[#1E3A8A] text-white font-extrabold text-xs flex items-center justify-center mb-2.5">
+                    4
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-sm mb-1">Room Allotment</h4>
+                  <p className="text-xs text-slate-600">
+                    Hostel Warden is formally notified, child is allotted a room, and personal file is created.
+                  </p>
+                </div>
+              </div>
+
+              {/* Documentation Formalities Checklist */}
+              <div className="mt-6 pt-4 border-t border-slate-100">
+                <h3 className="font-extrabold text-slate-900 text-base mb-3 flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-[#2563EB]" />
+                  <span>Mandatory Documentation Formalities Before Joining:</span>
+                </h3>
+                <p className="text-xs text-slate-500 mb-4">
+                  Before a student joins the Hostel, the following documentation formalities must be completed on forms supplied by the hostel superintendent:
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs sm:text-sm">
+                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/60">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-slate-700">
+                      Certificate from the local Guardian permitting the child to stay with them during sickness.
+                    </span>
+                  </div>
+
+                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/60">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-slate-700">
+                      The Performa duly completed must be handed over to the Hostel Superintendent and placed in the student&apos;s personal file.
+                    </span>
+                  </div>
+
+                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/60">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-slate-700">
+                      A certificate certifies that no cash / costly belongings are in the student&apos;s possession.
+                    </span>
+                  </div>
+
+                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/60">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-slate-700">
+                      A list of articles of clothing and other items to be deposited with the student, a copy to be handed over to the Superintendent/Warden.
+                    </span>
+                  </div>
+
+                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/60">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-slate-700">
+                      A Health Certificate regarding medical history must be duly checked and signed by the school infirmary in charge, parents and the hostel warden concerned.
+                    </span>
+                  </div>
+
+                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/60">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-slate-700">
+                      Indemnifying the school against any damage, sickness, accident or death caused in the normal functioning of usual activities.
+                    </span>
+                  </div>
+
+                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/60 md:col-span-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-slate-700">
+                      An authority letter from the parent indicates two names and addresses (with two photographs, ID proof, address proof, telephone numbers and e-mail ID) who would act as the local Guardian. Only those persons will be allowed to become local guardians employed and living in a family environment.
+                    </span>
+                  </div>
+                </div>
+
+                {/* Warning note regarding Local Guardians */}
+                <div className="mt-4 p-4 rounded-xl bg-amber-50 border border-amber-200 flex items-start gap-3">
+                  <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-xs sm:text-sm text-amber-900 font-medium">
+                    <span className="font-bold">Important Notice:</span> In the case at any point of time, if it is observed that Local Guardians are non-cooperative/inactive, the admission of the boarders will be cancelled, and no fee refund will be given.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Rules and Regulations Section */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-6">
+              <div className="border-b border-slate-100 pb-3">
+                <span className="text-xs font-bold text-[#F97316] uppercase tracking-wider">
+                  Discipline &amp; Code of Conduct
+                </span>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1 flex items-center gap-2">
+                  <ShieldCheck className="w-6 h-6 text-[#1E3A8A]" />
+                  <span>Rules and Regulations</span>
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                  All boarders and parents are required to strictly observe the following rules to maintain high standards of community living and academic excellence.
+                </p>
+              </div>
+
+              {/* Categorized Rules Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Category 1: Daily Routine & Academics */}
+                <div className="rounded-xl p-5 bg-slate-50 border border-slate-200/80 space-y-3">
+                  <h3 className="font-extrabold text-[#1E3A8A] text-sm flex items-center gap-2 border-b border-slate-200 pb-2">
+                    <Clock className="w-4 h-4 text-[#F97316]" />
+                    <span>Daily Routine, Academics &amp; Attendance</span>
+                  </h3>
+                  <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Hostellers will follow the daily routine of the Hostel and school unless exempted on medical grounds or recommended by the Hostel Warden.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>No student will be allowed to enter the Hostel during school hours.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Compulsory Study Hours:</strong> 9.00 pm to 11.00 pm in the respective rooms. On examination days, study timings may be extended for self-study with prior permission of the respective Warden. All room lights must be switched off at 11.30 pm. Complete silence must be maintained.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Hostellers will remain in their rooms after the night roll-call for self-study under supervision by floor Wardens/Teachers.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Hostel Attendance:</strong> Taken thrice daily — Morning / Afternoon / Night.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Results of school tests and examinations will be sent to the parents through the Hostel Wardens within ten days after every exam.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Meal Timings:</strong> Strictly as per the School and Hostel schedule.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Birthday Celebrations:</strong> Held after dinner in the dining hall between 9.00 pm and 9.30 pm.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Physical Activity:</strong> Compulsory for all hostellers unless exempted by school infirmary. Evening sports uniform is mandatory for sports &amp; games.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Category 2: Cash, Gadgets & Belongings */}
+                <div className="rounded-xl p-5 bg-slate-50 border border-slate-200/80 space-y-3">
+                  <h3 className="font-extrabold text-[#1E3A8A] text-sm flex items-center gap-2 border-b border-slate-200 pb-2">
+                    <Wallet className="w-4 h-4 text-[#F97316]" />
+                    <span>Cash, Electronic Gadgets &amp; Belongings</span>
+                  </h3>
+                  <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Hostellers cannot keep more than <strong>Rs.250/- in cash</strong> or any valuables. No hostel staff is liable for the loss of money possessed without permission.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Mobile Phone Ban:</strong> Use of Mobile phones is strictly prohibited in the school/Hostel. If found, it will be confiscated, and a <strong>fine of Rs.5,000/-</strong> will be imposed.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Electrical Appliances Ban:</strong> Heaters, kettles, irons or other such appliances are strictly prohibited. Violators face permanent confiscation and a <strong>fine of Rs.500/-</strong>.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Parents are requested to maintain at least <strong>Rs.10,000/-</strong> in the school account as pocket money for personal needs. Students can withdraw whenever needed.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Hostellers will not be allowed to keep or take medicines/tonics without the express knowledge of the Hostel Warden / Medical Officer.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Cupboards must be arranged neatly. The Hostel Warden conducts surprise checks. Any extra items beyond the hostel kit will be confiscated.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Any hosteller falling sick must report to the hostel clinic. Emergency cases will be escorted immediately to the School Clinic by the Hostel Warden.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Category 3: Outings, Leaves & Curfews */}
+                <div className="rounded-xl p-5 bg-slate-50 border border-slate-200/80 space-y-3">
+                  <h3 className="font-extrabold text-[#1E3A8A] text-sm flex items-center gap-2 border-b border-slate-200 pb-2">
+                    <Calendar className="w-4 h-4 text-[#F97316]" />
+                    <span>Outings, Leaves &amp; Reporting Timings</span>
+                  </h3>
+                  <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Outing Schedule:</strong> Only one outing permitted per month (2nd Saturday or last Saturday/Sunday of the month).</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Students visit Local Guardians through a Gate Pass issued by the Hostel Warden. <strong>AUTHORITY LETTERS WILL NOT BE ACCEPTED.</strong> Parents or Local Guardians must collect their wards personally.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Sunday 6:00 PM Curfew:</strong> Entry after monthly outings must be before 6.00 pm on Sunday. No student will be allowed to enter the Hostel after 6.00 pm, even when returning from term breaks. If transport reaches after 6.00 pm, the ward must stay at the Local Guardian&apos;s place and be dropped to school the next morning before school begins.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Late Reporting Penalty:</strong> All students must report on the scheduled date. Defaulters will be fined <strong>Rs.1,000/- per day</strong> or face cancellation of admission. Emergency delays must be informed in writing well in advance to the Principal/Academic Coordinator/Hostel Warden.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Leave for functions or events during the term is only entertained if pertaining to parents or siblings, with prior written permission from the Principal.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>In case of illness leave, a doctor&apos;s medical certificate is required for prior permission. When returning, the student must submit a Fitness Certificate / Covid negative report.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Category 4: Visitors, Guardians & General Discipline */}
+                <div className="rounded-xl p-5 bg-slate-50 border border-slate-200/80 space-y-3">
+                  <h3 className="font-extrabold text-[#1E3A8A] text-sm flex items-center gap-2 border-b border-slate-200 pb-2">
+                    <Users className="w-4 h-4 text-[#F97316]" />
+                    <span>Visitors, Guardian Rules &amp; Discipline</span>
+                  </h3>
+                  <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Room Entry Prohibition:</strong> Visitors and Parents are NOT allowed to visit Hostel Rooms. They will meet their wards at the school&apos;s Reception area in the hostel warden&apos;s presence.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Calling Hours:</strong> Parents and Local Guardians can contact their wards between <strong>6.00 pm to 8.00 pm</strong> on designated call days. Parents are requested not to force the Warden to talk except on scheduled call days.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Only individuals living in a family environment with their own residence can act as Local Guardians. No existing student can be a Local Guardian to a hosteller of DPS Bareilly.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Parents must leave an active phone number and emergency address with the Warden for immediate contact.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Parents/Guardians are not allowed to meet their ward for one or two days without prior information.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span>Students will be punished for scribbling/graffiti, using foul language, unruly behaviour, or vandalism. Damage charges for hostel property will be borne equally by all room occupants or the detected offender.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Zero Tolerance:</strong> Serious offences such as cheating, stealing, bullying, physical violence, or property damage will be dealt with severely and lead to suspension or expulsion.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#2563EB] font-bold">•</span>
+                      <span><strong>Withdrawal Norms:</strong> No student is allowed to leave during the session. Converting from hosteller to day-scholar requires 2 months prior application with TC issued. Upon withdrawal, existing and preceding quarter fees are payable and non-refundable.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Visiting Hours Table */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-4">
+              <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+                <Clock className="w-5 h-5 text-[#2563EB]" />
+                <h3 className="text-lg font-extrabold text-slate-900">
+                  Parent &amp; Guardian Visiting Hours
+                </h3>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                  <thead>
+                    <tr className="bg-[#1E3A8A] text-white">
+                      <th className="py-3 px-4 font-bold rounded-tl-xl">Day(s)</th>
+                      <th className="py-3 px-4 font-bold">Morning Timings</th>
+                      <th className="py-3 px-4 font-bold rounded-tr-xl">Evening Timings</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 border border-slate-200">
+                    <tr className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3.5 px-4 font-semibold text-slate-800">
+                        Weekend Holidays
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-600 font-medium">
+                        10.00 am - 12.00 pm
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-600 font-medium">
+                        4.00 pm - 6.00 pm
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-slate-500 italic">
+                Meetings take place exclusively at the school Reception area in the presence of the Hostel Warden.
+              </p>
+            </div>
+
+            {/* Important Hostel Contact Directory */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-4">
+              <div className="border-b border-slate-100 pb-3">
+                <span className="text-xs font-bold text-[#F97316] uppercase tracking-wider">
+                  Official Communication
+                </span>
+                <h3 className="text-lg font-extrabold text-slate-900 flex items-center gap-2 mt-1">
+                  <Phone className="w-5 h-5 text-[#2563EB]" />
+                  <span>Hostel Contact &amp; Permission Directory</span>
+                </h3>
+                <p className="text-xs text-slate-500 mt-1">
+                  (Note: Other than scheduled meeting time, parents/local guardians must obtain prior permission by sending an e-mail from any one of the following at least a day in advance.)
+                </p>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                  <thead>
+                    <tr className="bg-[#1E3A8A] text-white">
+                      <th className="py-3 px-4 font-bold rounded-tl-xl">DESIGNATION</th>
+                      <th className="py-3 px-4 font-bold">E-MAIL ADDRESS</th>
+                      <th className="py-3 px-4 font-bold">CONTACT NO.</th>
+                      <th className="py-3 px-4 font-bold rounded-tr-xl">TIME TO CONTACT</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 border border-slate-200">
+                    <tr className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3.5 px-4 font-bold text-slate-900">
+                        Boys Hostel In-charge
+                      </td>
+                      <td className="py-3.5 px-4 text-[#2563EB] font-medium">
+                        <a href="mailto:boyshostel@dpsbareilly.com" className="hover:underline">
+                          boyshostel@dpsbareilly.com
+                        </a>
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-700 font-semibold font-mono">
+                        <a href="tel:+917055446660" className="hover:underline">
+                          +91-7055446660
+                        </a>
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-600">
+                        9:00 am – 8:00 pm
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3.5 px-4 font-bold text-slate-900">
+                        Girls Hostel In-charge
+                      </td>
+                      <td className="py-3.5 px-4 text-[#2563EB] font-medium">
+                        <a href="mailto:girlshostel@dpsbareilly.com" className="hover:underline">
+                          girlshostel@dpsbareilly.com
+                        </a>
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-700 font-semibold font-mono">
+                        <a href="tel:+917055446661" className="hover:underline">
+                          +91-7055446661
+                        </a>
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-600">
+                        9:00 am – 8:00 pm
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3.5 px-4 font-bold text-slate-900">
+                        Front Desk Officer
+                      </td>
+                      <td className="py-3.5 px-4 text-[#2563EB] font-medium">
+                        <a href="mailto:contact@dpsbareilly.com" className="hover:underline">
+                          contact@dpsbareilly.com
+                        </a>
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-700 font-semibold font-mono">
+                        <a href="tel:+917055446662" className="hover:underline">
+                          +91-7055446662
+                        </a>
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-600">
+                        9:00 am – 4:00 pm
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3.5 px-4 font-bold text-slate-900">
+                        Principal
+                      </td>
+                      <td className="py-3.5 px-4 text-[#2563EB] font-medium">
+                        <a href="mailto:principal@dpsbareilly.com" className="hover:underline">
+                          principal@dpsbareilly.com
+                        </a>
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-700 font-semibold font-mono">
+                        <a href="tel:+919956292762" className="hover:underline">
+                          +91-9956292762
+                        </a>
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-600">
+                        Office Hours
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
 
       {/* ====================================================================
@@ -2023,6 +4065,12 @@ export default function App() {
                   className="text-left hover:text-white transition-colors cursor-pointer"
                 >
                   Contact Us
+                </button>
+                <button
+                  onClick={() => navigateTo('ABOUT HOSTEL')}
+                  className="text-left hover:text-white transition-colors cursor-pointer"
+                >
+                  About Hostel
                 </button>
                 <button
                   onClick={() => navigateTo('ONLINE ADMISSION')}
