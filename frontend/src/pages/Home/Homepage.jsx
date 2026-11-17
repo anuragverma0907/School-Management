@@ -789,6 +789,27 @@ const GALLERY_ITEMS = [
     image:
       'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=800&q=80',
     caption: 'Digitally verifiable birth, transfer, and merit certificates issued seamlessly.'
+  },
+  {
+    id: 5,
+    title: 'Boys & Girls Hostel Wing',
+    category: 'Hostel',
+    image: '/images/hostel/hostel-room.jpg',
+    caption: 'Air-conditioned dormitory rooms with individual study stations and wardrobes.'
+  },
+  {
+    id: 6,
+    title: 'Hygienic Pure Veg Dining Hall',
+    category: 'Hostel',
+    image: '/images/hostel/hostel-dining.jpg',
+    caption: 'Spacious dining mess serving hot, wholesome multi-cuisine meals.'
+  },
+  {
+    id: 7,
+    title: 'Quiet Evening Study Hours',
+    category: 'Hostel',
+    image: '/images/hostel/hostel-study.jpg',
+    caption: 'Supervised evening self-study hours fostering discipline and peer learning.'
   }
 ];
 
@@ -810,14 +831,274 @@ const IQ_QUESTIONS = [
   }
 ];
 
+const ACADEMIC_SECTIONS = [
+  {
+    id: 'curriculum',
+    label: 'Curriculum & NEP 2020 Framework',
+    category: 'Pedagogy & Standards',
+    tagline: 'CBSE Affiliated, Experiential Learning Designed for 21st-Century Minds',
+    hasSubmenu: true,
+    subItems: [
+      'Foundational & Preparatory Stages (Grades 1-8)',
+      'Experiential & Project-Based Learning Pedagogy',
+      'Holistic 360-Degree Progress Report Cards',
+      'Skill Subjects & Digital Literacy Integration'
+    ]
+  },
+  {
+    id: 'primary-wing',
+    label: 'Primary Wing (Grades I - V)',
+    category: 'Early Childhood Education',
+    tagline: 'Fostering Curiosity, Joyful Literacy, and Foundational Numeracy',
+    hasSubmenu: false
+  },
+  {
+    id: 'middle-wing',
+    label: 'Middle Wing (Grades VI - VIII)',
+    category: 'Preparatory Stage',
+    tagline: 'Hands-On STEM, Algorithmic Thinking, and Bilingual Proficiency',
+    hasSubmenu: false
+  },
+  {
+    id: 'senior-wing',
+    label: 'Senior Secondary Wing (Grades IX - XII)',
+    category: 'Higher Secondary & Career Streams',
+    tagline: 'Rigorous Academic Streams in Science, Commerce, and Humanities',
+    hasSubmenu: true,
+    subItems: [
+      'Science Stream (PCM / PCB with Informatics / Biotech)',
+      'Commerce Stream with Applied Mathematics & Accountancy',
+      'Humanities & Social Sciences with Psychology & Economics',
+      'Integrated Preparation for JEE, NEET, CUET & CLAT'
+    ]
+  },
+  {
+    id: 'academic-calendar',
+    label: 'Academic Calendar & Schedules',
+    category: 'Annual Almanac',
+    tagline: 'Structured Annual Term Schedule, Holidays, and Parent-Teacher Meets',
+    hasSubmenu: false
+  },
+  {
+    id: 'exam-policy',
+    label: 'Examination & Grading Policy',
+    category: 'Assessment Framework',
+    tagline: 'Continuous and Comprehensive Evaluation Following CBSE Guidelines',
+    hasSubmenu: false
+  },
+  {
+    id: 'digital-labs',
+    label: 'Smart Labs & Digital Classrooms',
+    category: 'Modern Infrastructure',
+    tagline: 'State-of-the-Art Science, AI & Language Laboratories',
+    hasSubmenu: true,
+    subItems: [
+      'Physics, Chemistry & Biology Research Laboratories',
+      'Atal Tinkering STEM & Robotics Innovation Lab',
+      'High-Speed Computer & Language Immersion Lab',
+      'Interactive Smart Panels (IFPs) in Every Classroom'
+    ]
+  }
+];
+
+const HOSTEL_SECTIONS = [
+  {
+    id: 'hostel-overview',
+    label: 'Hostel Overview & Facilities',
+    category: 'Residential Life',
+    tagline: 'A Safe, Modern, and Nurturing Home Away from Home',
+    hasSubmenu: false
+  },
+  {
+    id: 'separate-wings',
+    label: 'Separate Wings for Boys & Girls',
+    category: 'Air-Conditioned Accommodation',
+    tagline: 'Dedicated Security, CCTV, Resident Wardens, and Well-Ventilated AC Rooms',
+    hasSubmenu: false
+  },
+  {
+    id: 'dining-mess',
+    label: 'Hygienic Pure Veg Mess',
+    category: 'Nutrition & Dining',
+    tagline: 'Nutritious, Multi-Cuisine Vegetarian Meals Formulated by Nutritionists',
+    hasSubmenu: false
+  },
+  {
+    id: 'medical-clinic',
+    label: '24/7 Medical Clinic & Care',
+    category: 'Healthcare & Infirmary',
+    tagline: 'Round-the-Clock First Aid, Resident Nurses, and Tie-Ups with Top Hospitals',
+    hasSubmenu: false
+  },
+  {
+    id: 'admission-procedure',
+    label: 'Admission Procedure & Forms',
+    category: 'Hostel Enrollment',
+    tagline: 'Step-by-Step Admission Guidelines, Verification, and Required Documents',
+    hasSubmenu: true,
+    subItems: [
+      'Principal Written Application',
+      'Hostel Fee Deposit & Receipts',
+      'Medical Health Certificate',
+      'Local Guardian Authority Letters'
+    ]
+  },
+  {
+    id: 'rules-regulations',
+    label: 'Rules, Regulations & Daily Routine',
+    category: 'Disciplinary Code',
+    tagline: 'Comprehensive Code of Conduct, Compulsory Study Hours, and Safety Rules',
+    hasSubmenu: false
+  },
+  {
+    id: 'visiting-timings',
+    label: 'Visiting Hours & Leave Rules',
+    category: 'Parent Communication',
+    tagline: 'Designated Weekend Visiting Hours, Monthly Outings, and Gate Pass Protocol',
+    hasSubmenu: false
+  },
+  {
+    id: 'warden-contacts',
+    label: 'Wardens & Contact Directory',
+    category: 'Administration & Contacts',
+    tagline: 'Direct Phone Extensions for Boys & Girls Hostel Wardens and Clinic',
+    hasSubmenu: false
+  },
+  {
+    id: 'photo-tour',
+    label: 'Hostel Photo Gallery',
+    category: 'Visual Tour',
+    tagline: 'High-Definition Photographs of Rooms, Dining Hall, and Study Spaces',
+    hasSubmenu: false
+  }
+];
+
+const ADMISSION_SECTIONS = [
+  {
+    id: 'admission-form',
+    label: 'Online Registration Form',
+    category: 'Student Enrollment',
+    tagline: 'Seamless Online Admission Form for Academic Session 2026-27',
+    hasSubmenu: false
+  },
+  {
+    id: 'check-status',
+    label: 'Check Application Status',
+    category: 'Application Tracking',
+    tagline: 'Track Your Admission Application with Your Application Reference ID',
+    hasSubmenu: false
+  },
+  {
+    id: 'fee-structure',
+    label: 'Fee Structure & Payment Schedule',
+    category: 'Fee Guidelines',
+    tagline: 'Transparent Tuition, Activity, and Boarding Fee Schedule',
+    hasSubmenu: false
+  },
+  {
+    id: 'eligibility-criteria',
+    label: 'Age & Eligibility Criteria',
+    category: 'Admission Guidelines',
+    tagline: 'Grade-Wise Minimum Age Norms as per CBSE and Government Regulations',
+    hasSubmenu: false
+  },
+  {
+    id: 'documents-checklist',
+    label: 'Required Documents Checklist',
+    category: 'Documentation',
+    tagline: 'Birth Certificates, Transfer Certificates (TC), Report Cards, and Photos',
+    hasSubmenu: false
+  }
+];
+
+const CONTACT_SECTIONS = [
+  {
+    id: 'campus-location',
+    label: 'Campus Address & Directions',
+    category: 'Location & Map',
+    tagline: 'Visit Our Lush 15-Acre Campus in Jhansi, Uttar Pradesh',
+    hasSubmenu: false
+  },
+  {
+    id: 'office-hours',
+    label: 'Reception & Office Timings',
+    category: 'Administrative Timings',
+    tagline: 'Office Hours for Parents, Visitors, and Document Verifications',
+    hasSubmenu: false
+  },
+  {
+    id: 'key-contacts',
+    label: 'Emergency Contacts & Helpdesk',
+    category: 'Phone Directory',
+    tagline: 'Direct Lines for Principal, Admissions, Accounts, and Transportation',
+    hasSubmenu: false
+  },
+  {
+    id: 'hostel-office',
+    label: 'Hostel Superintendent Office',
+    category: 'Boarding Helpdesk',
+    tagline: 'Direct Point of Contact for Hosteller Parents and Wardens',
+    hasSubmenu: false
+  },
+  {
+    id: 'feedback-form',
+    label: 'Send an Online Enquiry',
+    category: 'Interactive Message Form',
+    tagline: 'Submit Your Inquiry Directly to the School Administration',
+    hasSubmenu: false
+  }
+];
+
 const NAV_ITEMS = [
-  { id: 'HOME', label: 'HOME' },
-  { id: 'ABOUT US', label: 'ABOUT US' },
-  { id: 'ACADEMICS', label: 'ACADEMICS' },
-  { id: 'GALLERY', label: 'GALLERY' },
-  { id: 'NEWS & EVENTS', label: 'NEWS & EVENTS' },
-  { id: 'ABOUT HOSTEL', label: 'ABOUT HOSTEL' },
-  { id: 'CONTACT US', label: 'CONTACT US' }
+  { id: 'HOME', label: 'HOME', hasDropdown: false },
+  {
+    id: 'ABOUT US',
+    label: 'ABOUT US',
+    hasDropdown: true,
+    dropdownItems: ABOUT_US_SECTIONS
+  },
+  {
+    id: 'ACADEMICS',
+    label: 'ACADEMICS',
+    hasDropdown: true,
+    dropdownItems: ACADEMIC_SECTIONS
+  },
+  {
+    id: 'NEWS & EVENTS',
+    label: 'FUTURE READY SKILLS',
+    hasDropdown: true,
+    dropdownItems: FUTURE_READY_PROGRAMMES
+  },
+  {
+    id: 'ABOUT HOSTEL',
+    label: 'ABOUT HOSTEL',
+    hasDropdown: true,
+    dropdownItems: HOSTEL_SECTIONS
+  },
+  {
+    id: 'ONLINE ADMISSION',
+    label: 'ADMISSION',
+    hasDropdown: true,
+    dropdownItems: ADMISSION_SECTIONS
+  },
+  {
+    id: 'GALLERY',
+    label: 'GALLERY',
+    hasDropdown: true,
+    dropdownItems: [
+      { id: 'All', label: 'All Campus Highlights' },
+      { id: 'Campus', label: 'Campus & Infrastructure' },
+      { id: 'Academics', label: 'Smart Labs & Classrooms' },
+      { id: 'Events', label: 'Events & Annual Functions' },
+      { id: 'Hostel', label: 'Hostel & Residential Life' }
+    ]
+  },
+  {
+    id: 'CONTACT US',
+    label: 'CONTACT US',
+    hasDropdown: true,
+    dropdownItems: CONTACT_SECTIONS
+  }
 ];
 
 // ============================================================================
@@ -867,6 +1148,16 @@ export default function App() {
 
   // About Us Section Interactive State
   const [selectedAboutTab, setSelectedAboutTab] = useState('mission-vision');
+
+  // Interactive Section States
+  const [selectedAcademicTab, setSelectedAcademicTab] = useState('curriculum');
+  const [selectedHostelTab, setSelectedHostelTab] = useState('hostel-overview');
+  const [selectedAdmissionTab, setSelectedAdmissionTab] = useState('admission-form');
+  const [selectedContactTab, setSelectedContactTab] = useState('campus-location');
+
+  // Header Dropdown States
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(null);
 
   // Online Admission State
   const [statusModalOpen, setStatusModalOpen] = useState(false);
@@ -926,10 +1217,26 @@ export default function App() {
     return () => clearInterval(timer);
   }, [activePage]);
 
-  // Navigate helper with smooth scroll to top
-  const navigateTo = (page) => {
+  // Navigate helper with smooth scroll to top and sub-tab selection
+  const navigateTo = (page, subTab = null) => {
     setActivePage(page);
     setMobileMenuOpen(false);
+    setActiveDropdown(null);
+    if (page === 'ABOUT US' && subTab) {
+      setSelectedAboutTab(subTab);
+    } else if ((page === 'NEWS & EVENTS' || page === 'FUTURE READY SKILLS') && subTab) {
+      setSelectedProgrammeId(subTab);
+    } else if ((page === 'ABOUT HOSTEL' || page === 'About Hostel') && subTab) {
+      setSelectedHostelTab(subTab);
+    } else if (page === 'ACADEMICS' && subTab) {
+      setSelectedAcademicTab(subTab);
+    } else if (page === 'ONLINE ADMISSION' && subTab) {
+      setSelectedAdmissionTab(subTab);
+    } else if (page === 'GALLERY' && subTab) {
+      setGalleryFilter(subTab);
+    } else if (page === 'CONTACT US' && subTab) {
+      setSelectedContactTab(subTab);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -1113,23 +1420,81 @@ export default function App() {
               </span>
             </button>
 
-            {/* Desktop Nav Links */}
-            <div className="hidden lg:flex items-center gap-6">
+            {/* Desktop Nav Links with Dropdown Menus */}
+            <div className="hidden lg:flex items-center gap-1 xl:gap-2">
               {NAV_ITEMS.map((item) => {
                 const isActive = activePage === item.id;
+                const isDropdownOpen = activeDropdown === item.id;
                 return (
-                  <button
+                  <div
                     key={item.id}
-                    onClick={() => navigateTo(item.id)}
-                    className={`relative py-2 text-xs font-bold tracking-wider transition-colors cursor-pointer ${
-                      isActive ? 'text-white' : 'text-slate-200 hover:text-white'
-                    }`}
+                    className="relative"
+                    onMouseEnter={() => {
+                      if (item.hasDropdown) setActiveDropdown(item.id);
+                    }}
+                    onMouseLeave={() => {
+                      if (item.hasDropdown) setActiveDropdown(null);
+                    }}
                   >
-                    {item.label}
-                    {isActive && (
-                      <span className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#F97316] rounded-full" />
+                    <button
+                      onClick={() => {
+                        navigateTo(item.id);
+                        if (item.hasDropdown) {
+                          setActiveDropdown(isDropdownOpen ? null : item.id);
+                        }
+                      }}
+                      className={`relative py-2 px-3 rounded-lg text-xs font-bold tracking-wider transition-all cursor-pointer flex items-center gap-1.5 ${
+                        isActive || isDropdownOpen
+                          ? 'bg-[#0e4b2d] text-white shadow-sm'
+                          : 'text-slate-200 hover:text-white hover:bg-white/10'
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      {item.hasDropdown && (
+                        <ChevronDown
+                          className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                            isDropdownOpen ? 'rotate-180 text-emerald-300' : 'text-slate-300'
+                          }`}
+                        />
+                      )}
+                      {isActive && !isDropdownOpen && (
+                        <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#F97316] rounded-full" />
+                      )}
+                    </button>
+
+                    {/* Floating Dropdown Card matching screenshots */}
+                    {item.hasDropdown && isDropdownOpen && (
+                      <div className="absolute top-full left-0 mt-1 w-72 bg-white rounded-xl shadow-2xl border border-slate-200 z-50 overflow-hidden divide-y divide-slate-100 animate-in fade-in slide-in-from-top-1 duration-150">
+                        {/* Dropdown Header banner matching the user's uploaded green header */}
+                        <div className="bg-[#0e4b2d] px-4 py-2.5 text-white flex items-center justify-between text-xs font-bold shadow-xs">
+                          <span className="text-emerald-100">{item.label}</span>
+                          <ChevronDown className="w-3.5 h-3.5 text-emerald-300" />
+                        </div>
+
+                        {/* List items */}
+                        <div className="py-1 max-h-[70vh] overflow-y-auto divide-y divide-slate-100">
+                          {item.dropdownItems.map((sub) => (
+                            <button
+                              key={sub.id}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigateTo(item.id, sub.id);
+                                setActiveDropdown(null);
+                              }}
+                              className="w-full text-left px-4 py-2.5 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-[#0e4b2d] flex items-center justify-between transition-colors cursor-pointer group/item"
+                            >
+                              <span className="truncate">{sub.label}</span>
+                              {sub.hasSubmenu ? (
+                                <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover/item:text-[#0e4b2d]" />
+                              ) : (
+                                <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover/item:text-[#0e4b2d] group-hover/item:translate-x-0.5 transition-all" />
+                              )}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     )}
-                  </button>
+                  </div>
                 );
               })}
             </div>
@@ -1154,30 +1519,78 @@ export default function App() {
             </div>
           </div>
 
-          {/* Mobile Navigation Dropdown */}
+          {/* Mobile Navigation Dropdown with Accordion Menus */}
           {mobileMenuOpen && (
-            <div className="lg:hidden bg-[#1B3152] border-t border-white/10 px-4 pt-2 pb-4 space-y-1">
+            <div className="lg:hidden bg-[#1B3152] border-t border-white/10 px-4 pt-3 pb-6 space-y-1.5 max-h-[80vh] overflow-y-auto">
               {NAV_ITEMS.map((item) => {
                 const isActive = activePage === item.id;
+                const isExpanded = mobileDropdownOpen === item.id;
                 return (
-                  <button
-                    key={item.id}
-                    onClick={() => navigateTo(item.id)}
-                    className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-bold tracking-wider flex items-center justify-between ${
-                      isActive
-                        ? 'bg-[#2563EB] text-white'
-                        : 'text-slate-200 hover:bg-white/10 hover:text-white'
-                    }`}
-                  >
-                    <span>{item.label}</span>
-                    {isActive && <span className="w-2 h-2 rounded-full bg-[#F97316]" />}
-                  </button>
+                  <div key={item.id} className="space-y-1">
+                    <div className="flex items-center gap-1">
+                      <button
+                        onClick={() => {
+                          if (item.hasDropdown) {
+                            setMobileDropdownOpen(isExpanded ? null : item.id);
+                          } else {
+                            navigateTo(item.id);
+                          }
+                        }}
+                        className={`flex-1 text-left px-3.5 py-2.5 rounded-lg text-xs font-bold tracking-wider flex items-center justify-between ${
+                          isActive
+                            ? 'bg-[#0e4b2d] text-white'
+                            : 'text-slate-200 hover:bg-white/10 hover:text-white'
+                        }`}
+                      >
+                        <span>{item.label}</span>
+                        {item.hasDropdown && (
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform duration-200 ${
+                              isExpanded ? 'rotate-180 text-emerald-300' : 'text-slate-400'
+                            }`}
+                          />
+                        )}
+                        {!item.hasDropdown && isActive && (
+                          <span className="w-2 h-2 rounded-full bg-[#F97316]" />
+                        )}
+                      </button>
+                    </div>
+
+                    {/* Mobile Expandable Submenu */}
+                    {item.hasDropdown && isExpanded && (
+                      <div className="bg-[#142642] rounded-xl p-2 ml-2 space-y-1 border border-white/10 divide-y divide-white/5">
+                        <button
+                          onClick={() => {
+                            navigateTo(item.id);
+                            setMobileMenuOpen(false);
+                          }}
+                          className="w-full text-left px-3.5 py-2 text-xs font-bold text-emerald-300 hover:bg-white/10 rounded-lg flex items-center justify-between"
+                        >
+                          <span>Go to {item.label} Overview</span>
+                          <ArrowRight className="w-3.5 h-3.5 text-emerald-300" />
+                        </button>
+                        {item.dropdownItems.map((sub) => (
+                          <button
+                            key={sub.id}
+                            onClick={() => {
+                              navigateTo(item.id, sub.id);
+                              setMobileMenuOpen(false);
+                            }}
+                            className="w-full text-left px-3.5 py-2 text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 rounded-lg flex items-center justify-between"
+                          >
+                            <span className="truncate">{sub.label}</span>
+                            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 );
               })}
               <div className="pt-2">
                 <button
                   onClick={() => navigateTo('ONLINE ADMISSION')}
-                  className="w-full flex items-center justify-center gap-2 bg-[#F97316] text-white font-bold text-xs py-3 rounded-lg shadow"
+                  className="w-full flex items-center justify-center gap-2 bg-[#F97316] text-white font-bold text-xs py-3 rounded-lg shadow cursor-pointer"
                 >
                   <FileText className="w-4 h-4" />
                   <span>ONLINE ADMISSION</span>
@@ -1651,6 +2064,25 @@ export default function App() {
                     Click any section from the menu below to explore our values, history, leadership, faculty, and campus life.
                   </p>
                 </div>
+              </div>
+            </div>
+
+            {/* Mobile / Quick Dropdown Selector */}
+            <div className="lg:hidden bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between gap-3">
+              <span className="text-xs font-bold text-slate-500 uppercase whitespace-nowrap">Select Section:</span>
+              <div className="relative flex-1">
+                <select
+                  value={selectedAboutTab}
+                  onChange={(e) => setSelectedAboutTab(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-bold text-[#0e4b2d] focus:outline-none focus:ring-2 focus:ring-[#0e4b2d] appearance-none cursor-pointer"
+                >
+                  {ABOUT_US_SECTIONS.map((sec) => (
+                    <option key={sec.id} value={sec.id}>
+                      {sec.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="w-4 h-4 text-slate-500 absolute right-3 top-2.5 pointer-events-none" />
               </div>
             </div>
 
@@ -2275,59 +2707,416 @@ export default function App() {
         )}
 
         {/* ==================================================================
-            VIEW C: ACADEMICS PAGE (Matches home9.jpeg)
+            VIEW C: ACADEMICS PAGE (Master-Detail Dropdown List)
         ================================================================== */}
         {activePage === 'ACADEMICS' && (
-          <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-6">
+          <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-8">
             {/* Page Title Card */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#1E3A8A] text-white flex items-center justify-center shadow-sm flex-shrink-0">
-                <FileText className="w-6 h-6" />
-              </div>
-              <div>
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">Academics</h1>
-                <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                  Structured curriculum, digital LMS, and continuous evaluation
-                </p>
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-[#1E3A8A] text-white flex items-center justify-center shadow-sm flex-shrink-0">
+                  <GraduationCap className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-[#F97316] uppercase tracking-wider">
+                    Academic Excellence · NEP 2020 Aligned
+                  </span>
+                  <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight mt-0.5">
+                    Academics
+                  </h1>
+                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                    Structured curriculum, experiential STEM labs, and continuous 360-degree evaluation
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Curriculum Stages */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  stage: 'Primary Wing (Nursery – Class 5)',
-                  desc: 'Activity-based foundational literacy, numeracy, storytelling, and creative arts in joyful classrooms.',
-                  badge: 'Foundation Stage'
-                },
-                {
-                  stage: 'Middle Wing (Class 6 – Class 8)',
-                  desc: 'Experiential STEM labs, coding fundamentals, language proficiency, and collaborative project learning.',
-                  badge: 'Preparatory Stage'
-                },
-                {
-                  stage: 'Senior Wing (Class 9 – Class 12)',
-                  desc: 'Focused streams in Science, Commerce & Humanities with career counseling and competitive exam readiness.',
-                  badge: 'Secondary Stage'
-                }
-              ].map((wing, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between"
+            {/* Mobile / Quick Dropdown Selector */}
+            <div className="lg:hidden bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between gap-3">
+              <span className="text-xs font-bold text-slate-500 uppercase whitespace-nowrap">Select Stage:</span>
+              <div className="relative flex-1">
+                <select
+                  value={selectedAcademicTab}
+                  onChange={(e) => setSelectedAcademicTab(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-bold text-[#0e4b2d] focus:outline-none focus:ring-2 focus:ring-[#0e4b2d] appearance-none cursor-pointer"
                 >
-                  <div>
-                    <span className="inline-block bg-blue-50 text-[#2563EB] text-xs font-bold px-3 py-1 rounded-full mb-3">
-                      {wing.badge}
-                    </span>
-                    <h3 className="text-lg font-extrabold text-slate-900">{wing.stage}</h3>
-                    <p className="text-sm text-slate-600 mt-2 leading-relaxed">{wing.desc}</p>
-                  </div>
-                  <div className="mt-5 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-bold text-[#1B365D]">
-                    <BookOpen className="w-4 h-4 text-[#2563EB]" />
-                    <span>NEP 2020 Aligned Curriculum</span>
-                  </div>
+                  {ACADEMIC_SECTIONS.map((sec) => (
+                    <option key={sec.id} value={sec.id}>
+                      {sec.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="w-4 h-4 text-slate-500 absolute right-3 top-2.5 pointer-events-none" />
+              </div>
+            </div>
+
+            {/* Interactive Master-Detail Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left Column: Dropdown Styled Menu List */}
+              <div className="lg:col-span-4 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden sticky top-24">
+                <div className="bg-[#0e4b2d] text-white px-5 py-3.5 flex items-center justify-between shadow-xs">
+                  <span className="font-bold text-sm tracking-wide text-emerald-100">
+                    Academics
+                  </span>
+                  <ChevronDown className="w-4 h-4 text-emerald-300" />
                 </div>
-              ))}
+
+                <div className="divide-y divide-slate-100 bg-white">
+                  {ACADEMIC_SECTIONS.map((sec) => {
+                    const isSelected = selectedAcademicTab === sec.id;
+                    return (
+                      <div key={sec.id} className="transition-colors">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedAcademicTab(sec.id)}
+                          className={`w-full text-left px-5 py-3.5 text-xs sm:text-sm font-semibold flex items-center justify-between transition-all cursor-pointer ${
+                            isSelected
+                              ? 'bg-emerald-50 text-[#0e4b2d] font-bold border-l-4 border-[#0e4b2d] pl-4'
+                              : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
+                          }`}
+                        >
+                          <span>{sec.label}</span>
+                          {sec.hasSubmenu ? (
+                            <ChevronDown
+                              className={`w-4 h-4 text-slate-400 transition-transform ${
+                                isSelected ? 'rotate-180 text-[#0e4b2d]' : ''
+                              }`}
+                            />
+                          ) : (
+                            <ChevronRight
+                              className={`w-4 h-4 text-slate-300 ${
+                                isSelected ? 'text-[#0e4b2d]' : ''
+                              }`}
+                            />
+                          )}
+                        </button>
+
+                        {sec.hasSubmenu && isSelected && sec.subItems && (
+                          <div className="bg-slate-50/90 px-6 py-2.5 space-y-1.5 border-t border-slate-100">
+                            {sec.subItems.map((sub, idx) => (
+                              <div
+                                key={idx}
+                                className="text-xs text-slate-600 flex items-center gap-2 py-0.5"
+                              >
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#0e4b2d]" />
+                                <span>{sub}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Right Column: Dynamic Content Detail Card */}
+              <div className="lg:col-span-8 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6">
+                {selectedAcademicTab === 'curriculum' && (
+                  <div className="space-y-6">
+                    <div>
+                      <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                        Pedagogy &amp; Standards
+                      </span>
+                      <h2 className="text-2xl font-extrabold text-[#0F172A] mt-2">
+                        Curriculum &amp; NEP 2020 Framework
+                      </h2>
+                      <p className="text-sm text-slate-600 mt-1">
+                        CBSE Affiliated, Experiential Learning Designed for 21st-Century Minds
+                      </p>
+                    </div>
+
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      Demo School follows the centrally formulated CBSE curriculum seamlessly synthesized with the National Education Policy (NEP 2020) 5+3+3+4 pedagogical structure. Our classrooms transition away from passive rote-memorization toward active inquiry, hands-on experimentation, and reflective problem-solving.
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="p-4 rounded-xl bg-blue-50/60 border border-blue-100 space-y-2">
+                        <h4 className="text-sm font-bold text-[#1E3A8A]">Experiential Learning</h4>
+                        <p className="text-xs text-slate-600 leading-relaxed">
+                          Concepts are grounded in tangible experiments, real-world field studies, and cross-disciplinary projects bridging science, arts, and technology.
+                        </p>
+                      </div>
+                      <div className="p-4 rounded-xl bg-emerald-50/60 border border-emerald-100 space-y-2">
+                        <h4 className="text-sm font-bold text-emerald-900">360° Holistic Assessment</h4>
+                        <p className="text-xs text-slate-600 leading-relaxed">
+                          Evaluation tracks cognitive aptitude, socio-emotional maturity, self-reflection, and peer collaboration alongside scholastic report cards.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedAcademicTab === 'primary-wing' && (
+                  <div className="space-y-6">
+                    <div>
+                      <span className="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                        Foundational &amp; Preparatory Stage
+                      </span>
+                      <h2 className="text-2xl font-extrabold text-[#0F172A] mt-2">
+                        Primary Wing (Grades I - V)
+                      </h2>
+                      <p className="text-sm text-slate-600 mt-1">
+                        Activity-based foundational literacy, numeracy, storytelling, and joyful discovery
+                      </p>
+                    </div>
+
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      The primary years establish lifelong curiosity, emotional security, and confidence. In vibrant, print-rich classrooms equipped with smart interactive flat panels, dedicated early educators employ the play-way method to foster phonics mastery, number sense, and creative self-expression.
+                    </p>
+
+                    <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+                      <h4 className="text-sm font-bold text-slate-800">Key Primary Wing Features:</h4>
+                      <ul className="text-xs sm:text-sm text-slate-600 space-y-2">
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                          <span>Theme-based integrated thematic units connecting Science, Social Studies, and Environmental Care</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                          <span>Daily Circle Time, guided phonics reading circles, and expressive storytelling sessions</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                          <span>Junior Math manipulatives and STEM discovery corners in every section</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                          <span>No burden policy with zero heavy school bags and joyful homework alternatives</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                )}
+
+                {selectedAcademicTab === 'middle-wing' && (
+                  <div className="space-y-6">
+                    <div>
+                      <span className="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                        Preparatory Stage
+                      </span>
+                      <h2 className="text-2xl font-extrabold text-[#0F172A] mt-2">
+                        Middle Wing (Grades VI - VIII)
+                      </h2>
+                      <p className="text-sm text-slate-600 mt-1">
+                        Hands-on STEM labs, coding fundamentals, language proficiency, and team projects
+                      </p>
+                    </div>
+
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      Middle school marks the transition toward structured discipline and abstract thinking. Learners engage in laboratory science explorations, algorithmic reasoning, block-based and Python programming, Sanskrit/French third languages, and inter-house debates that hone public speaking and analytical reasoning.
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="p-4 rounded-xl border border-slate-200 space-y-1.5">
+                        <span className="text-xs font-bold text-[#F97316]">STEM &amp; Innovation</span>
+                        <h4 className="font-bold text-slate-900">Robotics &amp; Coding</h4>
+                        <p className="text-xs text-slate-600">
+                          Hands-on microcontroller programming, sensor circuits, and logic game design.
+                        </p>
+                      </div>
+                      <div className="p-4 rounded-xl border border-slate-200 space-y-1.5">
+                        <span className="text-xs font-bold text-[#2563EB]">Languages &amp; Arts</span>
+                        <h4 className="font-bold text-slate-900">Multilingual Fluency</h4>
+                        <p className="text-xs text-slate-600">
+                          English, Hindi, Sanskrit, and French foreign language options with audio-lingual labs.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedAcademicTab === 'senior-wing' && (
+                  <div className="space-y-6">
+                    <div>
+                      <span className="text-xs font-bold text-purple-700 bg-purple-50 px-3 py-1 rounded-full border border-purple-200">
+                        Secondary &amp; Senior Secondary
+                      </span>
+                      <h2 className="text-2xl font-extrabold text-[#0F172A] mt-2">
+                        Senior Secondary Wing (Grades IX - XII)
+                      </h2>
+                      <p className="text-sm text-slate-600 mt-1">
+                        Specialized Science, Commerce &amp; Humanities Streams with Integrated Competitive Prep
+                      </p>
+                    </div>
+
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      Our Senior Secondary curriculum combines rigorous CBSE board excellence with targeted entrance exam readiness. Specialized faculty mentors guide scholars through conceptual depth, numerical problem solving, and analytical case studies.
+                    </p>
+
+                    <div className="space-y-4">
+                      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 className="font-bold text-slate-900 text-sm">1. Science Stream (PCM / PCB)</h4>
+                        <p className="text-xs text-slate-600 mt-1">
+                          Physics, Chemistry, Mathematics / Biology, with Computer Science, Informatics Practices, or Physical Education. Integrated preparation for JEE Main/Advanced and NEET.
+                        </p>
+                      </div>
+                      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 className="font-bold text-slate-900 text-sm">2. Commerce Stream</h4>
+                        <p className="text-xs text-slate-600 mt-1">
+                          Accountancy, Business Studies, Economics, Mathematics / Applied Mathematics, with Entrepreneurship. Focused mentorship for CA Foundation, CUET, and IPMAT.
+                        </p>
+                      </div>
+                      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <h4 className="font-bold text-slate-900 text-sm">3. Humanities &amp; Social Sciences</h4>
+                        <p className="text-xs text-slate-600 mt-1">
+                          History, Political Science, Psychology, Sociology, and Economics. Comprehensive support for CLAT (Law), Civil Services foundation, and top university admissions.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedAcademicTab === 'academic-calendar' && (
+                  <div className="space-y-6">
+                    <div>
+                      <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                        Session 2026-27
+                      </span>
+                      <h2 className="text-2xl font-extrabold text-[#0F172A] mt-2">
+                        Academic Calendar &amp; Term Planner
+                      </h2>
+                      <p className="text-sm text-slate-600 mt-1">
+                        Overview of terms, examinations, breaks, and campus celebrations
+                      </p>
+                    </div>
+
+                    <div className="divide-y divide-slate-100 border border-slate-200 rounded-xl overflow-hidden text-xs sm:text-sm">
+                      <div className="bg-slate-50 p-4 font-bold text-slate-800 flex justify-between">
+                        <span>Event / Milestone</span>
+                        <span>Schedule Dates</span>
+                      </div>
+                      <div className="p-4 flex justify-between items-center text-slate-700">
+                        <span>Term I Commencement (Grades I to XII)</span>
+                        <span className="font-semibold text-[#1E3A8A]">April 2, 2026</span>
+                      </div>
+                      <div className="p-4 flex justify-between items-center text-slate-700 bg-slate-50/50">
+                        <span>Summer Vacation (Students)</span>
+                        <span className="font-semibold text-[#1E3A8A]">May 20 – June 30, 2026</span>
+                      </div>
+                      <div className="p-4 flex justify-between items-center text-slate-700">
+                        <span>Periodic Assessment - I</span>
+                        <span className="font-semibold text-[#1E3A8A]">July 15 – July 25, 2026</span>
+                      </div>
+                      <div className="p-4 flex justify-between items-center text-slate-700 bg-slate-50/50">
+                        <span>Half-Yearly / Mid-Term Examinations</span>
+                        <span className="font-semibold text-[#1E3A8A]">September 14 – September 26, 2026</span>
+                      </div>
+                      <div className="p-4 flex justify-between items-center text-slate-700">
+                        <span>Term II Commencement</span>
+                        <span className="font-semibold text-[#1E3A8A]">October 5, 2026</span>
+                      </div>
+                      <div className="p-4 flex justify-between items-center text-slate-700 bg-slate-50/50">
+                        <span>Annual Sports Day &amp; Cultural Fest</span>
+                        <span className="font-semibold text-[#1E3A8A]">November 20 – November 22, 2026</span>
+                      </div>
+                      <div className="p-4 flex justify-between items-center text-slate-700">
+                        <span>Pre-Board Examinations (Grades X &amp; XII)</span>
+                        <span className="font-semibold text-[#1E3A8A]">December 10 – December 22, 2026</span>
+                      </div>
+                      <div className="p-4 flex justify-between items-center text-slate-700 bg-slate-50/50">
+                        <span>Annual Board &amp; Final Examinations</span>
+                        <span className="font-semibold text-[#1E3A8A]">February – March 2027</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedAcademicTab === 'exam-policy' && (
+                  <div className="space-y-6">
+                    <div>
+                      <span className="text-xs font-bold text-orange-700 bg-orange-50 px-3 py-1 rounded-full border border-orange-200">
+                        CBSE Assessment Standards
+                      </span>
+                      <h2 className="text-2xl font-extrabold text-[#0F172A] mt-2">
+                        Examination &amp; Grading Policy
+                      </h2>
+                      <p className="text-sm text-slate-600 mt-1">
+                        Continuous &amp; Comprehensive Evaluation Ensuring Consistent Progress
+                      </p>
+                    </div>
+
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      Evaluation is treated as an empowering diagnostic tool rather than a source of stress. We maintain a balanced assessment pattern combining pen-paper periodic tests, subject enrichment projects, notebook presentation, and experiential viva voce.
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+                        <span className="text-xs font-bold text-blue-600">80% Scholastic Component</span>
+                        <h4 className="font-bold text-slate-900 text-sm">Board &amp; Term Tests</h4>
+                        <p className="text-xs text-slate-600">
+                          Periodic assessments, mid-term examinations, and final end-term question papers aligned with CBSE blueprints.
+                        </p>
+                      </div>
+                      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+                        <span className="text-xs font-bold text-emerald-600">20% Internal Assessment</span>
+                        <h4 className="font-bold text-slate-900 text-sm">Continuous Portfolio</h4>
+                        <p className="text-xs text-slate-600">
+                          Periodic test average (5 marks), diverse subject assessment (5 marks), portfolio &amp; notebook neatness (5 marks), and practical lab activities (5 marks).
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedAcademicTab === 'digital-labs' && (
+                  <div className="space-y-6">
+                    <div>
+                      <span className="text-xs font-bold text-cyan-700 bg-cyan-50 px-3 py-1 rounded-full border border-cyan-200">
+                        Infrastructure &amp; Innovation
+                      </span>
+                      <h2 className="text-2xl font-extrabold text-[#0F172A] mt-2">
+                        Smart Labs &amp; Digital Classrooms
+                      </h2>
+                      <p className="text-sm text-slate-600 mt-1">
+                        High-tech spaces bridging textbook theoretical concepts with live experimentation
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="p-4 rounded-xl border border-slate-200 space-y-2">
+                        <div className="w-8 h-8 rounded-lg bg-blue-100 text-[#1E3A8A] flex items-center justify-center font-bold text-xs">
+                          AI
+                        </div>
+                        <h4 className="font-bold text-slate-900 text-sm">Robotics &amp; AI Lab</h4>
+                        <p className="text-xs text-slate-600">
+                          Equipped with 3D printers, sensor breakout boards, Arduino microcontrollers, and computer vision kits for prototyping.
+                        </p>
+                      </div>
+
+                      <div className="p-4 rounded-xl border border-slate-200 space-y-2">
+                        <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">
+                          SC
+                        </div>
+                        <h4 className="font-bold text-slate-900 text-sm">Composite Science Labs</h4>
+                        <p className="text-xs text-slate-600">
+                          Spacious Physics, Chemistry, and Biology laboratories compliant with national safety standards and modern apparatus.
+                        </p>
+                      </div>
+
+                      <div className="p-4 rounded-xl border border-slate-200 space-y-2">
+                        <div className="w-8 h-8 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center font-bold text-xs">
+                          IT
+                        </div>
+                        <h4 className="font-bold text-slate-900 text-sm">Smart Interactive Panels</h4>
+                        <p className="text-xs text-slate-600">
+                          75-inch 4K touchscreen Interactive Flat Panels (IFPs) installed across all classrooms with 3D simulations and cloud lesson tools.
+                        </p>
+                      </div>
+
+                      <div className="p-4 rounded-xl border border-slate-200 space-y-2">
+                        <div className="w-8 h-8 rounded-lg bg-orange-100 text-orange-800 flex items-center justify-center font-bold text-xs">
+                          LIB
+                        </div>
+                        <h4 className="font-bold text-slate-900 text-sm">Digital Knowledge Library</h4>
+                        <p className="text-xs text-slate-600">
+                          High-speed internet terminals offering access to digital archives, encyclopedias, research publications, and e-books.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}
@@ -2353,7 +3142,7 @@ export default function App() {
 
               {/* Filter Pills */}
               <div className="flex flex-wrap gap-2">
-                {['All', 'Campus', 'Academics', 'Events'].map((cat) => (
+                {['All', 'Campus', 'Academics', 'Events', 'Hostel'].map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setGalleryFilter(cat)}
@@ -2421,6 +3210,25 @@ export default function App() {
                     Click any skill or programme from the menu to explore curriculum highlights, activities, and student outcomes.
                   </p>
                 </div>
+              </div>
+            </div>
+
+            {/* Mobile / Quick Dropdown Selector */}
+            <div className="lg:hidden bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between gap-3">
+              <span className="text-xs font-bold text-slate-500 uppercase whitespace-nowrap">Select Programme:</span>
+              <div className="relative flex-1">
+                <select
+                  value={selectedProgrammeId}
+                  onChange={(e) => setSelectedProgrammeId(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-bold text-[#0e4b2d] focus:outline-none focus:ring-2 focus:ring-[#0e4b2d] appearance-none cursor-pointer"
+                >
+                  {FUTURE_READY_PROGRAMMES.map((prog) => (
+                    <option key={prog.id} value={prog.id}>
+                      {prog.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="w-4 h-4 text-slate-500 absolute right-3 top-2.5 pointer-events-none" />
               </div>
             </div>
 
@@ -2619,156 +3427,266 @@ export default function App() {
         )}
 
         {/* ==================================================================
-            VIEW F: CONTACT US PAGE (Matches Home12.jpeg)
+            VIEW F: CONTACT US PAGE (Master-Detail Dropdown List)
         ================================================================== */}
         {activePage === 'CONTACT US' && (
-          <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-6">
+          <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-8">
             {/* Page Title Card */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#1E3A8A] text-white flex items-center justify-center shadow-sm flex-shrink-0">
-                <FileText className="w-6 h-6" />
-              </div>
-              <div>
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">Contact Us</h1>
-                <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                  Reach out to Demo School administration for admissions and support
-                </p>
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-[#1E3A8A] text-white flex items-center justify-center shadow-sm flex-shrink-0">
+                  <Phone className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-[#F97316] uppercase tracking-wider">
+                    Reach Out · We Are Here To Help
+                  </span>
+                  <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight mt-0.5">
+                    Contact Us
+                  </h1>
+                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                    Connect with Demo School administration, admissions cell, hostel office, and transport desk
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              {/* Contact Information */}
-              <div className="lg:col-span-5 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-6">
-                <h2 className="text-lg font-extrabold text-slate-900">Get in Touch</h2>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-400 uppercase">Campus Address</p>
-                      <p className="text-sm font-bold text-slate-800 mt-0.5">
-                        Demo School, Jhansi, Uttar Pradesh
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-orange-50 text-[#F97316] flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-400 uppercase">Phone Number</p>
-                      <p className="text-sm font-bold text-slate-800 mt-0.5">34356789999998</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-400 uppercase">Email Address</p>
-                      <p className="text-sm font-bold text-slate-800 mt-0.5">
-                        demo@schoolsathi.in
-                      </p>
-                    </div>
-                  </div>
+            {/* Mobile / Quick Dropdown Selector */}
+            <div className="lg:hidden bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between gap-3">
+              <span className="text-xs font-bold text-slate-500 uppercase whitespace-nowrap">Contact Topic:</span>
+              <div className="relative flex-1">
+                <select
+                  value={selectedContactTab}
+                  onChange={(e) => setSelectedContactTab(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-bold text-[#0e4b2d] focus:outline-none focus:ring-2 focus:ring-[#0e4b2d] appearance-none cursor-pointer"
+                >
+                  {CONTACT_SECTIONS.map((sec) => (
+                    <option key={sec.id} value={sec.id}>
+                      {sec.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="w-4 h-4 text-slate-500 absolute right-3 top-2.5 pointer-events-none" />
+              </div>
+            </div>
+
+            {/* Interactive Master-Detail Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left Column: Dropdown Menu List */}
+              <div className="lg:col-span-4 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden sticky top-24">
+                <div className="bg-[#0e4b2d] text-white px-5 py-3.5 flex items-center justify-between shadow-xs">
+                  <span className="font-bold text-sm tracking-wide text-emerald-100">
+                    Contact Directory
+                  </span>
+                  <ChevronDown className="w-4 h-4 text-emerald-300" />
+                </div>
+
+                <div className="divide-y divide-slate-100 bg-white">
+                  {CONTACT_SECTIONS.map((sec) => {
+                    const isSelected = selectedContactTab === sec.id;
+                    return (
+                      <div key={sec.id} className="transition-colors">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedContactTab(sec.id)}
+                          className={`w-full text-left px-5 py-3.5 text-xs sm:text-sm font-semibold flex items-center justify-between transition-all cursor-pointer ${
+                            isSelected
+                              ? 'bg-emerald-50 text-[#0e4b2d] font-bold border-l-4 border-[#0e4b2d] pl-4'
+                              : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
+                          }`}
+                        >
+                          <span>{sec.label}</span>
+                          <ChevronRight className={`w-4 h-4 ${isSelected ? 'text-[#0e4b2d]' : 'text-slate-300'}`} />
+                        </button>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
-              {/* Interactive Message Form */}
-              <div className="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100">
-                <h2 className="text-lg font-extrabold text-slate-900 mb-4">Send Us a Message</h2>
-                {contactSubmitted ? (
-                  <div className="p-6 rounded-xl bg-emerald-50 border border-emerald-200 text-center space-y-2">
-                    <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
-                    <p className="font-extrabold text-emerald-900">Message Sent Successfully!</p>
-                    <p className="text-xs text-emerald-700">
-                      Our school office will contact you shortly.
-                    </p>
-                    <button
-                      onClick={() => {
-                        setContactSubmitted(false);
-                        setContactForm({
-                          name: '',
-                          email: '',
-                          phone: '',
-                          subject: '',
-                          message: ''
-                        });
-                      }}
-                      className="mt-2 text-xs font-bold text-[#2563EB] underline cursor-pointer"
-                    >
-                      Send another inquiry
-                    </button>
+              {/* Right Column: Dynamic Content Detail Card */}
+              <div className="lg:col-span-8 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6">
+                {(selectedContactTab === 'campus-location' || selectedContactTab === 'office-hours' || selectedContactTab === 'key-contacts' || selectedContactTab === 'hostel-office') && (
+                  <div className="space-y-6">
+                    <div>
+                      <span className="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                        Campus Office &amp; Helplines
+                      </span>
+                      <h2 className="text-2xl font-extrabold text-[#0F172A] mt-2">
+                        {CONTACT_SECTIONS.find(c => c.id === selectedContactTab)?.label || 'Get in Touch'}
+                      </h2>
+                      <p className="text-sm text-slate-600 mt-1">
+                        {CONTACT_SECTIONS.find(c => c.id === selectedContactTab)?.tagline}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                        <div className="flex items-center gap-2 text-[#2563EB]">
+                          <MapPin className="w-5 h-5" />
+                          <h4 className="font-bold text-slate-900 text-sm">Campus Address</h4>
+                        </div>
+                        <p className="text-xs text-slate-600 leading-relaxed">
+                          Demo School, Main Campus Road, Jhansi, Uttar Pradesh - 284001
+                        </p>
+                      </div>
+
+                      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                        <div className="flex items-center gap-2 text-[#F97316]">
+                          <Clock className="w-5 h-5" />
+                          <h4 className="font-bold text-slate-900 text-sm">Office Hours</h4>
+                        </div>
+                        <p className="text-xs text-slate-600 leading-relaxed">
+                          Monday – Saturday: 8:00 AM – 3:30 PM<br />
+                          Sunday &amp; Gazetted Holidays: Closed
+                        </p>
+                      </div>
+
+                      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                        <div className="flex items-center gap-2 text-emerald-600">
+                          <Phone className="w-5 h-5" />
+                          <h4 className="font-bold text-slate-900 text-sm">Phone Directory</h4>
+                        </div>
+                        <p className="text-xs text-slate-600 leading-relaxed">
+                          Reception: +91 98765 43210<br />
+                          Admissions: +91 98765 43211<br />
+                          Accounts: +91 98765 43212
+                        </p>
+                      </div>
+
+                      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                        <div className="flex items-center gap-2 text-purple-600">
+                          <Building2 className="w-5 h-5" />
+                          <h4 className="font-bold text-slate-900 text-sm">Hostel Superintendent</h4>
+                        </div>
+                        <p className="text-xs text-slate-600 leading-relaxed">
+                          Boys Warden: +91 98765 43215<br />
+                          Girls Warden: +91 98765 43216<br />
+                          24/7 Clinic: +91 98765 43217
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                      <span className="text-xs text-slate-500">Need to send a direct written enquiry?</span>
+                      <button
+                        onClick={() => setSelectedContactTab('feedback-form')}
+                        className="bg-[#1E3A8A] text-white text-xs font-bold px-4 py-2 rounded-lg cursor-pointer hover:bg-[#172554]"
+                      >
+                        Open Message Form
+                      </button>
+                    </div>
                   </div>
-                ) : (
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      setContactSubmitted(true);
-                    }}
-                    className="space-y-4"
-                  >
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <input
-                        type="text"
-                        required
-                        placeholder="Parent / Student Name *"
-                        value={contactForm.name}
-                        onChange={(e) =>
-                          setContactForm({ ...contactForm, name: e.target.value })
-                        }
-                        className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-[#2563EB]"
-                      />
-                      <input
-                        type="email"
-                        required
-                        placeholder="Email Address *"
-                        value={contactForm.email}
-                        onChange={(e) =>
-                          setContactForm({ ...contactForm, email: e.target.value })
-                        }
-                        className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-[#2563EB]"
-                      />
+                )}
+
+                {selectedContactTab === 'feedback-form' && (
+                  <div className="space-y-6">
+                    <div>
+                      <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                        Online Enquiry
+                      </span>
+                      <h2 className="text-2xl font-extrabold text-[#0F172A] mt-2">
+                        Send Us a Message
+                      </h2>
+                      <p className="text-sm text-slate-600 mt-1">
+                        Our administrative office will review your inquiry and respond within 24 business hours
+                      </p>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <input
-                        type="tel"
-                        placeholder="Mobile Number"
-                        value={contactForm.phone}
-                        onChange={(e) =>
-                          setContactForm({ ...contactForm, phone: e.target.value })
-                        }
-                        className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-[#2563EB]"
-                      />
-                      <input
-                        type="text"
-                        required
-                        placeholder="Subject *"
-                        value={contactForm.subject}
-                        onChange={(e) =>
-                          setContactForm({ ...contactForm, subject: e.target.value })
-                        }
-                        className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-[#2563EB]"
-                      />
-                    </div>
-                    <textarea
-                      rows={4}
-                      required
-                      placeholder="Write your query here..."
-                      value={contactForm.message}
-                      onChange={(e) =>
-                        setContactForm({ ...contactForm, message: e.target.value })
-                      }
-                      className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-[#2563EB]"
-                    />
-                    <button
-                      type="submit"
-                      className="bg-[#1B365D] hover:bg-[#132744] text-white font-bold text-sm px-6 py-3 rounded-lg shadow transition-colors cursor-pointer"
-                    >
-                      Submit Inquiry
-                    </button>
-                  </form>
+
+                    {contactSubmitted ? (
+                      <div className="p-6 rounded-xl bg-emerald-50 border border-emerald-200 text-center space-y-2">
+                        <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
+                        <p className="font-extrabold text-emerald-900 text-base">Message Sent Successfully!</p>
+                        <p className="text-xs text-emerald-700">
+                          Thank you for contacting Demo School. Our admissions coordinator will get in touch shortly.
+                        </p>
+                        <button
+                          onClick={() => {
+                            setContactSubmitted(false);
+                            setContactForm({
+                              name: '',
+                              email: '',
+                              phone: '',
+                              subject: '',
+                              message: ''
+                            });
+                          }}
+                          className="mt-3 inline-block bg-[#1E3A8A] text-white text-xs font-bold px-5 py-2.5 rounded-lg cursor-pointer"
+                        >
+                          Send another inquiry
+                        </button>
+                      </div>
+                    ) : (
+                      <form
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          setContactSubmitted(true);
+                        }}
+                        className="space-y-4"
+                      >
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <input
+                            type="text"
+                            required
+                            placeholder="Parent / Student Name *"
+                            value={contactForm.name}
+                            onChange={(e) =>
+                              setContactForm({ ...contactForm, name: e.target.value })
+                            }
+                            className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-[#2563EB]"
+                          />
+                          <input
+                            type="email"
+                            required
+                            placeholder="Email Address *"
+                            value={contactForm.email}
+                            onChange={(e) =>
+                              setContactForm({ ...contactForm, email: e.target.value })
+                            }
+                            className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-[#2563EB]"
+                          />
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <input
+                            type="tel"
+                            placeholder="Mobile Number"
+                            value={contactForm.phone}
+                            onChange={(e) =>
+                              setContactForm({ ...contactForm, phone: e.target.value })
+                            }
+                            className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-[#2563EB]"
+                          />
+                          <input
+                            type="text"
+                            required
+                            placeholder="Subject *"
+                            value={contactForm.subject}
+                            onChange={(e) =>
+                              setContactForm({ ...contactForm, subject: e.target.value })
+                            }
+                            className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-[#2563EB]"
+                          />
+                        </div>
+                        <textarea
+                          required
+                          rows="4"
+                          placeholder="Your Message / Query in Detail *"
+                          value={contactForm.message}
+                          onChange={(e) =>
+                            setContactForm({ ...contactForm, message: e.target.value })
+                          }
+                          className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:border-[#2563EB]"
+                        />
+                        <button
+                          type="submit"
+                          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#1E3A8A] hover:bg-[#172554] text-white font-bold text-sm px-8 py-3 rounded-lg shadow cursor-pointer transition-all"
+                        >
+                          <Send className="w-4 h-4" />
+                          <span>Submit Message</span>
+                        </button>
+                      </form>
+                    )}
+                  </div>
                 )}
               </div>
             </div>
@@ -2799,6 +3717,63 @@ export default function App() {
               </div>
             </div>
 
+            {/* Mobile / Quick Dropdown Selector */}
+            <div className="lg:hidden bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between gap-3">
+              <span className="text-xs font-bold text-slate-500 uppercase whitespace-nowrap">Admission Topic:</span>
+              <div className="relative flex-1">
+                <select
+                  value={selectedAdmissionTab}
+                  onChange={(e) => setSelectedAdmissionTab(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-bold text-[#0e4b2d] focus:outline-none focus:ring-2 focus:ring-[#0e4b2d] appearance-none cursor-pointer"
+                >
+                  {ADMISSION_SECTIONS.map((sec) => (
+                    <option key={sec.id} value={sec.id}>
+                      {sec.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="w-4 h-4 text-slate-500 absolute right-3 top-2.5 pointer-events-none" />
+              </div>
+            </div>
+
+            {/* Interactive Master-Detail Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left Column: Dropdown Menu List */}
+              <div className="lg:col-span-4 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden sticky top-24">
+                <div className="bg-[#0e4b2d] text-white px-5 py-3.5 flex items-center justify-between shadow-xs">
+                  <span className="font-bold text-sm tracking-wide text-emerald-100">
+                    Admission
+                  </span>
+                  <ChevronDown className="w-4 h-4 text-emerald-300" />
+                </div>
+
+                <div className="divide-y divide-slate-100 bg-white">
+                  {ADMISSION_SECTIONS.map((sec) => {
+                    const isSelected = selectedAdmissionTab === sec.id;
+                    return (
+                      <div key={sec.id} className="transition-colors">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedAdmissionTab(sec.id)}
+                          className={`w-full text-left px-5 py-3.5 text-xs sm:text-sm font-semibold flex items-center justify-between transition-all cursor-pointer ${
+                            isSelected
+                              ? 'bg-emerald-50 text-[#0e4b2d] font-bold border-l-4 border-[#0e4b2d] pl-4'
+                              : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
+                          }`}
+                        >
+                          <span>{sec.label}</span>
+                          <ChevronRight className={`w-4 h-4 ${isSelected ? 'text-[#0e4b2d]' : 'text-slate-300'}`} />
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Right Column: Dynamic Content Detail Card */}
+              <div className="lg:col-span-8 space-y-6">
+                {selectedAdmissionTab === 'admission-form' && (
+                  <>
             {/* Check Your Form Status Button Row */}
             <div className="flex justify-end">
               <button
@@ -3238,6 +4213,229 @@ export default function App() {
                 </div>
               </div>
             </form>
+                  </>
+                )}
+
+                {selectedAdmissionTab === 'check-status' && (
+                  <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6">
+                    <div>
+                      <span className="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                        Application Tracking
+                      </span>
+                      <h2 className="text-2xl font-extrabold text-[#0F172A] mt-2">
+                        Check Admission Form Status
+                      </h2>
+                      <p className="text-sm text-slate-600 mt-1">
+                        Track the real-time processing and document verification of your registration
+                      </p>
+                    </div>
+
+                    <form onSubmit={handleStatusLookup} className="space-y-4 max-w-lg">
+                      <label className="block text-xs font-bold text-slate-700 uppercase">
+                        Application Reference ID *
+                      </label>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          required
+                          value={statusSearchId}
+                          onChange={(e) => setStatusSearchId(e.target.value)}
+                          placeholder="DS-2026-XXXX"
+                          className="flex-grow px-4 py-2.5 rounded-lg border border-slate-200 text-sm uppercase font-mono focus:outline-none focus:border-[#2563EB]"
+                        />
+                        <button
+                          type="submit"
+                          className="bg-[#1E3A8A] text-white text-xs font-bold px-6 py-2.5 rounded-lg cursor-pointer hover:bg-[#172554] transition-all"
+                        >
+                          Check Status
+                        </button>
+                      </div>
+                    </form>
+
+                    {statusResult && (
+                      <div
+                        className={`p-5 rounded-xl border text-sm ${
+                          statusResult.found
+                            ? 'bg-blue-50/80 border-blue-200 text-slate-800'
+                            : 'bg-amber-50 border-amber-200 text-amber-900'
+                        }`}
+                      >
+                        {statusResult.found ? (
+                          <div className="space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="font-extrabold text-[#1E3A8A] text-base">{statusResult.data.id}</span>
+                              <span className="font-bold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full text-xs">
+                                {statusResult.data.status}
+                              </span>
+                            </div>
+                            <p><span className="font-semibold text-slate-600">Student:</span> {statusResult.data.studentName}</p>
+                            <p><span className="font-semibold text-slate-600">Class Applying:</span> {statusResult.data.classApplying}</p>
+                            <p><span className="font-semibold text-slate-600">Submission Date:</span> {statusResult.data.date}</p>
+                          </div>
+                        ) : (
+                          <p className="font-semibold">{statusResult.message}</p>
+                        )}
+                      </div>
+                    )}
+
+                    <div className="pt-4 border-t border-slate-100">
+                      <h4 className="text-xs font-bold text-slate-500 uppercase mb-3">Recently Submitted Applications:</h4>
+                      <div className="divide-y divide-slate-100 border border-slate-200 rounded-xl overflow-hidden text-xs">
+                        {submittedApplications.map((app) => (
+                          <div key={app.id} className="p-3.5 flex items-center justify-between bg-slate-50/60">
+                            <div>
+                              <p className="font-bold text-slate-900">{app.studentName} ({app.classApplying})</p>
+                              <p className="text-slate-500 text-[11px]">ID: {app.id} · Submitted: {app.date}</p>
+                            </div>
+                            <span className="font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                              {app.status}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedAdmissionTab === 'fee-structure' && (
+                  <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6">
+                    <div>
+                      <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                        Academic Year 2026-27
+                      </span>
+                      <h2 className="text-2xl font-extrabold text-[#0F172A] mt-2">
+                        Fee Structure &amp; Payment Schedule
+                      </h2>
+                      <p className="text-sm text-slate-600 mt-1">
+                        Transparent, inclusive tuition fees payable quarterly via school ERP portal
+                      </p>
+                    </div>
+
+                    <div className="divide-y divide-slate-100 border border-slate-200 rounded-xl overflow-hidden text-xs sm:text-sm">
+                      <div className="bg-slate-50 p-4 font-bold text-slate-800 grid grid-cols-4 gap-2">
+                        <span className="col-span-2">Class / Grade Level</span>
+                        <span className="text-right">Quarterly Fee</span>
+                        <span className="text-right">Annual Total</span>
+                      </div>
+                      <div className="p-4 grid grid-cols-4 gap-2 items-center text-slate-700">
+                        <span className="col-span-2 font-semibold">Primary Wing (Grades I – V)</span>
+                        <span className="text-right font-bold text-[#1E3A8A]">₹18,500</span>
+                        <span className="text-right font-bold text-slate-900">₹74,000</span>
+                      </div>
+                      <div className="p-4 grid grid-cols-4 gap-2 items-center text-slate-700 bg-slate-50/50">
+                        <span className="col-span-2 font-semibold">Middle Wing (Grades VI – VIII)</span>
+                        <span className="text-right font-bold text-[#1E3A8A]">₹22,000</span>
+                        <span className="text-right font-bold text-slate-900">₹88,000</span>
+                      </div>
+                      <div className="p-4 grid grid-cols-4 gap-2 items-center text-slate-700">
+                        <span className="col-span-2 font-semibold">Secondary Wing (Grades IX – X)</span>
+                        <span className="text-right font-bold text-[#1E3A8A]">₹26,500</span>
+                        <span className="text-right font-bold text-slate-900">₹1,06,000</span>
+                      </div>
+                      <div className="p-4 grid grid-cols-4 gap-2 items-center text-slate-700 bg-slate-50/50">
+                        <span className="col-span-2 font-semibold">Senior Secondary (XI – XII Science / Commerce)</span>
+                        <span className="text-right font-bold text-[#1E3A8A]">₹31,000</span>
+                        <span className="text-right font-bold text-slate-900">₹1,24,000</span>
+                      </div>
+                      <div className="p-4 grid grid-cols-4 gap-2 items-center text-slate-700">
+                        <span className="col-span-2 font-semibold">Hostel &amp; Boarding (Optional, All Grades)</span>
+                        <span className="text-right font-bold text-[#F97316]">₹35,000</span>
+                        <span className="text-right font-bold text-slate-900">₹1,40,000</span>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-slate-500">
+                      * Fees include composite tuition, smart labs, library, internal sports, and IT portal access. One-time admission fee of ₹15,000 applicable for new enrollments.
+                    </p>
+                  </div>
+                )}
+
+                {selectedAdmissionTab === 'eligibility-criteria' && (
+                  <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6">
+                    <div>
+                      <span className="text-xs font-bold text-purple-700 bg-purple-50 px-3 py-1 rounded-full border border-purple-200">
+                        Guidelines &amp; Age Norms
+                      </span>
+                      <h2 className="text-2xl font-extrabold text-[#0F172A] mt-2">
+                        Age &amp; Eligibility Criteria
+                      </h2>
+                      <p className="text-sm text-slate-600 mt-1">
+                        CBSE and Uttar Pradesh state education department admission age rules (as on March 31, 2026)
+                      </p>
+                    </div>
+
+                    <div className="divide-y divide-slate-100 border border-slate-200 rounded-xl overflow-hidden text-xs sm:text-sm">
+                      <div className="bg-slate-50 p-4 font-bold text-slate-800 grid grid-cols-3 gap-2">
+                        <span>Class Applied For</span>
+                        <span>Minimum Age (as of March 31)</span>
+                        <span>Prerequisite Eligibility</span>
+                      </div>
+                      <div className="p-4 grid grid-cols-3 gap-2 items-center text-slate-700">
+                        <span className="font-semibold">Nursery / LKG</span>
+                        <span>3 Years Complete</span>
+                        <span className="text-xs text-slate-500">Informal interaction</span>
+                      </div>
+                      <div className="p-4 grid grid-cols-3 gap-2 items-center text-slate-700 bg-slate-50/50">
+                        <span className="font-semibold">Class 1</span>
+                        <span>6 Years Complete</span>
+                        <span className="text-xs text-slate-500">UKG Pass certificate</span>
+                      </div>
+                      <div className="p-4 grid grid-cols-3 gap-2 items-center text-slate-700">
+                        <span className="font-semibold">Classes 2 to 8</span>
+                        <span>7 to 13 Years as per grade</span>
+                        <span className="text-xs text-slate-500">Previous Class Report Card &amp; TC</span>
+                      </div>
+                      <div className="p-4 grid grid-cols-3 gap-2 items-center text-slate-700 bg-slate-50/50">
+                        <span className="font-semibold">Class 9</span>
+                        <span>14 Years Complete</span>
+                        <span className="text-xs text-slate-500">Class 8 Pass &amp; Diagnostic Test</span>
+                      </div>
+                      <div className="p-4 grid grid-cols-3 gap-2 items-center text-slate-700">
+                        <span className="font-semibold">Class 11 (Science / Commerce)</span>
+                        <span>16 Years Complete</span>
+                        <span className="text-xs text-slate-500">Grade 10 Board Pass marksheet</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedAdmissionTab === 'documents-checklist' && (
+                  <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6">
+                    <div>
+                      <span className="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                        Mandatory Checklist
+                      </span>
+                      <h2 className="text-2xl font-extrabold text-[#0F172A] mt-2">
+                        Required Documents Checklist
+                      </h2>
+                      <p className="text-sm text-slate-600 mt-1">
+                        Please keep clear scanned photocopies ready at the time of admission verification
+                      </p>
+                    </div>
+
+                    <div className="space-y-3">
+                      {[
+                        { title: 'Birth Certificate', desc: 'Original & self-attested photocopy issued by Municipal Corporation / Nagar Nigam.' },
+                        { title: 'Transfer Certificate (TC)', desc: 'Original TC counter-signed by CBSE / State Education Board officer for Class 2 onwards.' },
+                        { title: 'Previous Academic Report Card', desc: 'Photocopy of the annual marksheet/grade card of the last qualifying examination.' },
+                        { title: 'Student Passport Photographs', desc: '6 recent passport-size colored photographs of the child in plain background.' },
+                        { title: 'Parents Identification Proof', desc: 'Aadhaar Card, Voter ID, or Passport copies of father and mother / guardian.' },
+                        { title: 'Proof of Residence', desc: 'Electricity bill, water bill, rent agreement, or Aadhaar Card showing current residential address.' },
+                        { title: 'Medical Fitness Certificate', desc: 'Fitness record with blood group and immunization details signed by a registered MBBS doctor.' }
+                      ].map((item, idx) => (
+                        <div key={idx} className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex items-start gap-3">
+                          <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <h4 className="font-bold text-slate-900 text-sm">{item.title}</h4>
+                            <p className="text-xs text-slate-600 mt-0.5">{item.desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         )}
 
@@ -3278,6 +4476,77 @@ export default function App() {
               </div>
             </div>
 
+            {/* Mobile / Quick Dropdown Selector */}
+            <div className="lg:hidden bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between gap-3">
+              <span className="text-xs font-bold text-slate-500 uppercase whitespace-nowrap">Select Hostel Topic:</span>
+              <div className="relative flex-1">
+                <select
+                  value={selectedHostelTab}
+                  onChange={(e) => setSelectedHostelTab(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-bold text-[#0e4b2d] focus:outline-none focus:ring-2 focus:ring-[#0e4b2d] appearance-none cursor-pointer"
+                >
+                  <option value="all-guide">★ Complete Guide (All Sections)</option>
+                  {HOSTEL_SECTIONS.map((sec) => (
+                    <option key={sec.id} value={sec.id}>
+                      {sec.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="w-4 h-4 text-slate-500 absolute right-3 top-2.5 pointer-events-none" />
+              </div>
+            </div>
+
+            {/* Interactive Master-Detail Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left Column: Dropdown Menu List */}
+              <div className="lg:col-span-4 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden sticky top-24">
+                <div className="bg-[#0e4b2d] text-white px-5 py-3.5 flex items-center justify-between shadow-xs">
+                  <span className="font-bold text-sm tracking-wide text-emerald-100">
+                    About Hostel
+                  </span>
+                  <ChevronDown className="w-4 h-4 text-emerald-300" />
+                </div>
+
+                <div className="divide-y divide-slate-100 bg-white">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedHostelTab('all-guide')}
+                    className={`w-full text-left px-5 py-3.5 text-xs sm:text-sm font-semibold flex items-center justify-between transition-all cursor-pointer ${
+                      selectedHostelTab === 'all-guide'
+                        ? 'bg-emerald-50 text-[#0e4b2d] font-bold border-l-4 border-[#0e4b2d] pl-4'
+                        : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
+                    }`}
+                  >
+                    <span>★ Complete Guide (All Sections)</span>
+                    <ChevronRight className={`w-4 h-4 ${selectedHostelTab === 'all-guide' ? 'text-[#0e4b2d]' : 'text-slate-300'}`} />
+                  </button>
+
+                  {HOSTEL_SECTIONS.map((sec) => {
+                    const isSelected = selectedHostelTab === sec.id;
+                    return (
+                      <div key={sec.id} className="transition-colors">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedHostelTab(sec.id)}
+                          className={`w-full text-left px-5 py-3.5 text-xs sm:text-sm font-semibold flex items-center justify-between transition-all cursor-pointer ${
+                            isSelected
+                              ? 'bg-emerald-50 text-[#0e4b2d] font-bold border-l-4 border-[#0e4b2d] pl-4'
+                              : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
+                          }`}
+                        >
+                          <span>{sec.label}</span>
+                          <ChevronRight className={`w-4 h-4 ${isSelected ? 'text-[#0e4b2d]' : 'text-slate-300'}`} />
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Right Column: Dynamic Content Detail Card */}
+              <div className="lg:col-span-8 space-y-8">
+                {(selectedHostelTab === 'all-guide' || selectedHostelTab === 'hostel-overview') && (
+                  <>
             {/* Overview / Introduction Section */}
             <div className="bg-gradient-to-br from-white via-white to-blue-50/40 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-4">
               <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
@@ -3294,6 +4563,12 @@ export default function App() {
               </div>
             </div>
 
+
+                  </>
+                )}
+
+                {(selectedHostelTab === 'all-guide' || selectedHostelTab === 'photo-tour') && (
+                  <>
             {/* Hostel Photo Gallery Showcase */}
             <div className="space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -3425,6 +4700,12 @@ export default function App() {
               </div>
             </div>
 
+
+                  </>
+                )}
+
+                {(selectedHostelTab === 'all-guide' || selectedHostelTab === 'hostel-overview' || selectedHostelTab === 'separate-wings' || selectedHostelTab === 'dining-mess' || selectedHostelTab === 'medical-clinic') && (
+                  <>
             {/* Key Hostel Facilities Grid */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
@@ -3518,6 +4799,12 @@ export default function App() {
               </div>
             </div>
 
+
+                  </>
+                )}
+
+                {(selectedHostelTab === 'all-guide' || selectedHostelTab === 'admission-procedure') && (
+                  <>
             {/* Admission Procedure & Documentation */}
             <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-6">
               <div className="border-b border-slate-100 pb-4">
@@ -3647,6 +4934,12 @@ export default function App() {
               </div>
             </div>
 
+
+                  </>
+                )}
+
+                {(selectedHostelTab === 'all-guide' || selectedHostelTab === 'rules-regulations') && (
+                  <>
             {/* Rules and Regulations Section */}
             <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-6">
               <div className="border-b border-slate-100 pb-3">
@@ -3826,6 +5119,12 @@ export default function App() {
               </div>
             </div>
 
+
+                  </>
+                )}
+
+                {(selectedHostelTab === 'all-guide' || selectedHostelTab === 'visiting-timings' || selectedHostelTab === 'warden-contacts') && (
+                  <>
             {/* Visiting Hours Table */}
             <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-4">
               <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
@@ -3963,6 +5262,12 @@ export default function App() {
                     </tr>
                   </tbody>
                 </table>
+              </div>
+            </div>
+
+                  </>
+                )}
+
               </div>
             </div>
           </div>
