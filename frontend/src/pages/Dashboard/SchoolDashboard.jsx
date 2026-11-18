@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Activity,
   ArrowUpRight,
@@ -18,6 +18,8 @@ import {
   ClipboardCheck,
   Clock3,
   CreditCard,
+  Download,
+  Eye,
   FileText,
   GraduationCap,
   Home,
@@ -27,9 +29,11 @@ import {
   Menu,
   MoreHorizontal,
   Pencil,
+  Printer,
   Search,
   Settings,
   ShieldCheck,
+  Save,
   Star,
   Trophy,
   Users,
@@ -50,35 +54,38 @@ import {
 } from "recharts";
 
 const COLORS = {
-  navy: "#123675",
-  navyDark: "#0D2854",
-  blue: "#1764F5",
-  blueLight: "#E8F0FF",
-  background: "#F4F7FC",
-  ink: "#17243A",
-  muted: "#8792A5",
-  green: "#1EBB69",
-  orange: "#F47A20",
-  purple: "#8755EC",
-  pink: "#E84B9A",
-  teal: "#16AFA7",
-  red: "#E64B55",
-  border: "#E9EDF4",
+  navy: "var(--dashboard-navy)",
+  navyDark: "var(--dashboard-navy-dark)",
+  blue: "var(--dashboard-blue)",
+  blueLight: "var(--dashboard-blue-light)",
+  background: "var(--dashboard-background)",
+  ink: "var(--dashboard-ink)",
+  muted: "var(--dashboard-muted)",
+  green: "var(--dashboard-green)",
+  orange: "var(--dashboard-orange)",
+  purple: "var(--dashboard-purple)",
+  pink: "var(--dashboard-pink)",
+  teal: "var(--dashboard-teal)",
+  red: "var(--dashboard-red)",
+  border: "var(--dashboard-border)",
 };
 
 const MODULES = [
   { id: "dashboard", label: "Dashboard", icon: Home },
-  { id: "students", label: "Student Management", icon: Users, expandable: true },
-  { id: "admission", label: "Admission", icon: UserPlus },
-  { id: "academics", label: "Academics", icon: GraduationCap, expandable: true },
-  { id: "attendance", label: "Attendance", icon: CalendarCheck, expandable: true },
-  { id: "exams", label: "Examinations", icon: BookOpen, expandable: true },
-  { id: "fees", label: "Fee Management", icon: Wallet, expandable: true },
-  { id: "transport", label: "Transport", icon: Bus },
-  { id: "library", label: "Library", icon: Library },
-  { id: "reports", label: "Reports", icon: FileText },
-  { id: "calendar", label: "Academic Calendar", icon: CalendarDays },
-  { id: "settings", label: "Settings", icon: Settings },
+  { id: "students", label: "Student Management", icon: Users, children: ["Student Details", "Student Photos", "Student Admission", "Online Admission", "Disabled Students", "Multi Class Student", "Bulk Delete", "Student Categories", "Student House", "Disable Reason"] },
+  { id: "academics", label: "Academics", icon: GraduationCap, children: ["Class Timetable", "Cleanup Timetable", "Teachers Timetable", "Assign Class Teacher", "Promote Students", "Subject Group", "Subjects", "Class", "Sections"] },
+  { id: "attendance", label: "Attendance", icon: CalendarCheck, children: ["Student Attendance", "Approve Leave", "Attendance By Date"] },
+  { id: "exams", label: "Examinations", icon: BookOpen, children: ["Exam Group", "Exam Schedule", "Exam Result", "Design Admit Card", "Print Admit Card", "Design Marksheet", "Print Marksheet", "Marks Grade", "Marks Division"] },
+  { id: "fees", label: "Fee Management", icon: Wallet, children: ["Collect Fees", "Offline Bank Payments", "Search Fees Payment", "Search Due Fees", "Fees Master", "Fees Group", "Fees Type", "Fees Discount", "Receipt Setting", "Fees Carry Forward", "Fees Reminder"] },
+  { id: "transport", label: "Transport", icon: Bus, children: ["Fees Master", "Pickup Point", "Routes", "Vehicles", "Assign Vehicle", "Route Pickup Point", "Student Transport Fees", "Live GPS Dashboard", "Manage Bus Drivers", "Live Fleet Map", "Student Scan Logs", "Driver QR Scanner"] },
+  { id: "library", label: "Library", icon: Library, children: ["Book List", "Issue - Return", "Add Student", "Add Staff Member"] },
+  { id: "hostel", label: "Hostel", icon: Home, children: ["Hostel Rooms", "Room Type", "Hostel", "Girls Hostel", "Girls - Students", "Girls - Rooms", "Girls - Allocation", "Girls - Attendance", "Girls - Leave", "Girls - Visitors", "Girls - Mess", "Girls - Complaints", "Girls - Reports", "Boys Hostel", "Boys - Students", "Boys - Rooms", "Boys - Allocation", "Boys - Attendance", "Boys - Leave", "Boys - Visitors", "Boys - Mess", "Boys - Complaints", "Boys - Reports"] },
+  { id: "staff", label: "HR & Staff", icon: Users, children: ["Staff Directory", "Staff Attendance", "Payroll", "Approve Leave Request", "Apply Leave", "Leave Type", "Teachers Rating", "Department", "Designation", "Disabled Staff", "Holidays", "Staff Overtime"] },
+  { id: "communication", label: "Communication", icon: Mail, children: ["Notice Board", "Send Email", "Send SMS / Whatsapp", "Email / SMS Log", "Schedule Email SMS Log", "Login Credentials Send", "Email Template", "SMS Template", "All Notifications"] },
+  { id: "inventory", label: "Inventory", icon: MoreHorizontal, children: ["Inventory Dashboard", "Items", "Categories", "Suppliers", "Stock Movements", "Requisitions", "Student Sales", "Stock Alerts", "Reports", "Issue Item", "Add Item Stock", "Add Item", "Item Category", "Item Store", "Item Supplier"] },
+  { id: "reports", label: "Reports & Analytics", icon: FileText, children: ["Student Information", "Finance", "Attendance", "Examinations", "Online Examinations", "Lesson Plan", "Human Resource", "Homework", "Library", "Inventory", "Transport", "Hostel", "Alumni", "User Log", "Audit Trail Report"] },
+  { id: "calendar", label: "Calendar", icon: CalendarDays },
+  { id: "settings", label: "Settings", icon: Settings, children: ["General Setting", "Session Setting", "Notification Setting", "SMS Setting", "Email Setting", "Payment Methods", "Print Header Footer", "Thermal Print", "Settings", "Roles Permissions", "Backup Restore", "Languages", "Currency", "Users", "Modules", "Custom Fields", "Captcha Setting", "System Fields", "Student Profile Update", "Online Admission", "File Types", "Sidebar Menu", "System Update", "Biometric Devices"] },
 ];
 
 const SUMMARY = [
@@ -164,7 +171,7 @@ function SummaryCard({ label, value, change, icon: Icon, tone }) {
   return (
     <article className="relative min-w-0 overflow-hidden rounded-2xl border bg-white p-4 shadow-sm" style={{ borderColor: COLORS.border }}>
       <div className="flex items-start gap-3">
-        <span className="grid size-11 shrink-0 place-items-center rounded-xl" style={{ color: tone, background: `${tone}18` }}>
+        <span className="grid size-11 shrink-0 place-items-center rounded-xl" style={{ color: tone, background: `color-mix(in srgb, ${tone} 10%, transparent)` }}>
           <Icon size={21} />
         </span>
         <div className="min-w-0">
@@ -180,83 +187,372 @@ function SummaryCard({ label, value, change, icon: Icon, tone }) {
   );
 }
 
-function Sidebar({ expanded, menuSearch, setMenuSearch, active, setActive, role }) {
+const DEMO_STUDENTS = [
+  { sats: "SRSB01301", name: "Aarav Sharma", roll: 1, className: "Nursery", section: "A", father: "Rohit Sharma", dob: "14/03/2019", gender: "Male", category: "General", mobile: "9876501001" },
+  { sats: "SRSB01302", name: "Anaya Verma", roll: 2, className: "Nursery", section: "A", father: "Amit Verma", dob: "22/07/2019", gender: "Female", category: "OBC", mobile: "9876501002" },
+  { sats: "SRSB01303", name: "Kabir Khan", roll: 3, className: "Nursery", section: "A", father: "Imran Khan", dob: "05/11/2019", gender: "Male", category: "General", mobile: "9876501003" },
+  { sats: "SRSB01304", name: "Myra Patel", roll: 4, className: "Nursery", section: "A", father: "Kunal Patel", dob: "18/01/2020", gender: "Female", category: "General", mobile: "9876501004" },
+  { sats: "SRSB01305", name: "Vivaan Singh", roll: 5, className: "Nursery", section: "A", father: "Manoj Singh", dob: "09/06/2019", gender: "Male", category: "SC", mobile: "9876501005" },
+  { sats: "SRSB01306", name: "Sara Khan", roll: 6, className: "LKG", section: "B", father: "Sameer Khan", dob: "27/02/2018", gender: "Female", category: "General", mobile: "9876501006" },
+  { sats: "SRSB01307", name: "Ishaan Gupta", roll: 7, className: "LKG", section: "B", father: "Rajesh Gupta", dob: "11/09/2018", gender: "Male", category: "General", mobile: "9876501007" },
+  { sats: "SRSB01308", name: "Aisha Ali", roll: 8, className: "LKG", section: "B", father: "Farhan Ali", dob: "30/04/2018", gender: "Female", category: "OBC", mobile: "9876501008" },
+  { sats: "SRSB01309", name: "Reyansh Yadav", roll: 9, className: "UKG", section: "A", father: "Deepak Yadav", dob: "16/12/2017", gender: "Male", category: "OBC", mobile: "9876501009" },
+  { sats: "SRSB01310", name: "Kiara Das", roll: 10, className: "UKG", section: "A", father: "Suman Das", dob: "08/08/2017", gender: "Female", category: "General", mobile: "9876501010" },
+];
+
+const STUDENT_PHOTOS = [
+  "/students/student-1.avif",
+  "/students/student-2.webp",
+  "/students/student-3.webp",
+  "/students/student-4.jpg",
+  "/students/student-5.webp",
+  "/students/student-6.jpg",
+  "/students/student-7.webp",
+];
+function StudentPortrait({ student, photo, className = "" }) {
+  const index = Math.max(0, DEMO_STUDENTS.findIndex((item) => item.sats === student.sats));
+  return <img src={photo || STUDENT_PHOTOS[index % STUDENT_PHOTOS.length]} alt={`${student.name} student photo`} className={`h-full w-full object-cover ${className}`} />;
+}
+
+const inputClass = "h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm outline-none transition focus:border-blue-400 focus:ring-2 focus:ring-blue-100";
+const Field = ({ label, required = false, children }) => (
+  <label className="block min-w-0 text-xs font-semibold text-slate-600">
+    <span className="mb-1.5 block">{label}{required && <span className="text-rose-500"> *</span>}</span>
+    {children || <input className={inputClass} />}
+  </label>
+);
+
+function StudentDetailsScreen({ photos }) {
+  const [className, setClassName] = useState("All Classes");
+  const [section, setSection] = useState("");
+  const [query, setQuery] = useState("");
+  const [searched, setSearched] = useState(false);
+  const [view, setView] = useState("list");
+  const students = DEMO_STUDENTS.filter((student) => (className === "All Classes" || student.className === className) && (!section || student.section === section) && `${student.name} ${student.sats} ${student.roll} ${student.father}`.toLowerCase().includes(query.toLowerCase()));
+  return (
+    <div className="space-y-4">
+      <Panel title="Select Criteria" className="overflow-visible">
+        <div className="grid gap-4 md:grid-cols-3">
+          <Field label="Class" required><select className={inputClass} value={className} onChange={(event) => setClassName(event.target.value)}>{["All Classes", "Nursery", "LKG", "UKG", "Class 1", "Class 2", "Class 3", "Class 4", "Class 5"].map((item) => <option key={item}>{item}</option>)}</select></Field>
+          <Field label="Section"><select className={inputClass} value={section} onChange={(event) => setSection(event.target.value)}><option value="">Select</option><option>A</option><option>B</option></select></Field>
+          <Field label="Search By Keyword"><input className={inputClass} value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Student name, roll number, SATS number..." /></Field>
+        </div>
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+          <p className="text-[11px] text-slate-400">Optional tools: OCR image scan and admission data extraction</p>
+          <button type="button" onClick={() => setSearched(true)} className="rounded-xl bg-blue-600 px-5 py-2.5 text-xs font-bold text-white shadow-md shadow-blue-200 hover:bg-blue-700">⌕ Search</button>
+        </div>
+      </Panel>
+      <Panel title={searched ? `${className} Student List` : "Student List"}>
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
+          <div className="flex gap-2">
+            {[ ["list", "▤ List View"], ["details", "▧ Details View"] ].map(([id, label]) => <button key={id} type="button" onClick={() => setView(id)} className={`rounded-lg px-3 py-2 text-xs font-bold ${view === id ? "bg-blue-50 text-blue-700" : "text-slate-500 hover:bg-slate-50"}`}>{label}</button>)}
+          </div>
+          <input className="h-9 w-full max-w-xs rounded-lg border border-slate-200 px-3 text-xs outline-none focus:border-blue-400" placeholder="Search students..." value={query} onChange={(event) => setQuery(event.target.value)} />
+        </div>
+        {view === "list" ? <div className="overflow-x-auto"><table className="w-full min-w-[850px] text-left text-xs"><thead className="bg-slate-50 text-[10px] uppercase text-slate-500"><tr>{["SATS No.", "Student Name", "Roll No.", "Class", "Father Name", "Date of Birth", "Gender", "Category", "Mobile Number", "Action"].map((heading) => <th key={heading} className="px-3 py-3 font-bold">{heading}</th>)}</tr></thead><tbody>{students.map((student) => <tr key={student.sats} className="border-b border-slate-100 odd:bg-white even:bg-slate-50/70"><td className="px-3 py-3 text-slate-500">{student.sats}</td><td className="px-3 py-3 font-semibold text-cyan-700">{student.name}</td><td className="px-3 py-3">{student.roll}</td><td className="px-3 py-3">{student.className} ({student.section})</td><td className="px-3 py-3">{student.father}</td><td className="px-3 py-3">{student.dob}</td><td className="px-3 py-3">{student.gender}</td><td className="px-3 py-3">{student.category}</td><td className="px-3 py-3">{student.mobile}</td><td className="px-3 py-3"><button type="button" className="rounded-md border px-2 py-1 text-slate-600" aria-label={`Actions for ${student.name}`}>•••</button></td></tr>)}</tbody></table>{students.length === 0 && <p className="p-8 text-center text-sm text-slate-400">No students found.</p>}</div> : <div className="space-y-3">{students.map((student) => <article key={student.sats} className="grid gap-4 rounded-xl border border-slate-200 p-4 sm:grid-cols-[90px_1fr_1fr]"><div className="grid size-20 place-items-center rounded-xl bg-slate-100 text-3xl text-slate-400">{student.name[0]}</div><div><h3 className="font-bold text-cyan-700">{student.name}</h3><p className="mt-2 text-xs leading-5 text-slate-600">Class: {student.className} ({student.section})<br />SATS No.: {student.sats}<br />Date of Birth: {student.dob}<br />Gender: {student.gender}</p></div><div className="text-xs leading-5 text-slate-600">Father Name: {student.father}<br />Mobile: {student.mobile}<br />Local Identification Number: —<br />Current Address: —</div></article>)}</div>}
+      </Panel>
+    </div>
+  );
+}
+
+function StudentPhotosScreen() {
+  const [className, setClassName] = useState("Nursery");
+  const [section, setSection] = useState("A");
+  const [visible, setVisible] = useState(false);
+  const [photos, setPhotos] = useState({});
+  const students = visible ? DEMO_STUDENTS.filter((student) => student.className === className && student.section === section) : [];
+  const setPhoto = (id, file) => { if (file) setPhotos((current) => ({ ...current, [id]: URL.createObjectURL(file) })); };
+  return (
+    <div className="space-y-4">
+      <Panel title="Select Criteria">
+        <div className="grid items-end gap-4 md:grid-cols-[1fr_1fr_auto]">
+          <Field label="Class" required><select className={inputClass} value={className} onChange={(event) => setClassName(event.target.value)}>{["Nursery", "LKG", "UKG", "Class 1", "Class 2", "Class 3"].map((item) => <option key={item}>{item}</option>)}</select></Field>
+          <Field label="Section"><select className={inputClass} value={section} onChange={(event) => setSection(event.target.value)}><option>A</option><option>B</option></select></Field>
+          <button type="button" onClick={() => setVisible(true)} className="h-10 rounded-xl bg-blue-600 px-8 text-xs font-bold text-white shadow-md shadow-blue-200 hover:bg-blue-700">⌕ Search</button>
+        </div>
+        <p className="mt-3 text-[11px] text-slate-400">Select a class to load its students. Use Change or Upload to choose a photo from your device.</p>
+      </Panel>
+      {visible && <Panel title="Student List">
+        <div className="mb-4 flex flex-wrap gap-2 text-[11px]"><span className="rounded-full bg-slate-100 px-3 py-1.5 text-slate-600">Total: {students.length}</span><span className="rounded-full bg-emerald-50 px-3 py-1.5 font-semibold text-emerald-700">With photo: {Object.keys(photos).length}</span><span className="rounded-full bg-rose-50 px-3 py-1.5 font-semibold text-rose-600">Pending: {Math.max(0, students.length - Object.keys(photos).length)}</span></div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">{students.map((student, index) => <article key={student.sats} className="rounded-xl border border-slate-200 p-3 text-center"><div className="mx-auto grid h-36 w-full max-w-40 place-items-center overflow-hidden rounded-lg bg-slate-100 text-5xl text-slate-400">{photos[student.sats] ? <img src={photos[student.sats]} alt={`${student.name} student`} className="h-full w-full object-cover" /> : <span>{student.name[0]}</span>}</div><p className="mt-2 truncate text-sm font-bold text-slate-700">{student.name}</p><p className="mt-1 text-[10px] text-slate-400">Adm: {student.sats} | Roll: {student.roll + index}</p><label className="mt-3 block cursor-pointer rounded-lg bg-blue-600 px-3 py-2 text-xs font-bold text-white hover:bg-blue-700">{photos[student.sats] ? "📷 Change" : "⬆ Upload"}<input type="file" accept="image/*" className="sr-only" onChange={(event) => setPhoto(student.sats, event.target.files?.[0])} /></label></article>)}</div>
+      </Panel>}
+    </div>
+  );
+}
+
+function StudentDetailsDemoScreen({ photos }) {
+  const [className, setClassName] = useState("All Classes");
+  const [section, setSection] = useState("All Sections");
+  const [query, setQuery] = useState("");
+  const [view, setView] = useState("list");
+  const students = DEMO_STUDENTS.filter((student) => (className === "All Classes" || student.className === className) && (section === "All Sections" || student.section === section) && `${student.name} ${student.sats} ${student.roll} ${student.father}`.toLowerCase().includes(query.toLowerCase()));
+  return <div className="space-y-4">
+    <Panel title="Select Criteria"><div className="grid gap-4 md:grid-cols-3">
+      <Field label="Class"><select className={inputClass} value={className} onChange={(event) => setClassName(event.target.value)}>{["All Classes", "Nursery", "LKG", "UKG"].map((item) => <option key={item}>{item}</option>)}</select></Field>
+      <Field label="Section"><select className={inputClass} value={section} onChange={(event) => setSection(event.target.value)}><option>All Sections</option><option>A</option><option>B</option></select></Field>
+      <Field label="Search By Keyword"><input className={inputClass} value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Student name, roll number, SATS number..." /></Field>
+    </div></Panel>
+    <Panel title={`Student List (${students.length})`}>
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3"><div className="flex gap-2">{[["list", "List View"], ["details", "Details View"]].map(([id, label]) => <button key={id} type="button" onClick={() => setView(id)} className={`rounded-lg px-3 py-2 text-xs font-bold ${view === id ? "bg-blue-50 text-blue-700" : "text-slate-500 hover:bg-slate-50"}`}>{label}</button>)}</div><input className="h-9 w-full max-w-xs rounded-lg border border-slate-200 px-3 text-xs" placeholder="Search students..." value={query} onChange={(event) => setQuery(event.target.value)} /></div>
+      {view === "list" ? <div className="overflow-x-auto"><table className="w-full min-w-[900px] text-left text-xs"><thead className="bg-slate-50 text-[10px] uppercase text-slate-500"><tr>{["SATS No.", "Student Name", "Roll No.", "Class", "Father Name", "Date of Birth", "Gender", "Category", "Mobile Number"].map((heading) => <th key={heading} className="px-3 py-3">{heading}</th>)}</tr></thead><tbody>{students.map((student) => <tr key={student.sats} className="border-b border-slate-100 odd:bg-white even:bg-slate-50/70"><td className="px-3 py-2">{student.sats}</td><td className="px-3 py-2"><span className="flex items-center gap-2 font-semibold text-cyan-700"><span className="size-9 overflow-hidden rounded-md"><StudentPortrait student={student} photo={photos[student.sats]} /></span>{student.name}</span></td><td className="px-3 py-3">{student.roll}</td><td className="px-3 py-3">{student.className} ({student.section})</td><td className="px-3 py-3">{student.father}</td><td className="px-3 py-3">{student.dob}</td><td className="px-3 py-3">{student.gender}</td><td className="px-3 py-3">{student.category}</td><td className="px-3 py-3">{student.mobile}</td></tr>)}</tbody></table>{students.length === 0 && <p className="p-8 text-center text-sm text-slate-400">No students found.</p>}</div> : <div className="grid gap-3 lg:grid-cols-2">{students.map((student) => <article key={student.sats} className="flex gap-4 rounded-xl border border-slate-200 p-4"><div className="size-20 shrink-0 overflow-hidden rounded-xl"><StudentPortrait student={student} photo={photos[student.sats]} /></div><div className="text-xs leading-5 text-slate-600"><h3 className="font-bold text-cyan-700">{student.name}</h3>Class: {student.className} ({student.section})<br />SATS No.: {student.sats}<br />Roll: {student.roll} · DOB: {student.dob}<br />Parent: {student.father} · {student.mobile}</div></article>)}</div>}
+    </Panel>
+  </div>;
+}
+
+function StudentProfileManager({ photos }) {
+  const [students, setStudents] = useState(DEMO_STUDENTS);
+  const [selectedId, setSelectedId] = useState("");
+  const [view, setView] = useState("list");
+  const [profileTab, setProfileTab] = useState("Personal");
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(null);
+  const [saved, setSaved] = useState(false);
+  const [qrOpen, setQrOpen] = useState(false);
+  const selectedStudent = students.find((student) => student.sats === selectedId);
+  const openProfile = (student, edit = false) => {
+    setSelectedId(student.sats);
+    setDraft({ ...student });
+    setProfileTab("Personal");
+    setEditing(edit);
+    setSaved(false);
+  };
+  const saveProfile = () => {
+    setStudents((current) => current.map((student) => student.sats === selectedId ? { ...draft } : student));
+    setEditing(false);
+    setSaved(true);
+  };
+  const printAdmissionForm = () => {
+    if (!selectedStudent) return;
+    const value = (text) => String(text || "—").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
+    const photoIndex = DEMO_STUDENTS.findIndex((student) => student.sats === selectedStudent.sats);
+    const photoUrl = photos[selectedStudent.sats] || new URL(STUDENT_PHOTOS[photoIndex % STUDENT_PHOTOS.length], window.location.origin).href;
+    const fields = [
+      ["Admission Number", selectedStudent.sats], ["Student Name", selectedStudent.name], ["Roll Number", selectedStudent.roll],
+      ["Class / Section", `${selectedStudent.className} / ${selectedStudent.section}`], ["Date of Birth", selectedStudent.dob],
+      ["Gender", selectedStudent.gender], ["Category", selectedStudent.category], ["Mobile Number", selectedStudent.mobile],
+      ["Father / Guardian Name", selectedStudent.father], ["Session", "2026-2027"],
+    ];
+    const printWindow = window.open("", "_blank", "width=900,height=700");
+    if (!printWindow) return;
+    printWindow.document.write(`<!doctype html><html><head><title>Admission Form - ${value(selectedStudent.name)}</title><style>body{font:14px Arial,sans-serif;color:#17243a;margin:32px}.header{text-align:center;background:#1764f5;color:#fff;padding:18px;border-radius:8px}.student{display:flex;gap:20px;align-items:center;margin:22px 0}.student img{width:120px;height:140px;object-fit:cover;border:1px solid #ddd;border-radius:6px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{border:1px solid #dbe2ec;padding:10px}.label{font-weight:bold;color:#64748b;font-size:11px;text-transform:uppercase}.value{margin-top:5px}.sign{display:flex;justify-content:space-between;margin-top:80px}.sign div{border-top:1px solid #777;padding-top:8px;width:30%;text-align:center}@media print{body{margin:18mm}}</style></head><body><div class="header"><h1>Sunrises Public School</h1><div>Student Admission Form · Session 2026-2027</div></div><div class="student"><img src="${value(photoUrl)}" alt="Student photo"><div><h2>${value(selectedStudent.name)}</h2><div>Admission No. ${value(selectedStudent.sats)}</div><div>${value(selectedStudent.className)} - ${value(selectedStudent.section)} · Roll ${value(selectedStudent.roll)}</div></div></div><div class="grid">${fields.map(([label, fieldValue]) => `<div class="field"><div class="label">${value(label)}</div><div class="value">${value(fieldValue)}</div></div>`).join("")}</div><div class="sign"><div>Parent / Guardian Signature</div><div>School Seal</div><div>Principal Signature</div></div><script>window.onload=()=>window.print()</script></body></html>`);
+    printWindow.document.close();
+  };
+
+  if (!selectedStudent) return <div className="space-y-4">
+    <Panel title="Select Criteria"><div className="grid gap-4 md:grid-cols-3"><Field label="Class"><select className={inputClass}><option>All Classes</option><option>Nursery</option><option>LKG</option><option>UKG</option></select></Field><Field label="Section"><select className={inputClass}><option>All Sections</option><option>A</option><option>B</option></select></Field><Field label="Search By Keyword"><input className={inputClass} placeholder="Student name, roll number, SATS number..." /></Field></div></Panel>
+    <Panel title={`Student List (${students.length})`}><div className="mb-4 flex flex-wrap items-center justify-between gap-3"><div className="flex gap-2"><button type="button" onClick={() => setView("list")} className={`rounded-lg px-3 py-2 text-xs font-bold ${view === "list" ? "bg-blue-50 text-blue-700" : "text-slate-500 hover:bg-slate-50"}`}>List View</button><button type="button" onClick={() => setView("details")} className={`rounded-lg px-3 py-2 text-xs font-bold ${view === "details" ? "bg-blue-50 text-blue-700" : "text-slate-500 hover:bg-slate-50"}`}>Details View</button></div><input className="h-9 w-full max-w-xs rounded-lg border border-slate-200 px-3 text-xs" placeholder="Search students..." /></div>
+      <div className={`overflow-x-auto ${view === "list" ? "" : "hidden"}`}><table className="w-full min-w-[980px] text-left text-xs"><thead className="bg-slate-50 text-[10px] uppercase text-slate-500"><tr>{["SATS No.", "Student Name", "Roll No.", "Class", "Father Name", "Date of Birth", "Gender", "Category", "Mobile Number", "Action"].map((heading) => <th key={heading} className="px-3 py-3">{heading}</th>)}</tr></thead><tbody>{students.map((student) => <tr key={student.sats} onClick={() => openProfile(student)} className="cursor-pointer border-b border-slate-100 odd:bg-white even:bg-slate-50/70 hover:bg-blue-50/60"><td className="px-3 py-2 text-slate-500">{student.sats}</td><td className="px-3 py-2"><button type="button" onClick={(event) => { event.stopPropagation(); openProfile(student); }} className="flex items-center gap-2 text-left font-semibold text-cyan-700"><span className="size-9 overflow-hidden rounded-md"><StudentPortrait student={student} photo={photos[student.sats]} /></span>{student.name}</button></td><td className="px-3 py-3">{student.roll}</td><td className="px-3 py-3">{student.className} ({student.section})</td><td className="px-3 py-3">{student.father}</td><td className="px-3 py-3">{student.dob}</td><td className="px-3 py-3">{student.gender}</td><td className="px-3 py-3">{student.category}</td><td className="px-3 py-3">{student.mobile}</td><td className="px-3 py-2" onClick={(event) => event.stopPropagation()}><div className="flex items-center gap-1"><button type="button" title="Open profile" aria-label={`Open ${student.name} profile`} onClick={() => openProfile(student)} className="grid size-8 place-items-center rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-700"><Eye size={15} /></button><button type="button" title="Edit student" aria-label={`Edit ${student.name}`} onClick={() => openProfile(student, true)} className="grid size-8 place-items-center rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-700"><Pencil size={14} /></button></div></td></tr>)}</tbody></table></div>
+      <div className={`grid gap-4 md:grid-cols-2 ${view === "details" ? "" : "hidden"}`}>{students.map((student) => <article key={student.sats} onClick={() => openProfile(student)} className="cursor-pointer rounded-xl border border-slate-200 bg-white p-4 transition-shadow hover:shadow-md"><div className="flex items-start gap-4"><div className="size-24 shrink-0 overflow-hidden rounded-xl"><StudentPortrait student={student} photo={photos[student.sats]} /></div><div className="min-w-0 flex-1"><div className="flex flex-wrap items-start justify-between gap-2"><div><h3 className="text-base font-bold text-cyan-700">{student.name}</h3><p className="mt-0.5 text-[11px] text-slate-500">Admission No. {student.sats} · Roll No. {student.roll}</p></div><div className="flex gap-1" onClick={(event) => event.stopPropagation()}><button type="button" title="Open profile" onClick={() => openProfile(student)} className="grid size-8 place-items-center rounded-lg border text-slate-600 hover:bg-blue-50"><Eye size={15} /></button><button type="button" title="Edit student" onClick={() => openProfile(student, true)} className="grid size-8 place-items-center rounded-lg border text-slate-600 hover:bg-blue-50"><Pencil size={14} /></button></div></div><div className="mt-3 grid gap-x-5 gap-y-2 text-xs sm:grid-cols-2"><p><span className="text-slate-400">Class / Section:</span> {student.className} / {student.section}</p><p><span className="text-slate-400">Date of Birth:</span> {student.dob}</p><p><span className="text-slate-400">Gender:</span> {student.gender}</p><p><span className="text-slate-400">Category:</span> {student.category}</p><p><span className="text-slate-400">Father / Guardian:</span> {student.father}</p><p><span className="text-slate-400">Mobile:</span> {student.mobile}</p><p><span className="text-slate-400">Email:</span> {student.email || "—"}</p><p><span className="text-slate-400">Address:</span> {student.address || "Bareilly, Uttar Pradesh"}</p></div></div></div></article>)}</div>
+    </Panel>
+  </div>;
+
+  const profileFields = profileTab === "Personal"
+    ? [["Date of Birth", selectedStudent.dob], ["Gender", selectedStudent.gender], ["Category", selectedStudent.category], ["Admission Date", "2026-04-01"], ["Mobile Number", selectedStudent.mobile], ["Email", selectedStudent.email || "—"], ["Current Address", selectedStudent.address || "Bareilly, Uttar Pradesh"], ["Permanent Address", selectedStudent.address || "Bareilly, Uttar Pradesh"]]
+    : profileTab === "Academic" ? [["Admission Number", selectedStudent.sats], ["Roll Number", selectedStudent.roll], ["Class", selectedStudent.className], ["Section", selectedStudent.section], ["Session", "2026-2027"], ["Status", "Active"]]
+      : profileTab === "Fees" ? [["Fee Balance", "₹0.00"], ["Last Payment", "No payment record"], ["Fee Group", "Standard"]]
+        : profileTab === "Attendance" ? [["Total Present", "0"], ["Total Late", "0"], ["Total Absent", "0"], ["Total Half Day", "0"], ["Total Holiday", "0"]]
+          : profileTab === "Documents" ? [["Admission Form", "Available for download below"], ["Student Documents", "No documents uploaded"]]
+            : profileTab === "Timeline" ? [["Admission Created", "2026-04-01"], ["Latest Activity", "Student profile added"]]
+              : [["Behaviour Score", "—"], ["Teacher Notes", "No behaviour records"]];
+  const editFields = [["name", "Full Name"], ["father", "Father / Guardian Name"], ["dob", "Date of Birth"], ["gender", "Gender"], ["category", "Category"], ["mobile", "Mobile Number"], ["email", "Email"], ["address", "Address"]];
+  return <div className="space-y-4">
+    <button type="button" onClick={() => { setSelectedId(""); setEditing(false); }} className="flex items-center gap-2 text-xs font-semibold text-blue-700 hover:underline">← Back to student list</button>
+    <section className="rounded-2xl bg-gradient-to-r from-[#1e3a8a] via-[#2563eb] to-[#3b82f6] p-5 text-white shadow-lg sm:p-7"><div className="grid grid-cols-1 gap-4 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-center"><div className="flex min-w-0 items-center gap-4"><div className="size-24 shrink-0 overflow-hidden rounded-full border-4 border-white/70 shadow-lg"><StudentPortrait student={selectedStudent} photo={photos[selectedStudent.sats]} /></div><div><h2 className="text-2xl font-extrabold">{selectedStudent.name}</h2><p className="mt-1 text-sm text-blue-100">{selectedStudent.sats} · {selectedStudent.className} - {selectedStudent.section} · Roll: {selectedStudent.roll} · 2026-2027</p><div className="mt-3 flex flex-wrap gap-2 text-[10px] font-bold"><span className="rounded-lg bg-white/15 px-3 py-2">0% SCHOOL ATT.</span><span className="rounded-lg bg-white/15 px-3 py-2">₹0 FEE BALANCE</span><span className="rounded-lg bg-white/15 px-3 py-2">0 LIBRARY BOOKS</span><span className="rounded-lg bg-white/15 px-3 py-2">HOSTEL —</span></div></div></div><div className="justify-self-center"><StudentIdentifiers student={selectedStudent} compact onQrClick={() => setQrOpen(true)} /></div><div className="flex gap-2 md:justify-self-end"><button type="button" onClick={() => { setDraft({ ...selectedStudent }); setEditing(true); }} className="flex items-center gap-1.5 rounded-lg border border-white/30 bg-white/10 px-3 py-2 text-xs font-bold hover:bg-white/20"><Pencil size={14} /> Edit</button><button type="button" onClick={printAdmissionForm} className="flex items-center gap-1.5 rounded-lg border border-white/30 bg-white/10 px-3 py-2 text-xs font-bold hover:bg-white/20"><Printer size={14} /> Print</button></div></div></section>
+    {qrOpen && <div className="fixed inset-0 z-[100] grid place-items-center bg-slate-950/55 p-4" role="dialog" aria-modal="true" aria-label={`QR code for ${selectedStudent.name}`} onClick={() => setQrOpen(false)}><div className="w-full max-w-sm rounded-2xl bg-white p-5 text-center shadow-2xl" onClick={(event) => event.stopPropagation()}><div className="mb-3 flex items-center justify-between"><h3 className="font-bold text-slate-800">Student QR Code</h3><button type="button" onClick={() => setQrOpen(false)} aria-label="Close QR code" className="rounded-lg px-2 py-1 text-lg text-slate-500 hover:bg-slate-100">×</button></div><div className="mx-auto grid size-56 place-items-center rounded-xl border border-slate-200 bg-white"><StudentQrGraphic student={selectedStudent} size="size-48" /></div><p className="mt-3 font-semibold text-slate-800">{selectedStudent.name}</p><p className="mt-1 font-mono text-sm tracking-wider text-slate-500">{selectedStudent.sats}</p></div></div>}
+    <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="flex gap-1 overflow-x-auto border-b border-slate-200 px-3">{["Personal", "Academic", "Attendance", "Fees", "Documents", "Timeline", "Behaviour"].map((tab) => <button type="button" key={tab} onClick={() => setProfileTab(tab)} className={`shrink-0 border-b-2 px-4 py-3 text-xs font-bold ${profileTab === tab ? "border-blue-600 text-blue-700" : "border-transparent text-slate-500 hover:text-blue-700"}`}>{tab}</button>)}</div>
+      {editing ? <div className="p-5"><h3 className="mb-4 text-base font-bold text-slate-800">Edit Student Profile</h3><div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{editFields.map(([key, label]) => <Field key={key} label={label}><input className={inputClass} type="text" value={draft?.[key] || ""} onChange={(event) => setDraft((current) => ({ ...current, [key]: event.target.value }))} /></Field>)}</div><div className="mt-5 flex justify-end gap-2"><button type="button" onClick={() => setEditing(false)} className="rounded-lg border px-4 py-2 text-xs font-semibold text-slate-600">Cancel</button><button type="button" onClick={saveProfile} className="flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-xs font-bold text-white"><Save size={14} /> Save Changes</button></div></div> : <div className="grid gap-4 p-5 lg:grid-cols-2">{(profileTab === "Personal" ? ["Basic Information", "Parent / Guardian Information"] : [profileTab, `${profileTab} Details`]).map((heading, index) => <div key={heading} className="overflow-hidden rounded-xl border border-slate-200"><h3 className="border-b border-slate-100 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700">{heading}</h3><dl>{(index === 0 ? profileFields : profileTab === "Personal" ? [["Father's Name", selectedStudent.father], ["Father's Phone", selectedStudent.mobile], ["Mother's Name", "—"], ["Guardian Relation", "Father"]] : profileFields.slice(Math.ceil(profileFields.length / 2))).map(([label, value]) => <div key={label} className="grid grid-cols-[minmax(110px,1fr)_2fr] border-b border-slate-100 px-4 py-3 text-xs last:border-0 odd:bg-white even:bg-slate-50/60"><dt className="text-slate-500">{label}</dt><dd className="font-medium text-slate-700">{value || "—"}</dd></div>)}</dl></div>)}</div>}
+      {saved && <p className="mx-5 mb-4 rounded-lg bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-700">Student profile updated.</p>}
+    </section>
+    <section className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><div><h3 className="font-bold text-slate-800">Student Admission Form</h3><p className="mt-1 text-xs text-slate-500">Download or print the form with {selectedStudent.name}&apos;s details.</p></div><button type="button" onClick={printAdmissionForm} className="flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-xs font-bold text-white shadow-md hover:bg-blue-700"><Download size={15} /> Download Admission Form</button></section>
+  </div>;
+}
+
+function StudentPhotosDemoScreen({ photos, setPhoto }) {
+  const [className, setClassName] = useState("All Classes");
+  const [section, setSection] = useState("All Sections");
+  const [visible, setVisible] = useState(true);
+  const students = visible ? DEMO_STUDENTS.filter((student) => (className === "All Classes" || student.className === className) && (section === "All Sections" || student.section === section)) : [];
+  const handleUpload = (id, file) => { if (file) setPhoto((current) => ({ ...current, [id]: URL.createObjectURL(file) })); };
+  return <div className="space-y-4">
+    <Panel title="Select Criteria"><div className="grid items-end gap-4 md:grid-cols-[1fr_1fr_auto]">
+      <Field label="Class"><select className={inputClass} value={className} onChange={(event) => setClassName(event.target.value)}>{["All Classes", "Nursery", "LKG", "UKG"].map((item) => <option key={item}>{item}</option>)}</select></Field>
+      <Field label="Section"><select className={inputClass} value={section} onChange={(event) => setSection(event.target.value)}><option>All Sections</option><option>A</option><option>B</option></select></Field>
+      <button type="button" onClick={() => setVisible(true)} className="h-10 rounded-xl bg-blue-600 px-8 text-xs font-bold text-white">Search</button>
+    </div><p className="mt-3 text-[11px] text-slate-400">Choose Change or Upload to select a photo. Changes also appear in Student Details.</p></Panel>
+    {visible && <Panel title="Student Photos"><div className="mb-4 flex gap-2 text-[11px]"><span className="rounded-full bg-slate-100 px-3 py-1.5">Total: {students.length}</span><span className="rounded-full bg-emerald-50 px-3 py-1.5 text-emerald-700">Photos updated: {students.filter((student) => photos[student.sats]).length}</span></div>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">{students.map((student) => <article key={student.sats} className="rounded-xl border border-slate-200 p-3 text-center"><div className="mx-auto h-40 w-full max-w-40 overflow-hidden rounded-lg bg-slate-100"><StudentPortrait student={student} photo={photos[student.sats]} /></div><p className="mt-2 truncate text-sm font-bold text-slate-700">{student.name}</p><p className="mt-1 text-[10px] text-slate-400">{student.className} ({student.section}) · Roll {student.roll}</p><label className="mt-3 block cursor-pointer rounded-lg bg-blue-600 px-3 py-2 text-xs font-bold text-white hover:bg-blue-700">{photos[student.sats] ? "Change Photo" : "Upload Photo"}<input type="file" accept="image/*" className="sr-only" onChange={(event) => handleUpload(student.sats, event.target.files?.[0])} /></label></article>)}</div>
+    </Panel>}
+  </div>;
+}
+
+function makeStudentQrPattern(value) {
+  const size = 25;
+  const grid = Array.from({ length: size }, () => Array(size).fill(null));
+  const addFinder = (left, top) => {
+    for (let y = -1; y <= 7; y += 1) for (let x = -1; x <= 7; x += 1) {
+      const px = left + x;
+      const py = top + y;
+      if (px < 0 || py < 0 || px >= size || py >= size) continue;
+      const inFinder = x >= 0 && x <= 6 && y >= 0 && y <= 6;
+      grid[py][px] = inFinder && (x === 0 || x === 6 || y === 0 || y === 6 || (x >= 2 && x <= 4 && y >= 2 && y <= 4));
+    }
+  };
+  addFinder(0, 0);
+  addFinder(size - 7, 0);
+  addFinder(0, size - 7);
+  for (let i = 8; i < size - 8; i += 1) {
+    grid[6][i] = i % 2 === 0;
+    grid[i][6] = i % 2 === 0;
+  }
+  let seed = [...value].reduce((sum, char) => (sum * 31 + char.charCodeAt(0)) >>> 0, 2166136261);
+  for (let y = 0; y < size; y += 1) for (let x = 0; x < size; x += 1) {
+    if (grid[y][x] !== null) continue;
+    seed = (seed * 1664525 + 1013904223) >>> 0;
+    grid[y][x] = ((seed >>> 29) & 1) === 1;
+  }
+  return grid;
+}
+
+function StudentQrGraphic({ student, size = "size-32" }) {
+  const qr = makeStudentQrPattern(student.sats);
+  return <svg viewBox="0 0 33 33" role="img" aria-label={`QR code for ${student.sats}`} className={`bg-white ${size}`}><rect width="33" height="33" fill="white" />{qr.flatMap((row, y) => row.map((dark, x) => dark ? <rect key={`${x}-${y}`} x={x + 4} y={y + 4} width="1" height="1" fill="#111827" /> : null))}</svg>;
+}
+
+function StudentIdentifiers({ student, compact = false, onQrClick }) {
+  const bars = ["101", ...student.sats.split("").map((char) => char.charCodeAt(0).toString(2).padStart(8, "0")), "101"].join("");
+  const containerClass = compact ? "flex items-end gap-2" : "grid gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:grid-cols-2";
+  const cardClass = compact ? "rounded-lg bg-white p-2 text-center text-slate-700 shadow-sm" : "rounded-xl border border-slate-100 p-4 text-center";
+  return <section className={containerClass}>
+    <div className={cardClass}><h3 className={compact ? "text-[9px] font-bold" : "text-sm font-bold"}>Barcode</h3><svg viewBox={`0 0 ${bars.length * 2} 54`} role="img" aria-label={`Barcode for ${student.sats}`} className={`mx-auto mt-1 w-full ${compact ? "h-8 max-w-28" : "h-16 max-w-sm"}`}><rect width="100%" height="100%" fill="white" />{bars.split("").map((bit, index) => bit === "1" ? <rect key={index} x={index * 2} y="2" width="2" height="39" fill="#111827" /> : null)}</svg><p className={compact ? "mt-0.5 font-mono text-[8px]" : "mt-1 font-mono text-xs tracking-widest"}>{student.sats}</p></div>
+    <button type="button" onClick={onQrClick} aria-label={`Enlarge QR code for ${student.name}`} title="Click to enlarge QR code" className={`${cardClass} cursor-zoom-in transition-transform hover:scale-105`}><h3 className={compact ? "text-[9px] font-bold" : "text-sm font-bold"}>QR Code</h3><StudentQrGraphic student={student} size={compact ? "size-12" : "size-32"} />{!compact && <p className="mt-1 font-mono text-xs tracking-widest text-slate-600">{student.sats}</p>}</button>
+  </section>;
+}
+
+const ADMISSION_TABS = ["Basic", "Transport", "Hostel", "Fees", "Parent", "Address", "Miscellaneous", "Documents"];
+function StudentAdmissionScreen() {
+  const [tab, setTab] = useState(0);
+  const [saved, setSaved] = useState(false);
+  const sectionTitle = ["Student Admission", "Transport Details", "Hostel Details", "Fees Details", "Parent Guardian Detail", "Student Address Details", "Miscellaneous Details", "Upload Documents"][tab];
+  const fieldsByTab = [
+    [["Roll Number"], ["Class", true], ["Section", true], ["First Name", true], ["Last Name"], ["Gender", true], ["Date of Birth", true], ["Category"], ["Religion"], ["Mobile Number"], ["Email"], ["Admission Date"]],
+    [["Route List"], ["Pickup Point"], ["Fees Month"]],
+    [["Hostel"], ["Room Type"], ["Hostel Room"]],
+    [["Fees Group"], ["Fees Type"], ["Transport Fees Amount"]],
+    [["Father Name"], ["Mother Name"], ["Mother Phone"], ["Guardian Relation"]],
+    [["Current Address"], ["Permanent Address"]],
+    [["Bank Account Number"], ["Bank Name"], ["IFSC Code"], ["National Identification Number"], ["Local Identification Number"], ["Previous School Details"], ["Note"]],
+    [["Document Title"], ["Choose Document File"]],
+  ];
+  return (
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div className="flex flex-wrap items-center gap-1 border-b border-slate-200 bg-slate-50 px-3 pt-2">{ADMISSION_TABS.map((label, index) => <button key={label} type="button" onClick={() => { setTab(index); setSaved(false); }} className={`border-t-2 px-3 py-3 text-xs font-semibold transition-colors ${tab === index ? "border-orange-500 bg-white text-cyan-700" : "border-transparent text-slate-500 hover:text-blue-700"}`}>{label}</button>)}</div>
+      <div className="flex items-center justify-between gap-3 border-b border-slate-100 px-4 py-3"><h2 className="font-semibold text-slate-700">{sectionTitle}</h2><button type="button" className="rounded-lg bg-blue-600 px-3 py-2 text-[11px] font-bold text-white">⬆ Import Student</button></div>
+      <div className="grid gap-x-4 gap-y-5 p-4 sm:grid-cols-2 xl:grid-cols-4">{fieldsByTab[tab].map(([label, required]) => <Field key={label} label={label} required={required}>{label.includes("Choose") || label.includes("Document") ? <input type="file" className="w-full text-xs text-slate-500 file:mr-2 file:rounded-lg file:border-0 file:bg-blue-50 file:px-3 file:py-2 file:text-xs file:font-bold file:text-blue-700" /> : label === "Class" || label === "Section" || label === "Gender" || label === "Category" || label.includes("Route") || label.includes("Pickup") || label === "Hostel" || label.includes("Room") || label.includes("Fees") ? <select className={inputClass}><option>Select</option>{(label === "Class" ? ["Nursery", "LKG", "UKG", "Class 1"] : label === "Section" ? ["A", "B"] : label === "Gender" ? ["Female", "Male", "Other"] : []).map((option) => <option key={option}>{option}</option>)}</select> : <input className={inputClass} type={label.includes("Date") ? "date" : "text"} />}</Field>)}</div>
+      {saved && <p className="mx-4 mb-3 rounded-lg bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-700">Admission form saved.</p>}
+      <div className="flex justify-end gap-2 border-t border-slate-100 p-4"><button type="button" disabled={tab === 0} onClick={() => setTab((current) => Math.max(0, current - 1))} className="rounded-lg border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-600 disabled:opacity-40">Back</button>{tab < ADMISSION_TABS.length - 1 ? <button type="button" onClick={() => setTab((current) => Math.min(ADMISSION_TABS.length - 1, current + 1))} className="rounded-lg bg-blue-600 px-4 py-2 text-xs font-bold text-white">Next</button> : <button type="button" onClick={() => setSaved(true)} className="rounded-lg bg-emerald-600 px-4 py-2 text-xs font-bold text-white">Save</button>}</div>
+    </div>
+  );
+}
+
+function Sidebar({ expanded, menuSearch, setMenuSearch, active, setActive, activeSubmenu, setActiveSubmenu, role }) {
+  const [openModule, setOpenModule] = useState(null);
   const filteredModules = useMemo(
-    () => MODULES.filter((module) => module.label.toLowerCase().includes(menuSearch.toLowerCase())),
+    () => MODULES.filter((module) => module.label.toLowerCase().includes(menuSearch.toLowerCase()) || module.children?.some((child) => child.toLowerCase().includes(menuSearch.toLowerCase()))),
     [menuSearch],
   );
 
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-40 flex w-[272px] flex-col text-white shadow-xl transition-[width,transform] duration-200 md:translate-x-0 ${
+      className={`fixed inset-y-0 left-0 z-40 flex w-[272px] flex-col text-slate-800 shadow-xl transition-[width,transform] duration-200 md:translate-x-0 ${
         expanded ? "translate-x-0 md:w-[272px]" : "-translate-x-full md:translate-x-0 md:w-[76px]"
       }`}
-      style={{ background: `linear-gradient(180deg, ${COLORS.navy} 0%, ${COLORS.navyDark} 100%)` }}
+      style={{ background: "#fff", borderRight: `1px solid ${COLORS.border}` }}
     >
-      <a href="/" title="Back to Homepage" className="flex h-[70px] shrink-0 items-center gap-3 border-b border-white/10 px-4 hover:bg-white/5 transition-colors cursor-pointer">
+      <a href="/" title="Back to Homepage" className="flex h-[70px] shrink-0 items-center gap-3 border-b border-slate-200 px-4 transition-colors hover:bg-slate-50 cursor-pointer">
         <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-blue-600 text-lg font-bold shadow-lg shadow-blue-950/30">D</div>
         {expanded && (
           <div className="min-w-0">
             <p className="truncate text-sm font-bold">Sunrises Public School</p>
-            <p className="truncate text-[10px] text-blue-200">Bareilly, Uttar Pradesh</p>
+            <p className="truncate text-[10px] text-slate-500">Bareilly, Uttar Pradesh</p>
           </div>
         )}
       </a>
 
       {expanded && (
         <div className="px-3 pt-3">
-          <label className="flex h-10 items-center gap-2 rounded-xl border border-white/10 bg-[#0B2B5B]/70 px-3 text-blue-100">
+          <label className="flex h-10 items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 text-slate-500">
             <Search size={15} />
             <input
               value={menuSearch}
               onChange={(event) => setMenuSearch(event.target.value)}
               placeholder="Search menu..."
-              className="w-full bg-transparent text-xs outline-none placeholder:text-blue-200/60"
+              className="w-full bg-transparent text-xs outline-none placeholder:text-slate-400"
             />
           </label>
         </div>
       )}
 
       <nav className="min-h-0 flex-1 overflow-y-auto px-2 py-4">
-        {expanded && <p className="mb-2 px-3 text-[10px] font-bold tracking-[0.18em] text-blue-200/70">MAIN MENU</p>}
+        {expanded && <p className="mb-2 px-3 text-[10px] font-bold tracking-[0.18em] text-slate-400">MAIN MENU</p>}
         <div className="space-y-1">
-          {filteredModules.map(({ id, label, icon: Icon, expandable }) => {
+          {filteredModules.map(({ id, label, icon: Icon, children }) => {
             const selected = id === active;
+            const isOpen = openModule === id || (menuSearch.length > 0 && children?.some((child) => child.toLowerCase().includes(menuSearch.toLowerCase())));
             return (
-              <button
-                key={id}
-                type="button"
-                title={!expanded ? label : undefined}
-                onClick={() => setActive(id)}
-                className={`flex h-11 w-full items-center gap-3 rounded-xl px-3 text-left text-xs font-semibold transition-colors ${
-                  selected ? "bg-blue-600 text-white shadow-md shadow-blue-950/20" : "text-blue-100 hover:bg-white/10"
-                }`}
-              >
-                <span className={`grid size-7 shrink-0 place-items-center rounded-lg ${selected ? "bg-emerald-500" : "bg-white/10"}`}>
-                  <Icon size={16} />
-                </span>
-                {expanded && <span className="min-w-0 flex-1 truncate">{label}</span>}
-                {expanded && expandable && <ChevronRight size={14} className="shrink-0 text-blue-200/70" />}
-              </button>
+              <div key={id}>
+                <button
+                  type="button"
+                  title={!expanded ? label : undefined}
+                  onClick={() => {
+                    setActive(id);
+                    setActiveSubmenu("");
+                    if (children) setOpenModule(isOpen && openModule === id ? null : id);
+                  }}
+                  className={`flex h-11 w-full items-center gap-3 rounded-xl px-3 text-left text-xs font-semibold transition-colors ${
+                    selected ? "bg-blue-600 text-white shadow-md shadow-blue-950/20" : "text-slate-700 hover:bg-blue-50"
+                  }`}
+                >
+                  <span className={`grid size-7 shrink-0 place-items-center rounded-lg ${selected ? "bg-emerald-500" : "bg-slate-100 text-slate-600"}`}>
+                    <Icon size={16} />
+                  </span>
+                  {expanded && <span className="min-w-0 flex-1 truncate">{label}</span>}
+                  {expanded && children && <ChevronDown size={14} className={`shrink-0 ${selected ? "text-white/80" : "text-slate-400"} transition-transform ${isOpen ? "rotate-180" : ""}`} />}
+                </button>
+                {expanded && children && isOpen && (
+                  <div className="ml-2 mt-1 space-y-0.5 border-l border-slate-200 pl-2">
+                    {children.filter((child) => !menuSearch || label.toLowerCase().includes(menuSearch.toLowerCase()) || child.toLowerCase().includes(menuSearch.toLowerCase())).map((child, index) => (
+                      <button
+                        key={`${child}-${index}`}
+                        type="button"
+                        onClick={() => { setActive(id); setActiveSubmenu(child); }}
+                        className={`flex min-h-9 w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-[11px] font-semibold transition-colors ${active === id && activeSubmenu === child ? "bg-blue-50 text-blue-700" : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"}`}
+                      >
+                        <ChevronRight size={12} className="shrink-0" />
+                        <span className="min-w-0 flex-1">{child}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>
       </nav>
 
-      <div className="shrink-0 border-t border-white/10 p-3">
+      <div className="shrink-0 border-t border-slate-200 p-3">
         {expanded ? (
-          <div className="rounded-2xl border border-white/10 bg-[#081F43]/80 p-3">
-            <p className="text-[10px] font-bold tracking-[0.16em] text-blue-200/70">SYSTEM INFO</p>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-slate-800">
+            <p className="text-[10px] font-bold tracking-[0.16em] text-slate-400">SYSTEM INFO</p>
             <div className="mt-3 flex items-center gap-3">
               <span className="grid size-10 place-items-center rounded-full border border-emerald-400/40 bg-emerald-500/10 text-emerald-400">
                 <ShieldCheck size={21} />
               </span>
               <div>
-                <p className="text-[10px] text-blue-200">Mon, 17 Nov 2026</p>
+                <p className="text-[10px] text-slate-500">Mon, 18 Nov 2026</p>
                 <p className="text-base font-bold">11:26 AM</p>
               </div>
             </div>
-            <span className="mx-auto mt-3 flex w-fit items-center gap-1.5 rounded-full bg-emerald-400/15 px-3 py-1 text-[10px] font-semibold text-emerald-300">
+            <span className="mx-auto mt-3 flex w-fit items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-[10px] font-semibold text-emerald-700">
               <span className="size-1.5 rounded-full bg-emerald-400" /> Online · {role}
             </span>
           </div>
@@ -330,8 +626,21 @@ export default function SchoolDashboard() {
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
   const [menuSearch, setMenuSearch] = useState("");
   const [active, setActive] = useState("dashboard");
+  const [activeSubmenu, setActiveSubmenu] = useState("");
+  const [studentPhotos, setStudentPhotos] = useState({});
   const [role, setRole] = useState("Super Admin");
   const [globalSearch, setGlobalSearch] = useState("");
+
+  useEffect(() => {
+    let theme = "default";
+    try {
+      theme = window.localStorage.getItem("school-ecosystem-theme") || "default";
+    } catch {
+      // Keep the default palette if browser storage is unavailable.
+    }
+    if (theme === "default") document.documentElement.removeAttribute("data-theme");
+    else document.documentElement.setAttribute("data-theme", theme);
+  }, []);
 
   return (
     <div className="min-h-screen" style={{ background: COLORS.background, color: COLORS.ink }}>
@@ -349,6 +658,8 @@ export default function SchoolDashboard() {
         setMenuSearch={setMenuSearch}
         active={active}
         setActive={setActive}
+        activeSubmenu={activeSubmenu}
+        setActiveSubmenu={setActiveSubmenu}
         role={role}
       />
 
@@ -417,7 +728,7 @@ export default function SchoolDashboard() {
           <div className="flex flex-wrap items-end justify-between gap-2">
             <div>
               <h1 className="text-xl font-bold tracking-tight sm:text-2xl" style={{ color: COLORS.ink }}>
-                {active === "dashboard" ? "Dashboard Overview" : MODULES.find((module) => module.id === active)?.label}
+                {active === "dashboard" ? "Dashboard Overview" : activeSubmenu || MODULES.find((module) => module.id === active)?.label}
               </h1>
               <p className="mt-1 text-xs" style={{ color: COLORS.muted }}>Welcome back, {role}. Here&apos;s what&apos;s happening at your school today.</p>
             </div>
@@ -426,6 +737,10 @@ export default function SchoolDashboard() {
             </button>
           </div>
 
+          {activeSubmenu === "Student Details" ? <StudentProfileManager photos={studentPhotos} />
+            : activeSubmenu === "Student Photos" ? <StudentPhotosDemoScreen photos={studentPhotos} setPhoto={setStudentPhotos} />
+              : activeSubmenu === "Student Admission" ? <StudentAdmissionScreen />
+                : <>
           <section aria-label="School summary" className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-5">
             {SUMMARY.map((item) => <SummaryCard key={item.label} {...item} />)}
           </section>
@@ -607,6 +922,7 @@ export default function SchoolDashboard() {
             <span>© 2026 Demo School. All rights reserved.</span>
             <span className="flex items-center gap-1"><Activity size={12} /> School management dashboard</span>
           </footer>
+                </>}
         </main>
       </div>
     </div>

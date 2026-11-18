@@ -23,7 +23,7 @@ import {
   Calendar,
   BookOpen,
   Award,
-  MessageCircle,
+  Palette,
   X,
   Send,
   CheckCircle2,
@@ -41,10 +41,6 @@ import {
   HeartPulse,
   AlertTriangle
 } from 'lucide-react';
-
-// ============================================================================
-// MOCK DATA & CONSTANTS
-// ============================================================================
 
 const HERO_SLIDES = [
   {
@@ -1101,19 +1097,14 @@ const NAV_ITEMS = [
   }
 ];
 
-// ============================================================================
-// MAIN APPLICATION COMPONENT
-// ============================================================================
+
 
 export default function App() {
-  // Navigation & UI State
   const [activePage, setActivePage] = useState('HOME');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Hero Carousel State
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Modals & Drawers State
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [loginRole, setLoginRole] = useState('Student');
   const [loginCreds, setLoginCreds] = useState({ username: '', password: '' });
@@ -1127,8 +1118,15 @@ export default function App() {
   const [iqScore, setIqScore] = useState(0);
   const [iqFinished, setIqFinished] = useState(false);
 
-  // Chat Widget State
   const [chatOpen, setChatOpen] = useState(false);
+  const [themePickerOpen, setThemePickerOpen] = useState(false);
+  const [selectedTheme, setSelectedTheme] = useState(() => {
+    try {
+      return window.localStorage.getItem('school-ecosystem-theme') || 'default';
+    } catch {
+      return 'default';
+    }
+  });
   const [chatMessages, setChatMessages] = useState([
     {
       sender: 'bot',
@@ -1137,19 +1135,29 @@ export default function App() {
   ]);
   const [chatInput, setChatInput] = useState('');
 
-  // Gallery Filter State
+  useEffect(() => {
+    const root = document.documentElement;
+    if (selectedTheme === 'default') {
+      root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', selectedTheme);
+    }
+    try {
+      window.localStorage.setItem('school-ecosystem-theme', selectedTheme);
+    } catch {
+    
+    }
+  }, [selectedTheme]);
+
+  
   const [galleryFilter, setGalleryFilter] = useState('All');
 
-  // Faculty Department Filter State
   const [facultyDepartment, setFacultyDepartment] = useState('All');
 
-  // Future Ready Skills / Programme State
   const [selectedProgrammeId, setSelectedProgrammeId] = useState('sports-programme');
 
-  // About Us Section Interactive State
   const [selectedAboutTab, setSelectedAboutTab] = useState('mission-vision');
 
-  // Interactive Section States
   const [selectedAcademicTab, setSelectedAcademicTab] = useState('curriculum');
   const [selectedHostelTab, setSelectedHostelTab] = useState('hostel-overview');
   const [selectedAdmissionTab, setSelectedAdmissionTab] = useState('admission-form');
@@ -1445,15 +1453,15 @@ export default function App() {
                       }}
                       className={`relative py-2 px-3 rounded-lg text-xs font-bold tracking-wider transition-all cursor-pointer flex items-center gap-1.5 ${
                         isActive || isDropdownOpen
-                          ? 'bg-[#0e4b2d] text-white shadow-sm'
-                          : 'text-slate-200 hover:text-white hover:bg-white/10'
+                          ? 'bg-[#1B365D] text-white shadow-sm'
+                          : 'text-slate-200 hover:text-white hover:bg-[#1B365D]'
                       }`}
                     >
                       <span>{item.label}</span>
                       {item.hasDropdown && (
                         <ChevronDown
                           className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                            isDropdownOpen ? 'rotate-180 text-emerald-300' : 'text-slate-300'
+                            isDropdownOpen ? 'rotate-180 text-blue-200' : 'text-slate-300'
                           }`}
                         />
                       )}
@@ -1465,10 +1473,10 @@ export default function App() {
                     {/* Floating Dropdown Card matching screenshots */}
                     {item.hasDropdown && isDropdownOpen && (
                       <div className="absolute top-full left-0 mt-1 w-72 bg-white rounded-xl shadow-2xl border border-slate-200 z-50 overflow-hidden divide-y divide-slate-100 animate-in fade-in slide-in-from-top-1 duration-150">
-                        {/* Dropdown Header banner matching the user's uploaded green header */}
-                        <div className="bg-[#0e4b2d] px-4 py-2.5 text-white flex items-center justify-between text-xs font-bold shadow-xs">
-                          <span className="text-emerald-100">{item.label}</span>
-                          <ChevronDown className="w-3.5 h-3.5 text-emerald-300" />
+                        {/* Dropdown header */}
+                        <div className="bg-[#162C56] px-4 py-2.5 text-white flex items-center justify-between text-xs font-bold shadow-xs">
+                          <span className="text-blue-100">{item.label}</span>
+                          <ChevronDown className="w-3.5 h-3.5 text-blue-200" />
                         </div>
 
                         {/* List items */}
@@ -1481,13 +1489,13 @@ export default function App() {
                                 navigateTo(item.id, sub.id);
                                 setActiveDropdown(null);
                               }}
-                              className="w-full text-left px-4 py-2.5 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-[#0e4b2d] flex items-center justify-between transition-colors cursor-pointer group/item"
+                              className="w-full text-left px-4 py-2.5 text-xs font-semibold text-slate-700 hover:bg-blue-50 hover:text-[#1B365D] flex items-center justify-between transition-colors cursor-pointer group/item"
                             >
                               <span className="truncate">{sub.label}</span>
                               {sub.hasSubmenu ? (
-                                <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover/item:text-[#0e4b2d]" />
+                                <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover/item:text-[#1B365D]" />
                               ) : (
-                                <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover/item:text-[#0e4b2d] group-hover/item:translate-x-0.5 transition-all" />
+                                <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover/item:text-[#1B365D] group-hover/item:translate-x-0.5 transition-all" />
                               )}
                             </button>
                           ))}
@@ -1538,15 +1546,15 @@ export default function App() {
                         }}
                         className={`flex-1 text-left px-3.5 py-2.5 rounded-lg text-xs font-bold tracking-wider flex items-center justify-between ${
                           isActive
-                            ? 'bg-[#0e4b2d] text-white'
-                            : 'text-slate-200 hover:bg-white/10 hover:text-white'
+                            ? 'bg-[#1B365D] text-white'
+                            : 'text-slate-200 hover:bg-[#1B365D] hover:text-white'
                         }`}
                       >
                         <span>{item.label}</span>
                         {item.hasDropdown && (
                           <ChevronDown
                             className={`w-4 h-4 transition-transform duration-200 ${
-                              isExpanded ? 'rotate-180 text-emerald-300' : 'text-slate-400'
+                              isExpanded ? 'rotate-180 text-blue-200' : 'text-slate-400'
                             }`}
                           />
                         )}
@@ -1564,10 +1572,10 @@ export default function App() {
                             navigateTo(item.id);
                             setMobileMenuOpen(false);
                           }}
-                          className="w-full text-left px-3.5 py-2 text-xs font-bold text-emerald-300 hover:bg-white/10 rounded-lg flex items-center justify-between"
+                          className="w-full text-left px-3.5 py-2 text-xs font-bold text-blue-200 hover:bg-white/10 rounded-lg flex items-center justify-between"
                         >
                           <span>Go to {item.label} Overview</span>
-                          <ArrowRight className="w-3.5 h-3.5 text-emerald-300" />
+                          <ArrowRight className="w-3.5 h-3.5 text-blue-200" />
                         </button>
                         {item.dropdownItems.map((sub) => (
                           <button
@@ -1785,55 +1793,39 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Embedded Interactive Video / Quiz Showcase Card */}
-              <div
-                onClick={resetIqChallenge}
-                className="group relative max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-slate-200 bg-[#F8E7B9] cursor-pointer"
-              >
-                <div className="relative aspect-video w-full flex flex-col justify-between p-5 sm:p-8 bg-gradient-to-b from-[#F5E0A9] via-[#FDF3D7] to-[#F4D99B]">
-                  {/* Top Video Title Bar */}
-                  <div className="flex items-center justify-between z-10">
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-full bg-[#1B365D] text-white flex items-center justify-center font-bold text-xs shadow">
-                        DS
-                      </div>
-                      <div>
-                        <p className="font-bold text-slate-900 text-sm sm:text-base leading-tight">
-                          Test Your IQ Level in 7 Minutes
-                        </p>
-                        <p className="text-xs text-slate-600">
-                          Demo School Cognitive &amp; Aptitude Series
-                        </p>
-                      </div>
-                    </div>
-                    <span className="bg-black/75 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                      Interactive Quiz
-                    </span>
-                  </div>
-
-                  {/* Center Bold Graphic & Play Button */}
-                  <div className="my-auto text-center z-10 py-4">
-                    <h3 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900 uppercase">
-                      TEST YOUR <span className="text-red-600">IQ</span> LEVEL
-                    </h3>
-                    <p className="text-xs sm:text-sm font-semibold text-slate-700 mt-2">
-                      Click to launch the interactive student brain-teaser challenge
-                    </p>
-
-                    <div className="mt-5 inline-flex items-center justify-center w-16 h-12 rounded-2xl bg-[#FF0000] text-white shadow-lg group-hover:scale-110 transition-transform">
-                      <Play className="w-7 h-7 fill-current ml-0.5" />
+              {/* YouTube video preview: only the play button opens YouTube. */}
+              <div className="relative mx-auto aspect-video max-w-3xl overflow-hidden rounded-2xl border border-slate-200 bg-slate-900 shadow-xl">
+                <img
+                  src="https://img.youtube.com/vi/GdRVa4piaTg/hqdefault.jpg"
+                  alt="YouTube video preview: Test Your IQ Level in 7 Minutes"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-transparent to-black/60" />
+                <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between gap-3 p-4 sm:p-6">
+                  <div className="flex min-w-0 items-center gap-3 text-white">
+                    <div className="grid size-9 shrink-0 place-items-center rounded-full bg-red-600 text-xs font-bold shadow">▶</div>
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-bold sm:text-base">Test Your IQ Level in 7 Minutes</p>
+                      <p className="truncate text-xs text-white/80">Demo School Cognitive &amp; Aptitude Series</p>
                     </div>
                   </div>
-
-                  {/* Bottom IQ Spectrum Bar */}
-                  <div className="z-10">
-                    <div className="h-2.5 w-full rounded-full bg-gradient-to-r from-emerald-500 via-yellow-400 to-red-600 shadow-inner" />
-                    <div className="flex justify-between text-[11px] font-bold text-slate-700 mt-1">
-                      <span>Beginner</span>
-                      <span>Analytical</span>
-                      <span>Genius Level</span>
-                    </div>
-                  </div>
+                  <span className="shrink-0 rounded-full bg-black/65 px-3 py-1 text-xs font-semibold text-white">YouTube</span>
+                </div>
+                <a
+                  href="https://www.youtube.com/watch?v=GdRVa4piaTg&autoplay=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Play this video on YouTube"
+                  title="Play on YouTube"
+                  className="group absolute left-1/2 top-1/2 z-20 grid -translate-x-1/2 -translate-y-1/2 place-items-center"
+                >
+                  <span className="grid h-16 w-20 place-items-center rounded-2xl bg-red-600 text-white shadow-xl transition-transform group-hover:scale-110">
+                    <Play className="ml-1 h-8 w-8 fill-current" />
+                  </span>
+                </a>
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-3 p-4 text-white sm:p-6">
+                  <span className="text-xs font-medium text-white/90">Click Play to watch this video on YouTube</span>
+                  <span className="rounded bg-black/70 px-1.5 py-0.5 text-[11px]">▶</span>
                 </div>
               </div>
             </section>
@@ -5451,7 +5443,7 @@ export default function App() {
       {/* ====================================================================
           4. FLOATING GREEN WHATSAPP / SUPPORT CHAT WIDGET
       ==================================================================== */}
-      <div className="fixed bottom-5 right-5 z-50">
+      <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
         {chatOpen && (
           <div className="mb-3 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col">
             <div className="bg-[#14532D] text-white px-4 py-3.5 flex items-center justify-between">
@@ -5512,12 +5504,55 @@ export default function App() {
           </div>
         )}
 
+        {themePickerOpen && (
+          <div className="w-56 rounded-2xl border border-slate-200 bg-white p-3 shadow-2xl" role="dialog" aria-label="Choose website color">
+            <p className="mb-2 px-1 text-xs font-extrabold uppercase tracking-wide text-slate-500">Website colors</p>
+            <div className="grid grid-cols-2 gap-2">
+              {[
+                { id: 'default', label: 'Royal blue', color: '#2563eb' },
+                { id: 'gray', label: 'Gray', color: '#64748b' },
+                { id: 'black', label: 'Black', color: '#18181b' },
+                { id: 'light-green', label: 'Light green', color: '#10b981' },
+                { id: 'orange', label: 'Orange', color: '#f97316' },
+                { id: 'purple', label: 'Purple', color: '#8b5cf6' },
+                { id: 'teal', label: 'Teal', color: '#14b8a6' },
+              ].map((theme) => (
+                <button
+                  key={theme.id}
+                  type="button"
+                  onClick={() => setSelectedTheme(theme.id)}
+                  aria-pressed={selectedTheme === theme.id}
+                  className={`flex items-center gap-2 rounded-xl border px-2 py-2 text-left text-[11px] font-semibold text-slate-700 transition-colors hover:bg-slate-50 ${selectedTheme === theme.id ? 'border-slate-400 bg-slate-50 ring-1 ring-slate-300' : 'border-slate-200'}`}
+                >
+                  <span className="h-4 w-4 shrink-0 rounded-full border border-black/10" style={{ backgroundColor: theme.color }} />
+                  {theme.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         <button
-          onClick={() => setChatOpen(!chatOpen)}
-          aria-label="Open Support Chat"
-          className="ml-auto w-13 h-13 rounded-full bg-[#14532D] hover:bg-[#166534] text-white shadow-xl flex items-center justify-center transition-transform hover:scale-105 cursor-pointer"
+          type="button"
+          onClick={() => setThemePickerOpen((open) => !open)}
+          aria-label="Choose website color"
+          aria-expanded={themePickerOpen}
+          className="grid h-12 w-12 place-items-center rounded-full border border-white/80 bg-white text-slate-700 shadow-xl transition-transform hover:scale-105 hover:bg-slate-50 cursor-pointer"
         >
-          {chatOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+          <Palette className="h-5 w-5" />
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setChatOpen(!chatOpen)}
+          aria-label={chatOpen ? 'Close Support Chat' : 'Open Support Chat'}
+          className="grid h-14 w-14 place-items-center rounded-full bg-[#14532D] text-white shadow-xl transition-transform hover:scale-105 hover:bg-[#166534] cursor-pointer"
+        >
+          {chatOpen ? <X className="h-6 w-6" /> : (
+            <svg viewBox="0 0 32 32" className="h-7 w-7" fill="currentColor" aria-hidden="true">
+              <path d="M16.02 3.2A12.62 12.62 0 0 0 5.14 22.2L3.4 28.55l6.5-1.7a12.64 12.64 0 1 0 6.12-23.65Zm0 22.94c-1.85 0-3.66-.5-5.25-1.45l-.38-.22-3.86 1.01 1.03-3.76-.25-.39a10.27 10.27 0 1 1 8.71 4.81Zm5.64-7.7c-.31-.15-1.82-.9-2.1-1-.28-.1-.49-.15-.7.16-.2.31-.8 1-.98 1.2-.18.2-.36.23-.67.08-.31-.16-1.3-.48-2.47-1.52-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.13-.63.14-.14.31-.36.46-.54.15-.18.2-.31.3-.52.1-.2.05-.38-.03-.54-.08-.15-.7-1.68-.96-2.3-.25-.6-.51-.52-.7-.53h-.6c-.2 0-.54.08-.82.39-.28.31-1.07 1.05-1.07 2.57 0 1.51 1.1 2.98 1.25 3.18.15.2 2.17 3.31 5.25 4.64.73.32 1.3.51 1.74.65.73.23 1.4.2 1.93.12.59-.09 1.82-.75 2.08-1.48.26-.72.26-1.34.18-1.47-.08-.13-.28-.2-.59-.36Z" />
+            </svg>
+          )}
         </button>
       </div>
 
